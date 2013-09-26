@@ -1,4 +1,4 @@
 SourceCodeAnalysisDatabase
 ==========================
 
-Analysis of open source code projects
+This project consists of analysis of open source code projects
