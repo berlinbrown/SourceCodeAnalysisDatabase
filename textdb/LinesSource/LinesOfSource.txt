@@ -1,0 +1,648 @@
+
+Source Code Analysis Run : 9/24/2013
+
+********************************************************************************
+* <1> Analysis of guava project (google commons) - Number of Lines
+* https://code.google.com/p/guava-libraries/
+* guava-15.0.jar
+* The Guava project contains several of Google's core libraries that we rely on in our Java-based projects: collections, caching, 
+* primitives support, concurrency libraries, common annotations, string processing, I/O, and so forth.
+* SOURCE CODE DOWNLOAD (not git or svn)
+********************************************************************************
+
+
+$ /cygdrive/c/User/Downloads/guava/com/google
+$ perl ~/cloc-1.60.pl  .
+     455 text files.
+     455 unique files.
+      19 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=10.87 s (41.9 files/s, 11578.3 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           455          13884          46898          65,098
+-------------------------------------------------------------------------------
+SUM:                           455          13884          46898          65098
+-------------------------------------------------------------------------------
+
+********************************************************************************
+* <2> Analysis of OpenJDK
+* Without 'classes' library directory - share directory
+* Source download
+* https://jdk7.java.net/source.html
+********************************************************************************
+
+$ /cygdrive/c/User/Downloads/openjdk-7u40-fcs-src-b43-26_aug_2013/openjdk/jdk/src/share/classes/java
+$ perl ~/cloc-1.60.pl  .
+    1565 text files.
+    1562 unique files.
+      73 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=12.04 s (128.8 files/s, 51231.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                          1503          44803         350283         215,489
+HTML                            48            799           1238           4374
+-------------------------------------------------------------------------------
+SUM:                          1551          45602         351521         219863
+-------------------------------------------------------------------------------
+
+ 1698 ./common/collect/Sets.java
+   1761 ./common/collect/Synchronized.java
+   2059 ./common/collect/Multimaps.java
+   3915 ./common/collect/Maps.java
+   4010 ./common/collect/MapMakerInternalMap.java
+   4842 ./common/cache/LocalCache.java
+ 125878 total
+
+********************************************************************************
+* Analysis of OpenJDK
+* With 'classes' library directory - share directory
+* Source download
+* https://jdk7.java.net/source.html
+********************************************************************************
+
+$ /cygdrive/c/User/Downloads/openjdk-7u40-fcs-src-b43-26_aug_2013/openjdk/jdk/src/share
+$ perl ~/cloc-1.60.pl  .
+    9811 text files.
+    9712 unique files.
+    1489 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=133.34 s (68.5 files/s, 21750.8 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                          7704         223991        1034909        1,179,120
+C                              553          43013          51909         198582
+C/C++ Header                   442          13024          27895          52362
+HTML                           239           3161           3918          23322
+C++                            104           3872           4793          21888
+XML                             42            452           1050           3155
+Javascript                      22            480           2259           3058
+Ant                             17            375            507           1003
+XSD                              5             96             82            955
+DTD                              3             89             52            249
+CSS                              1             63             26            178
+make                             3             28             90             92
+C#                               2             29             76             72
+DOS Batch                        1              3             30              2
+Bourne Shell                     1              5             30              1
+-------------------------------------------------------------------------------
+SUM:                          9139         288681        1127626        1484039
+-------------------------------------------------------------------------------
+
+********************************************************************************
+* <3> Analysis of jEdit source
+* Download
+* http://www.jedit.org/
+********************************************************************************
+
+$ /cygdrive/c/User/Downloads/jedit/jEdit/org
+$ perl ~/cloc-1.60.pl .
+     651 text files.
+     647 unique files.
+     162 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=6.05 s (95.3 files/s, 28924.4 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           535          18199          45291         108,299 
+XML                              5            442             41           2342
+DTD                             11             60             53            216
+HTML                            26             15              0            110
+-------------------------------------------------------------------------------
+SUM:                           577          18716          45385         110967
+-------------------------------------------------------------------------------
+
+   2251 ./gjt/sp/jedit/GUIUtilities.java
+   2333 ./gjt/sp/jedit/View.java
+   2995 ./gjt/sp/jedit/buffer/JEditBuffer.java
+   4695 ./gjt/sp/jedit/jEdit.java
+   5815 ./gjt/sp/jedit/bsh/Parser.java
+   6712 ./gjt/sp/jedit/textarea/TextArea.java
+ 171782 total
+
+
+********************************************************************************
+* <4> Analysis of Eclipse Source
+* JDT core
+* git clone http://git.eclipse.org/gitroot/jdt/eclipse.jdt.core.git
+********************************************************************************
+
+$ ~/src/eclipse.jdt.core/org.eclipse.jdt.core
+$ perl ~/cloc-1.60.pl .
+    1285 text files.
+    1285 unique files.
+     157 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=9.86 s (126.6 files/s, 50278.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                          1205          30868         125028         301,281
+HTML                            27           1893             26          34699
+XML                             13            176            338           1236
+Maven                            1              3              9            173
+DTD                              1              0              0             87
+Ant                              1              7              9             41
+CSS                              1              0              0             18
+-------------------------------------------------------------------------------
+SUM:                          1249          32947         125410         337535
+-------------------------------------------------------------------------------
+
+
+   5852 ./formatter/org/eclipse/jdt/internal/formatter/CodeFormatterVisitor.java
+    6752 ./compiler/org/eclipse/jdt/internal/compiler/codegen/CodeStream.java
+    8747 ./compiler/org/eclipse/jdt/internal/compiler/problem/ProblemReporter.java
+   11026 ./compiler/org/eclipse/jdt/internal/compiler/parser/Parser.java
+   12868 ./codeassist/org/eclipse/jdt/internal/codeassist/CompletionEngine.java
+  457168 total
+
+********************************************************************************
+* <5> Analysis of OpenMRS 
+* http://openmrs.org/
+* git clone git clone https://github.com/openmrs/openmrs-core.git
+* The global OpenMRS community works together to build the world's leading open source 
+* enterprise electronic medical record system platform
+********************************************************************************
+
+*** OPENMRS ****
+
+$ ~/src/openmrs-core/web/src/main
+$ !878
+perl ~/cloc-1.60.pl .
+     367 text files.
+     365 unique files.
+      92 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=3.33 s (104.0 files/s, 16718.2 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           345           8117          14544          31688
+XML                              1            145            176            957
+-------------------------------------------------------------------------------
+SUM:                           346           8262          14720          32645
+-------------------------------------------------------------------------------
+
+    972 ./java/org/openmrs/module/web/WebModuleUtil.java
+    989 ./java/org/openmrs/web/taglib/FormatTag.java
+   1036 ./java/org/openmrs/web/controller/ConceptFormController.java
+   1902 ./java/org/openmrs/web/filter/initialization/InitializationFilter.java
+  54349 total
+
+********************************************************************************
+* <6> Analysis of OpenCMS
+* http://www.opencms.org/en/
+* git clone https://github.com/alkacon/opencms-core.git
+********************************************************************************
+
+*** OPENCMS *** 
+
+$ ~/src/opencms-core/src
+$ perl ~/cloc-1.60.pl .
+    1738 text files.
+    1728 unique files.
+     206 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=18.49 s (88.8 files/s, 27859.7 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                          1519          68823         204091         234,212
+XSD                             40            212              0           1279
+DTD                             11            399           1568           1021
+HTML                            71            903           1489            944
+XML                              1             32              6             87
+-------------------------------------------------------------------------------
+SUM:                          1642          70369         207154         237543
+-------------------------------------------------------------------------------
+
+   3767 ./org/opencms/db/generic/CmsProjectDriver.java
+    3925 ./org/opencms/file/CmsObject.java
+    4556 ./org/opencms/db/jpa/CmsVfsDriver.java
+    4736 ./org/opencms/db/generic/CmsVfsDriver.java
+    7237 ./org/opencms/db/CmsSecurityManager.java
+   11450 ./org/opencms/db/CmsDriverManager.java
+  506610 total
+
+$ ~/src/opencms-core/test
+$ perl ~/cloc-1.60.pl .
+     635 text files.
+     539 unique files.
+     320 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=7.02 s (64.0 files/s, 14068.8 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           231          12092          21739          40,705
+XML                             78            604           1155          17957
+XSD                             85            450             15           2335
+HTML                            41            192            192            971
+ASP.Net                          6             10              0            205
+Ant                              1             23              9             50
+JSP                              6              1              3             37
+DTD                              1              2              8              4
+-------------------------------------------------------------------------------
+SUM:                           449          13374          23121          62264
+-------------------------------------------------------------------------------
+
+********************************************************************************
+* <7> Apache Wicket 6
+* http://wicket.apache.org/
+********************************************************************************
+
+
+$ /cygdrive/c/User/Downloads/apache-wicket-6.10.0/apache-wicket-6.10.0/wicket-core/src
+$ perl ~/cloc-1.60.pl main/
+     886 text files.
+     880 unique files.
+     151 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=4.24 s (199.8 files/s, 41647.8 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           781          14948          63780          73,650
+Javascript                      10           3460           3896          14924
+HTML                            51            109            691            730
+XSD                              1             24              3            270
+XML                              5             37             79            170
+-------------------------------------------------------------------------------
+SUM:                           848          18578          68449          89744
+-------------------------------------------------------------------------------
+
+
+$ /cygdrive/c/User/Downloads/apache-wicket-6.10.0/apache-wicket-6.10.0/wicket-core/src
+$ perl ~/cloc-1.60.pl test/
+    1881 text files.
+    1778 unique files.
+     348 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=11.20 s (151.0 files/s, 9222.5 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           925          10181          28607          45,516
+HTML                           712            848           2004           8467
+Javascript                      18            769            653           3258
+XML                             21             57            328           2268
+CSS                             12             59             34            192
+XSLT                             2              8             12             20
+LESS                             1              0              0              3
+-------------------------------------------------------------------------------
+SUM:                          1691          11922          31638          59724
+-------------------------------------------------------------------------------
+
+   1889 ./java/org/apache/wicket/protocol/http/mock/MockHttpServletRequest.java
+   1947 ./java/org/apache/wicket/MarkupContainer.java
+   2103 ./java/org/apache/wicket/markup/html/form/Form.java
+   2859 ./java/org/apache/wicket/util/tester/BaseWicketTester.java
+   4527 ./java/org/apache/wicket/Component.java
+ 152248 total
+
+
+********************************************************************************
+* <8> Jetty
+* git clone http://git.eclipse.org/gitroot/jetty/org.eclipse.jetty.project.git
+********************************************************************************
+
+$ ~/src/org.eclipse.jetty.project/jetty-server/src
+$ perl ~/cloc-1.60.pl main
+     105 text files.
+     105 unique files.
+      20 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.64 s (161.7 files/s, 45095.0 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                            93           3481           6784          18,279
+XML                             11             46            167            242
+-------------------------------------------------------------------------------
+SUM:                           104           3527           6951          18521
+-------------------------------------------------------------------------------
+
+!!!!
+
+$ ~/src/org.eclipse.jetty.project/jetty-server/src
+$ perl ~/cloc-1.60.pl test
+      58 text files.
+      58 unique files.
+      15 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.42 s (129.3 files/s, 42121.7 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                            54           2564           1463          13570
+-------------------------------------------------------------------------------
+SUM:                            54           2564           1463          13570
+-------------------------------------------------------------------------------
+
+  1111 ./java/org/eclipse/jetty/server/Response.java
+  1171 ./java/org/eclipse/jetty/server/session/JDBCSessionManager.java
+  2197 ./java/org/eclipse/jetty/server/Request.java
+  2671 ./java/org/eclipse/jetty/server/handler/ContextHandler.java
+ 28542 total
+
+
+********************************************************************************
+* <9> Tomcat
+********************************************************************************
+
+*** Tomcat:
+
+$ /cygdrive/c/User/Downloads/apache-tomcat-7.0.42-src/apache-tomcat-7.0.42-src/java
+$ perl ~/cloc-1.60.pl .
+    1481 text files.
+    1479 unique files.
+     266 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=17.57 s (76.5 files/s, 21944.4 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                          1261          52526         119553         184,058
+XSD                             21           3115            506          12932
+XML                             21            971            335           5250
+HTML                            33            299            477           2168
+DTD                              8            752           1652            941
+-------------------------------------------------------------------------------
+SUM:                          1344          57663         122523         205349
+-------------------------------------------------------------------------------
+
+ 3153 ./org/apache/catalina/servlets/WebdavServlet.java
+    3409 ./org/apache/catalina/connector/Request.java
+    3509 ./org/apache/catalina/loader/WebappClassLoader.java
+    4291 ./org/apache/jasper/compiler/Generator.java
+    7048 ./org/apache/catalina/core/StandardContext.java
+  356093 total
+
+*******
+
+
+********************************************************************************
+* <10> Spring Framework Core (web)
+* git clone https://github.com/spring-projects/spring-framework.git
+********************************************************************************
+
+$ ~/src/spring/spring-framework/spring-webmvc/src
+$ perl ~/cloc-1.60.pl main/
+     306 text files.
+     306 unique files.
+      47 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=4.66 s (64.0 files/s, 10453.9 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           293           5704          20520          21,037
+XSD                              4             35              0           1396
+HTML                             1              0              0              7
+-------------------------------------------------------------------------------
+SUM:                           298           5739          20520          22440
+-------------------------------------------------------------------------------
+
+$ ~/src/spring/spring-framework/spring-webmvc/src
+$ perl ~/cloc-1.60.pl test/
+     298 text files.
+     289 unique files.
+     103 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=4.79 s (54.5 files/s, 9605.3 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           201           8013           6158          30,554
+XML                             45            235             77            814
+XSLT                             8             23              1             94
+HTML                             1              1              0              9
+CSS                              3              0              0              3
+Javascript                       3              0              0              3
+-------------------------------------------------------------------------------
+SUM:                           261           8272           6236          31477
+-------------------------------------------------------------------------------
+
+
+   836 ./java/org/springframework/web/servlet/view/jasperreports/AbstractJasperReportsView.java
+    887 ./java/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java
+   1147 ./java/org/springframework/web/servlet/FrameworkServlet.java
+   1298 ./java/org/springframework/web/servlet/mvc/annotation/AnnotationMethodHandlerAdapter.java
+   1306 ./java/org/springframework/web/servlet/DispatcherServlet.java
+  47259 total
+
+
+***************************************
+* SPRING CORE::
+***************************************
+
+$ ~/src/spring/spring-framework/spring-core/src
+$ perl ~/cloc-1.60.pl main/
+     317 text files.
+     313 unique files.
+      29 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=4.69 s (66.7 files/s, 11602.5 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           312           5665          22774          25,987
+HTML                             1              0              0              7
+-------------------------------------------------------------------------------
+SUM:                           313           5665          22774          25994
+-------------------------------------------------------------------------------
+
+
+$ ~/src/spring/spring-framework/spring-core/src
+$ perl ~/cloc-1.60.pl test/
+     139 text files.
+     139 unique files.
+      38 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.90 s (151.3 files/s, 23677.3 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           132           3682           3388          14,174
+XML                              4              7              3             34
+-------------------------------------------------------------------------------
+SUM:                           136           3689           3391          14208
+-------------------------------------------------------------------------------
+
+    895 ./java/org/springframework/asm/Type.java
+    896 ./java/org/springframework/util/ObjectUtils.java
+   1019 ./java/org/springframework/util/ConcurrentReferenceHashMap.java
+   1134 ./java/org/springframework/util/ClassUtils.java
+   1157 ./java/org/springframework/util/StringUtils.java
+   1453 ./java/org/springframework/asm/Frame.java
+   1693 ./java/org/springframework/asm/ClassWriter.java
+   2204 ./java/org/springframework/asm/ClassReader.java
+   2685 ./java/org/springframework/asm/MethodWriter.java
+
+
+
+********************************************************************************
+* <11> Netbeans
+* Download : netbeans-7.3.1-201306052037-src
+********************************************************************************
+
+
+$ /cygdrive/c/Users/Downloads/netbeans-7.3.1-201306052037-src
+$ perl ~/cloc-1.60.pl .
+    6220 text files.
+    5648 unique files.
+    4089 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=28.65 s (139.6 files/s, 30980.2 lines/s)
+--------------------------------------------------------------------------------
+Language                      files          blank        comment           code
+--------------------------------------------------------------------------------
+Java                           3163          87438         188197         449,082
+XML                             312           9955          31332          42151
+HTML                            395           7678           3076          35334
+XSD                              10            107            374          17437
+XSLT                              7            296            324           3234
+DTD                              38            700           3094           1346
+CSS                               2            121             94            814
+Ant                              54            489           1713            804
+C++                               2             58             95            489
+Objective C                       3             56            144            237
+Bourne Again Shell                3             37             75            216
+C/C++ Header                      5             34            217            214
+Bourne Shell                      2             28             97            169
+Haskell                           1              8              1             33
+make                              1             34             28             27
+--------------------------------------------------------------------------------
+SUM:                           3998         107039         228861         551587
+--------------------------------------------------------------------------------
+
+
+********************************************************************************
+* <12> log4j
+********************************************************************************
+
+$ ~/src/mavenSource/target/sources/org/apache/log4j
+$ perl ~/cloc-1.60.pl  .
+     176 text files.
+     176 unique files.
+      24 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.78 s (226.5 files/s, 41613.6 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           176           5239          11553          15,545
+-------------------------------------------------------------------------------
+SUM:                           176           5239          11553          15545
+-------------------------------------------------------------------------------
+
+********************************************************************************
+* <13> sl4j
+********************************************************************************
+
+$ ~/src/mavenSource/target/sources/org/slf4j
+$ perl ~/cloc-1.60.pl .
+      27 text files.
+      27 unique files.
+       4 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.15 s (181.4 files/s, 20161.1 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                            23            361           1763            820
+HTML                             4             21              0             36
+-------------------------------------------------------------------------------
+SUM:                            27            382           1763            856
+-------------------------------------------------------------------------------
+
+
+********************************************************************************
+* <14> Hibernate
+********************************************************************************
+
+$ ~/src/mavenSource/target/sources/org/hibernate
+$ perl ~/cloc-1.60.pl .
+    2316 text files.
+    2314 unique files.
+     221 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=9.93 s (231.5 files/s, 39219.8 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                          2239          40641         129021         211,814
+XSD                              4            368            351           4210
+DTD                              2            141            177            804
+HTML                            53             52           1228            570
+XML                              1              0              0            115
+-------------------------------------------------------------------------------
+SUM:                          2299          41202         130777         217513
+-------------------------------------------------------------------------------
+
+********************************************************************************
+* <15> Joda Time
+********************************************************************************
+
+
+$ ~/src/mavenSource/target/sources/org/joda/time
+$ perl ~/cloc-1.60.pl .
+     177 text files.
+     177 unique files.
+      20 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=1.20 s (137.4 files/s, 57330.7 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           157           5861          34917          27,638
+HTML                             8             47             96            302
+-------------------------------------------------------------------------------
+SUM:                           165           5908          35013          27940
+-------------------------------------------------------------------------------
+
+
+********************************************************************************
+* <16> Junit
+********************************************************************************
+
+
+$ ~/src/mavenSource/target/sources/junit
+$ perl ~/cloc-1.60.pl .
+      50 text files.
+      50 unique files.
+       9 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.24 s (202.5 files/s, 23395.4 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                            49            644            999           4,018
+-------------------------------------------------------------------------------
+SUM:                            49            644            999           4018
+-------------------------------------------------------------------------------
+
+********************************************************************************
+* <17> dom4j
+********************************************************************************
+
+$ ~/src/mavenSource/target/sources/org/dom4j
+$ perl ~/cloc-1.60.pl .
+     179 text files.
+     179 unique files.
+      14 files ignored.
+
+http://cloc.sourceforge.net v 1.60  T=0.91 s (195.8 files/s, 47044.6 lines/s)
+-------------------------------------------------------------------------------
+Language                     files          blank        comment           code
+-------------------------------------------------------------------------------
+Java                           166           6134          18875          17,854
+HTML                            13             30              0            110
+-------------------------------------------------------------------------------
+SUM:                           179           6164          18875          17964
+-------------------------------------------------------------------------------
