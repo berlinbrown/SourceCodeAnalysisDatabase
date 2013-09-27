@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>PotentialAssignment.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.theories</a> &gt; <span class="el_source">PotentialAssignment.java</span></div><h1>PotentialAssignment.java</h1><pre class="source lang-java linenums">package org.junit.experimental.theories;
+
+import static java.lang.String.format;
+
+<span class="fc" id="L5">public abstract class PotentialAssignment {</span>
+<span class="fc" id="L6">    public static class CouldNotGenerateValueException extends Exception {</span>
+        private static final long serialVersionUID = 1L;
+        
+<span class="nc" id="L9">        public CouldNotGenerateValueException() {</span>
+<span class="nc" id="L10">        }</span>
+        
+        public CouldNotGenerateValueException(Throwable t) {
+<span class="nc" id="L13">            super(t);</span>
+<span class="nc" id="L14">        }</span>
+    }
+
+    public static PotentialAssignment forValue(final String name, final Object value) {
+<span class="fc" id="L18">        return new PotentialAssignment() {</span>
+            @Override
+            public Object getValue() {
+<span class="fc" id="L21">                return value;</span>
+            }
+
+            @Override
+            public String toString() {
+<span class="nc" id="L26">                return format(&quot;[%s]&quot;, value);</span>
+            }
+
+            @Override
+            public String getDescription() {
+                String valueString;
+
+<span class="fc bfc" id="L33" title="All 2 branches covered.">                if (value == null) {</span>
+<span class="fc" id="L34">                    valueString = &quot;null&quot;;</span>
+                } else {
+                    try {
+<span class="fc" id="L37">                        valueString = format(&quot;\&quot;%s\&quot;&quot;, value);</span>
+<span class="fc" id="L38">                    } catch (Throwable e) {</span>
+<span class="fc" id="L39">                        valueString = format(&quot;[toString() threw %s: %s]&quot;, </span>
+                                             e.getClass().getSimpleName(), e.getMessage());
+<span class="fc" id="L41">                    }</span>
+                }
+
+<span class="fc" id="L44">                return format(&quot;%s &lt;from %s&gt;&quot;, valueString, name);</span>
+            }
+        };
+    }
+
+    public abstract Object getValue() throws CouldNotGenerateValueException;
+
+    public abstract String getDescription() throws CouldNotGenerateValueException;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

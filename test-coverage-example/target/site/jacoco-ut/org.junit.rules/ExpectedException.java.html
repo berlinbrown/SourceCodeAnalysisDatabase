@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ExpectedException.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.rules</a> &gt; <span class="el_source">ExpectedException.java</span></div><h1>ExpectedException.java</h1><pre class="source lang-java linenums">package org.junit.rules;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.junit.internal.matchers.ThrowableCauseMatcher.hasCause;
+import static org.junit.internal.matchers.ThrowableMessageMatcher.hasMessage;
+
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
+import org.junit.internal.AssumptionViolatedException;
+import org.junit.runners.model.Statement;
+
+/**
+ * The ExpectedException rule allows in-test specification of expected exception
+ * types and messages:
+ *
+ * &lt;pre&gt;
+ * // These tests all pass.
+ * public static class HasExpectedException {
+ * 	&amp;#064;Rule
+ * 	public ExpectedException thrown= ExpectedException.none();
+ *
+ * 	&amp;#064;Test
+ * 	public void throwsNothing() {
+ * 		// no exception expected, none thrown: passes.
+ *     }
+ *
+ * 	&amp;#064;Test
+ * 	public void throwsNullPointerException() {
+ * 		thrown.expect(NullPointerException.class);
+ * 		throw new NullPointerException();
+ *     }
+ *
+ * 	&amp;#064;Test
+ * 	public void throwsNullPointerExceptionWithMessage() {
+ * 		thrown.expect(NullPointerException.class);
+ * 		thrown.expectMessage(&amp;quot;happened?&amp;quot;);
+ * 		thrown.expectMessage(startsWith(&amp;quot;What&amp;quot;));
+ * 		throw new NullPointerException(&amp;quot;What happened?&amp;quot;);
+ *     }
+ *
+ * 	&amp;#064;Test
+ * 	public void throwsIllegalArgumentExceptionWithMessageAndCause() {
+ * 		NullPointerException expectedCause = new NullPointerException();
+ * 		thrown.expect(IllegalArgumentException.class);
+ * 		thrown.expectMessage(&amp;quot;What&amp;quot;);
+ * 		thrown.expectCause(is(expectedCause));
+ * 		throw new IllegalArgumentException(&amp;quot;What happened?&amp;quot;, cause);
+ *     }
+ * }
+ * &lt;/pre&gt;
+ *
+ * By default ExpectedException rule doesn't handle AssertionErrors and
+ * AssumptionViolatedExceptions, because such exceptions are used by JUnit. If
+ * you want to handle such exceptions you have to call @link
+ * {@link #handleAssertionErrors()} or @link
+ * {@link #handleAssumptionViolatedExceptions()}.
+ *
+ * &lt;pre&gt;
+ * // These tests all pass.
+ * public static class HasExpectedException {
+ * 	&amp;#064;Rule
+ * 	public ExpectedException thrown= ExpectedException.none();
+ *
+ * 	&amp;#064;Test
+ * 	public void throwExpectedAssertionError() {
+ * 		thrown.handleAssertionErrors();
+ * 		thrown.expect(AssertionError.class);
+ * 		throw new AssertionError();
+ *     }
+ *
+ *  &amp;#064;Test
+ *  public void throwExpectAssumptionViolatedException() {
+ *      thrown.handleAssumptionViolatedExceptions();
+ *      thrown.expect(AssumptionViolatedException.class);
+ *      throw new AssumptionViolatedException(&amp;quot;&amp;quot;);
+ *     }
+ * }
+ * &lt;/pre&gt;
+ *
+ * @since 4.7
+ */
+public class ExpectedException implements TestRule {
+    /**
+     * @return a Rule that expects no exception to be thrown (identical to
+     *         behavior without this Rule)
+     */
+    public static ExpectedException none() {
+<span class="fc" id="L91">        return new ExpectedException();</span>
+    }
+
+<span class="fc" id="L94">    private final ExpectedExceptionMatcherBuilder fMatcherBuilder = new ExpectedExceptionMatcherBuilder();</span>
+
+<span class="fc" id="L96">    private boolean handleAssumptionViolatedExceptions = false;</span>
+
+<span class="fc" id="L98">    private boolean handleAssertionErrors = false;</span>
+    
+    private String missingExceptionMessage;
+
+<span class="fc" id="L102">    private ExpectedException() {</span>
+<span class="fc" id="L103">    }</span>
+
+    public ExpectedException handleAssertionErrors() {
+<span class="fc" id="L106">        handleAssertionErrors = true;</span>
+<span class="fc" id="L107">        return this;</span>
+    }
+
+    public ExpectedException handleAssumptionViolatedExceptions() {
+<span class="fc" id="L111">        handleAssumptionViolatedExceptions = true;</span>
+<span class="fc" id="L112">        return this;</span>
+    }
+    
+    /**
+     * Specifies the failure message for tests that are expected to throw 
+     * an exception but do not throw any.
+     * @param message exception detail message
+     * @return self
+     */
+    public ExpectedException reportMissingExceptionWithMessage(String message) {
+<span class="fc" id="L122">        missingExceptionMessage = message;</span>
+<span class="fc" id="L123">        return this;</span>
+    }
+
+    public Statement apply(Statement base,
+            org.junit.runner.Description description) {
+<span class="fc" id="L128">        return new ExpectedExceptionStatement(base);</span>
+    }
+
+    /**
+     * Adds {@code matcher} to the list of requirements for any thrown
+     * exception.
+     */
+    public void expect(Matcher&lt;?&gt; matcher) {
+<span class="fc" id="L136">        fMatcherBuilder.add(matcher);</span>
+<span class="fc" id="L137">    }</span>
+
+    /**
+     * Adds to the list of requirements for any thrown exception that it should
+     * be an instance of {@code type}
+     */
+    public void expect(Class&lt;? extends Throwable&gt; type) {
+<span class="fc" id="L144">        expect(instanceOf(type));</span>
+<span class="fc" id="L145">    }</span>
+
+    /**
+     * Adds to the list of requirements for any thrown exception that it should
+     * &lt;em&gt;contain&lt;/em&gt; string {@code substring}
+     */
+    public void expectMessage(String substring) {
+<span class="fc" id="L152">        expectMessage(containsString(substring));</span>
+<span class="fc" id="L153">    }</span>
+
+    /**
+     * Adds {@code matcher} to the list of requirements for the message returned
+     * from any thrown exception.
+     */
+    public void expectMessage(Matcher&lt;String&gt; matcher) {
+<span class="fc" id="L160">        expect(hasMessage(matcher));</span>
+<span class="fc" id="L161">    }</span>
+
+    /**
+     * Adds {@code matcher} to the list of requirements for the cause of
+     * any thrown exception.
+     */
+    public void expectCause(Matcher&lt;? extends Throwable&gt; expectedCause) {
+<span class="fc" id="L168">        expect(hasCause(expectedCause));</span>
+<span class="fc" id="L169">    }</span>
+
+    private class ExpectedExceptionStatement extends Statement {
+        private final Statement fNext;
+
+<span class="fc" id="L174">        public ExpectedExceptionStatement(Statement base) {</span>
+<span class="fc" id="L175">            fNext = base;</span>
+<span class="fc" id="L176">        }</span>
+
+        @Override
+        public void evaluate() throws Throwable {
+            try {
+<span class="fc" id="L181">                fNext.evaluate();</span>
+<span class="fc" id="L182">            } catch (AssumptionViolatedException e) {</span>
+<span class="fc" id="L183">                optionallyHandleException(e, handleAssumptionViolatedExceptions);</span>
+<span class="fc" id="L184">                return;</span>
+<span class="fc" id="L185">            } catch (AssertionError e) {</span>
+<span class="fc" id="L186">                optionallyHandleException(e, handleAssertionErrors);</span>
+<span class="fc" id="L187">                return;</span>
+<span class="fc" id="L188">            } catch (Throwable e) {</span>
+<span class="fc" id="L189">                handleException(e);</span>
+<span class="fc" id="L190">                return;</span>
+<span class="fc" id="L191">            }</span>
+<span class="pc bpc" id="L192" title="1 of 2 branches missed.">            if (fMatcherBuilder.expectsThrowable()) {</span>
+<span class="nc" id="L193">                failDueToMissingException();</span>
+            }
+<span class="fc" id="L195">        }</span>
+    }
+
+    private void optionallyHandleException(Throwable e, boolean handleException)
+            throws Throwable {
+<span class="fc bfc" id="L200" title="All 2 branches covered.">        if (handleException) {</span>
+<span class="fc" id="L201">            handleException(e);</span>
+        } else {
+<span class="fc" id="L203">            throw e;</span>
+        }
+<span class="fc" id="L205">    }</span>
+
+    private void handleException(Throwable e) throws Throwable {
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">        if (fMatcherBuilder.expectsThrowable()) {</span>
+<span class="fc" id="L209">            assertThat(e, fMatcherBuilder.build());</span>
+        } else {
+<span class="nc" id="L211">            throw e;</span>
+        }
+<span class="fc" id="L213">    }</span>
+
+    private void failDueToMissingException() throws AssertionError {
+<span class="nc" id="L216">        fail(missingExceptionMessage());</span>
+<span class="nc" id="L217">    }</span>
+    
+    private String missingExceptionMessage() {
+<span class="fc bfc" id="L220" title="All 2 branches covered.">        if (isMissingExceptionMessageEmpty()) {</span>
+<span class="fc" id="L221">            String expectation = StringDescription.toString(fMatcherBuilder.build());</span>
+<span class="fc" id="L222">            return &quot;Expected test to throw &quot; + expectation;</span>
+        } else {
+<span class="fc" id="L224">            return missingExceptionMessage;</span>
+        }        
+    }
+    
+    private boolean isMissingExceptionMessageEmpty() {
+<span class="pc bpc" id="L229" title="1 of 4 branches missed.">        return missingExceptionMessage == null || missingExceptionMessage.length() == 0;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

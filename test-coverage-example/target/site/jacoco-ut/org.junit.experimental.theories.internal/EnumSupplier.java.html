@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>EnumSupplier.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.theories.internal</a> &gt; <span class="el_source">EnumSupplier.java</span></div><h1>EnumSupplier.java</h1><pre class="source lang-java linenums">package org.junit.experimental.theories.internal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.experimental.theories.ParameterSignature;
+import org.junit.experimental.theories.ParameterSupplier;
+import org.junit.experimental.theories.PotentialAssignment;
+
+public class EnumSupplier extends ParameterSupplier {
+
+    private Class&lt;?&gt; enumType;
+
+<span class="nc" id="L14">    public EnumSupplier(Class&lt;?&gt; enumType) {</span>
+<span class="nc" id="L15">        this.enumType = enumType;</span>
+<span class="nc" id="L16">    }</span>
+
+    @Override
+    public List&lt;PotentialAssignment&gt; getValueSources(ParameterSignature sig) {
+<span class="nc" id="L20">        Object[] enumValues = enumType.getEnumConstants();</span>
+        
+<span class="nc" id="L22">        List&lt;PotentialAssignment&gt; assignments = new ArrayList&lt;PotentialAssignment&gt;();</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">        for (Object value : enumValues) {</span>
+<span class="nc" id="L24">            assignments.add(PotentialAssignment.forValue(value.toString(), value));</span>
+        }
+        
+<span class="nc" id="L27">        return assignments;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

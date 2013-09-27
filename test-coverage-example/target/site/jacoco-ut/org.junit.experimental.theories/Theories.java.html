@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Theories.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.theories</a> &gt; <span class="el_source">Theories.java</span></div><h1>Theories.java</h1><pre class="source lang-java linenums">package org.junit.experimental.theories;
+
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Assume;
+import org.junit.experimental.theories.internal.Assignments;
+import org.junit.experimental.theories.internal.ParameterizedAssertionError;
+import org.junit.internal.AssumptionViolatedException;
+import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.runners.model.FrameworkMethod;
+import org.junit.runners.model.InitializationError;
+import org.junit.runners.model.Statement;
+import org.junit.runners.model.TestClass;
+
+public class Theories extends BlockJUnit4ClassRunner {
+    public Theories(Class&lt;?&gt; klass) throws InitializationError {
+<span class="fc" id="L24">        super(klass);</span>
+<span class="fc" id="L25">    }</span>
+
+    @Override
+    protected void collectInitializationErrors(List&lt;Throwable&gt; errors) {
+<span class="fc" id="L29">        super.collectInitializationErrors(errors);</span>
+<span class="fc" id="L30">        validateDataPointFields(errors);</span>
+<span class="fc" id="L31">        validateDataPointMethods(errors);</span>
+<span class="fc" id="L32">    }</span>
+
+    private void validateDataPointFields(List&lt;Throwable&gt; errors) {
+<span class="fc" id="L35">        Field[] fields = getTestClass().getJavaClass().getDeclaredFields();</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (Field field : fields) {</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">            if (field.getAnnotation(DataPoint.class) == null &amp;&amp; field.getAnnotation(DataPoints.class) == null) {</span>
+<span class="fc" id="L39">                continue;</span>
+            }
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">            if (!Modifier.isStatic(field.getModifiers())) {</span>
+<span class="nc" id="L42">                errors.add(new Error(&quot;DataPoint field &quot; + field.getName() + &quot; must be static&quot;));</span>
+            }
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">            if (!Modifier.isPublic(field.getModifiers())) {</span>
+<span class="nc" id="L45">                errors.add(new Error(&quot;DataPoint field &quot; + field.getName() + &quot; must be public&quot;));</span>
+            }
+        }
+<span class="fc" id="L48">    }</span>
+
+    private void validateDataPointMethods(List&lt;Throwable&gt; errors) {
+<span class="fc" id="L51">        Method[] methods = getTestClass().getJavaClass().getDeclaredMethods();</span>
+        
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        for (Method method : methods) {</span>
+<span class="pc bpc" id="L54" title="1 of 4 branches missed.">            if (method.getAnnotation(DataPoint.class) == null &amp;&amp; method.getAnnotation(DataPoints.class) == null) {</span>
+<span class="fc" id="L55">                continue;</span>
+            }
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">            if (!Modifier.isStatic(method.getModifiers())) {</span>
+<span class="nc" id="L58">                errors.add(new Error(&quot;DataPoint method &quot; + method.getName() + &quot; must be static&quot;));</span>
+            }
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            if (!Modifier.isPublic(method.getModifiers())) {</span>
+<span class="nc" id="L61">                errors.add(new Error(&quot;DataPoint method &quot; + method.getName() + &quot; must be public&quot;));</span>
+            }
+        }
+<span class="fc" id="L64">    }</span>
+
+    @Override
+    protected void validateConstructor(List&lt;Throwable&gt; errors) {
+<span class="fc" id="L68">        validateOnlyOneConstructor(errors);</span>
+<span class="fc" id="L69">    }</span>
+
+    @Override
+    protected void validateTestMethods(List&lt;Throwable&gt; errors) {
+<span class="fc bfc" id="L73" title="All 2 branches covered.">        for (FrameworkMethod each : computeTestMethods()) {</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">            if (each.getAnnotation(Theory.class) != null) {</span>
+<span class="fc" id="L75">                each.validatePublicVoid(false, errors);</span>
+<span class="fc" id="L76">                each.validateNoTypeParametersOnArgs(errors);</span>
+            } else {
+<span class="fc" id="L78">                each.validatePublicVoidNoArg(false, errors);</span>
+            }
+            
+<span class="fc bfc" id="L81" title="All 2 branches covered.">            for (ParameterSignature signature : each.getParameterSignatures()) {</span>
+<span class="fc" id="L82">                ParametersSuppliedBy annotation = signature.findDeepAnnotation(ParametersSuppliedBy.class);</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">                if (annotation != null) {</span>
+<span class="nc" id="L84">                    validateParameterSupplier(annotation.value(), errors);</span>
+                }
+<span class="fc" id="L86">            }</span>
+        }
+<span class="fc" id="L88">    }</span>
+
+    private void validateParameterSupplier(Class&lt;? extends ParameterSupplier&gt; supplierClass, List&lt;Throwable&gt; errors) {
+<span class="nc" id="L91">        Constructor&lt;?&gt;[] constructors = supplierClass.getConstructors();</span>
+        
+<span class="nc bnc" id="L93" title="All 2 branches missed.">        if (constructors.length != 1) {</span>
+<span class="nc" id="L94">            errors.add(new Error(&quot;ParameterSupplier &quot; + supplierClass.getName() + </span>
+                                 &quot; must have only one constructor (either empty or taking only a TestClass)&quot;));
+        } else {
+<span class="nc" id="L97">            Class&lt;?&gt;[] paramTypes = constructors[0].getParameterTypes();</span>
+<span class="nc bnc" id="L98" title="All 4 branches missed.">            if (!(paramTypes.length == 0) &amp;&amp; !paramTypes[0].equals(TestClass.class)) {</span>
+<span class="nc" id="L99">                errors.add(new Error(&quot;ParameterSupplier &quot; + supplierClass.getName() + </span>
+                                     &quot; constructor must take either nothing or a single TestClass instance&quot;));
+            }
+        }
+<span class="nc" id="L103">    }</span>
+
+    @Override
+    protected List&lt;FrameworkMethod&gt; computeTestMethods() {
+<span class="fc" id="L107">        List&lt;FrameworkMethod&gt; testMethods = new ArrayList&lt;FrameworkMethod&gt;(super.computeTestMethods());</span>
+<span class="fc" id="L108">        List&lt;FrameworkMethod&gt; theoryMethods = getTestClass().getAnnotatedMethods(Theory.class);</span>
+<span class="fc" id="L109">        testMethods.removeAll(theoryMethods);</span>
+<span class="fc" id="L110">        testMethods.addAll(theoryMethods);</span>
+<span class="fc" id="L111">        return testMethods;</span>
+    }
+
+    @Override
+    public Statement methodBlock(final FrameworkMethod method) {
+<span class="fc" id="L116">        return new TheoryAnchor(method, getTestClass());</span>
+    }
+
+    public static class TheoryAnchor extends Statement {
+<span class="fc" id="L120">        private int successes = 0;</span>
+
+        private FrameworkMethod fTestMethod;
+        private TestClass fTestClass;
+
+<span class="fc" id="L125">        private List&lt;AssumptionViolatedException&gt; fInvalidParameters = new ArrayList&lt;AssumptionViolatedException&gt;();</span>
+
+<span class="fc" id="L127">        public TheoryAnchor(FrameworkMethod method, TestClass testClass) {</span>
+<span class="fc" id="L128">            fTestMethod = method;</span>
+<span class="fc" id="L129">            fTestClass = testClass;</span>
+<span class="fc" id="L130">        }</span>
+
+        private TestClass getTestClass() {
+<span class="fc" id="L133">            return fTestClass;</span>
+        }
+
+        @Override
+        public void evaluate() throws Throwable {
+<span class="fc" id="L138">            runWithAssignment(Assignments.allUnassigned(</span>
+                    fTestMethod.getMethod(), getTestClass()));
+            
+            //if this test method is not annotated with Theory, then no successes is a valid case
+<span class="fc bfc" id="L142" title="All 2 branches covered.">            boolean hasTheoryAnnotation = fTestMethod.getAnnotation(Theory.class) != null;</span>
+<span class="pc bpc" id="L143" title="1 of 4 branches missed.">            if (successes == 0 &amp;&amp; hasTheoryAnnotation) {</span>
+<span class="nc" id="L144">                Assert</span>
+                        .fail(&quot;Never found parameters that satisfied method assumptions.  Violated assumptions: &quot;
+                                + fInvalidParameters);
+            }
+<span class="fc" id="L148">        }</span>
+
+        protected void runWithAssignment(Assignments parameterAssignment)
+                throws Throwable {
+<span class="fc bfc" id="L152" title="All 2 branches covered.">            if (!parameterAssignment.isComplete()) {</span>
+<span class="fc" id="L153">                runWithIncompleteAssignment(parameterAssignment);</span>
+            } else {
+<span class="fc" id="L155">                runWithCompleteAssignment(parameterAssignment);</span>
+            }
+<span class="fc" id="L157">        }</span>
+
+        protected void runWithIncompleteAssignment(Assignments incomplete)
+                throws InstantiationException, IllegalAccessException,
+                Throwable {
+<span class="fc bfc" id="L162" title="All 2 branches covered.">            for (PotentialAssignment source : incomplete</span>
+                    .potentialsForNextUnassigned()) {
+<span class="fc" id="L164">                runWithAssignment(incomplete.assignNext(source));</span>
+            }
+<span class="fc" id="L166">        }</span>
+
+        protected void runWithCompleteAssignment(final Assignments complete)
+                throws InstantiationException, IllegalAccessException,
+                InvocationTargetException, NoSuchMethodException, Throwable {
+<span class="fc" id="L171">            new BlockJUnit4ClassRunner(getTestClass().getJavaClass()) {</span>
+                @Override
+                protected void collectInitializationErrors(
+                        List&lt;Throwable&gt; errors) {
+                    // do nothing
+<span class="fc" id="L176">                }</span>
+
+                @Override
+                public Statement methodBlock(FrameworkMethod method) {
+<span class="fc" id="L180">                    final Statement statement = super.methodBlock(method);</span>
+<span class="fc" id="L181">                    return new Statement() {</span>
+                        @Override
+                        public void evaluate() throws Throwable {
+                            try {
+<span class="fc" id="L185">                                statement.evaluate();</span>
+<span class="fc" id="L186">                                handleDataPointSuccess();</span>
+<span class="fc" id="L187">                            } catch (AssumptionViolatedException e) {</span>
+<span class="fc" id="L188">                                handleAssumptionViolation(e);</span>
+<span class="nc" id="L189">                            } catch (Throwable e) {</span>
+<span class="nc" id="L190">                                reportParameterizedError(e, complete</span>
+                                        .getArgumentStrings(nullsOk()));
+<span class="fc" id="L192">                            }</span>
+<span class="fc" id="L193">                        }</span>
+
+                    };
+                }
+
+                @Override
+                protected Statement methodInvoker(FrameworkMethod method, Object test) {
+<span class="fc" id="L200">                    return methodCompletesWithParameters(method, complete, test);</span>
+                }
+
+                @Override
+                public Object createTest() throws Exception {
+<span class="fc" id="L205">                    Object[] params = complete.getConstructorArguments();</span>
+                    
+<span class="fc bfc" id="L207" title="All 2 branches covered.">                    if (!nullsOk()) {</span>
+<span class="fc" id="L208">                        Assume.assumeNotNull(params);</span>
+                    }
+                    
+<span class="fc" id="L211">                    return getTestClass().getOnlyConstructor().newInstance(params);</span>
+                }
+            }.methodBlock(fTestMethod).evaluate();
+<span class="fc" id="L214">        }</span>
+
+        private Statement methodCompletesWithParameters(
+                final FrameworkMethod method, final Assignments complete, final Object freshInstance) {
+<span class="fc" id="L218">            return new Statement() {</span>
+                @Override
+                public void evaluate() throws Throwable {
+<span class="fc" id="L221">                    final Object[] values = complete.getMethodArguments();</span>
+                    
+<span class="fc bfc" id="L223" title="All 2 branches covered.">                    if (!nullsOk()) {</span>
+<span class="fc" id="L224">                        Assume.assumeNotNull(values);</span>
+                    }
+                    
+<span class="fc" id="L227">                    method.invokeExplosively(freshInstance, values);</span>
+<span class="fc" id="L228">                }</span>
+            };
+        }
+
+        protected void handleAssumptionViolation(AssumptionViolatedException e) {
+<span class="fc" id="L233">            fInvalidParameters.add(e);</span>
+<span class="fc" id="L234">        }</span>
+
+        protected void reportParameterizedError(Throwable e, Object... params)
+                throws Throwable {
+<span class="nc bnc" id="L238" title="All 2 branches missed.">            if (params.length == 0) {</span>
+<span class="nc" id="L239">                throw e;</span>
+            }
+<span class="nc" id="L241">            throw new ParameterizedAssertionError(e, fTestMethod.getName(),</span>
+                    params);
+        }
+
+        private boolean nullsOk() {
+<span class="fc" id="L246">            Theory annotation = fTestMethod.getMethod().getAnnotation(</span>
+                    Theory.class);
+<span class="fc bfc" id="L248" title="All 2 branches covered.">            if (annotation == null) {</span>
+<span class="fc" id="L249">                return false;</span>
+            }
+<span class="fc" id="L251">            return annotation.nullsAccepted();</span>
+        }
+
+        protected void handleDataPointSuccess() {
+<span class="fc" id="L255">            successes++;</span>
+<span class="fc" id="L256">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

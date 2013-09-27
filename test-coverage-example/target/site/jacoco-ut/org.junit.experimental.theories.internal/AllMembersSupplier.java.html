@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AllMembersSupplier.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.theories.internal</a> &gt; <span class="el_source">AllMembersSupplier.java</span></div><h1>AllMembersSupplier.java</h1><pre class="source lang-java linenums">package org.junit.experimental.theories.internal;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.junit.Assume;
+import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.DataPoints;
+import org.junit.experimental.theories.ParameterSignature;
+import org.junit.experimental.theories.ParameterSupplier;
+import org.junit.experimental.theories.PotentialAssignment;
+import org.junit.runners.model.FrameworkField;
+import org.junit.runners.model.FrameworkMethod;
+import org.junit.runners.model.TestClass;
+
+/**
+ * Supplies Theory parameters based on all public members of the target class.
+ */
+public class AllMembersSupplier extends ParameterSupplier {
+    static class MethodParameterValue extends PotentialAssignment {
+        private final FrameworkMethod fMethod;
+
+<span class="fc" id="L27">        private MethodParameterValue(FrameworkMethod dataPointMethod) {</span>
+<span class="fc" id="L28">            fMethod = dataPointMethod;</span>
+<span class="fc" id="L29">        }</span>
+
+        @Override
+        public Object getValue() throws CouldNotGenerateValueException {
+            try {
+<span class="fc" id="L34">                return fMethod.invokeExplosively(null);</span>
+<span class="nc" id="L35">            } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L36">                throw new RuntimeException(</span>
+                        &quot;unexpected: argument length is checked&quot;);
+<span class="nc" id="L38">            } catch (IllegalAccessException e) {</span>
+<span class="nc" id="L39">                throw new RuntimeException(</span>
+                        &quot;unexpected: getMethods returned an inaccessible method&quot;);
+<span class="nc" id="L41">            } catch (Throwable throwable) {</span>
+<span class="nc" id="L42">                DataPoint annotation = fMethod.getAnnotation(DataPoint.class);</span>
+<span class="nc bnc" id="L43" title="All 4 branches missed.">                Assume.assumeTrue(annotation == null || !isAssignableToAnyOf(annotation.ignoredExceptions(), throwable));</span>
+                
+<span class="nc" id="L45">                throw new CouldNotGenerateValueException(throwable);</span>
+            }
+        }
+
+        @Override
+        public String getDescription() throws CouldNotGenerateValueException {
+<span class="nc" id="L51">            return fMethod.getName();</span>
+        }
+    }
+    
+    private final TestClass fClass;
+
+    /**
+     * Constructs a new supplier for {@code type}
+     */
+<span class="fc" id="L60">    public AllMembersSupplier(TestClass type) {</span>
+<span class="fc" id="L61">        fClass = type;</span>
+<span class="fc" id="L62">    }</span>
+
+    @Override
+    public List&lt;PotentialAssignment&gt; getValueSources(ParameterSignature sig) throws Throwable {
+<span class="fc" id="L66">        List&lt;PotentialAssignment&gt; list = new ArrayList&lt;PotentialAssignment&gt;();</span>
+
+<span class="fc" id="L68">        addSinglePointFields(sig, list);</span>
+<span class="fc" id="L69">        addMultiPointFields(sig, list);</span>
+<span class="fc" id="L70">        addSinglePointMethods(sig, list);</span>
+<span class="fc" id="L71">        addMultiPointMethods(sig, list);</span>
+
+<span class="fc" id="L73">        return list;</span>
+    }
+
+    private void addMultiPointMethods(ParameterSignature sig, List&lt;PotentialAssignment&gt; list) throws Throwable {
+<span class="fc bfc" id="L77" title="All 2 branches covered.">        for (FrameworkMethod dataPointsMethod : getDataPointsMethods(sig)) {</span>
+<span class="fc" id="L78">            Class&lt;?&gt; returnType = dataPointsMethod.getReturnType();</span>
+            
+<span class="pc bpc" id="L80" title="2 of 6 branches missed.">            if ((returnType.isArray() &amp;&amp; sig.canPotentiallyAcceptType(returnType.getComponentType())) ||</span>
+                    Iterable.class.isAssignableFrom(returnType)) {
+                try {
+<span class="fc" id="L83">                    addDataPointsValues(returnType, sig, dataPointsMethod.getName(), list, </span>
+                            dataPointsMethod.invokeExplosively(null));
+<span class="fc" id="L85">                } catch (Throwable throwable) {</span>
+<span class="fc" id="L86">                    DataPoints annotation = dataPointsMethod.getAnnotation(DataPoints.class);</span>
+<span class="pc bpc" id="L87" title="2 of 4 branches missed.">                    if (annotation != null &amp;&amp; isAssignableToAnyOf(annotation.ignoredExceptions(), throwable)) {</span>
+<span class="nc" id="L88">                        return;</span>
+                    } else {
+<span class="fc" id="L90">                        throw throwable;</span>
+                    }
+<span class="fc" id="L92">                }</span>
+            }
+<span class="fc" id="L94">        }</span>
+<span class="fc" id="L95">    }</span>
+
+    private void addSinglePointMethods(ParameterSignature sig, List&lt;PotentialAssignment&gt; list) {
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        for (FrameworkMethod dataPointMethod : getSingleDataPointMethods(sig)) {</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">            if (sig.canAcceptType(dataPointMethod.getType())) {</span>
+<span class="fc" id="L100">                list.add(new MethodParameterValue(dataPointMethod));</span>
+            }
+        }
+<span class="fc" id="L103">    }</span>
+    
+    private void addMultiPointFields(ParameterSignature sig, List&lt;PotentialAssignment&gt; list) {
+<span class="fc bfc" id="L106" title="All 2 branches covered.">        for (final Field field : getDataPointsFields(sig)) {</span>
+<span class="fc" id="L107">            Class&lt;?&gt; type = field.getType();</span>
+<span class="fc" id="L108">            addDataPointsValues(type, sig, field.getName(), list, getStaticFieldValue(field));</span>
+<span class="fc" id="L109">        }</span>
+<span class="fc" id="L110">    }</span>
+
+    private void addSinglePointFields(ParameterSignature sig, List&lt;PotentialAssignment&gt; list) {
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        for (final Field field : getSingleDataPointFields(sig)) {</span>
+<span class="fc" id="L114">            Object value = getStaticFieldValue(field);</span>
+            
+<span class="fc bfc" id="L116" title="All 2 branches covered.">            if (sig.canAcceptValue(value)) {</span>
+<span class="fc" id="L117">                list.add(PotentialAssignment.forValue(field.getName(), value));</span>
+            }
+<span class="fc" id="L119">        }</span>
+<span class="fc" id="L120">    }</span>
+    
+    private void addDataPointsValues(Class&lt;?&gt; type, ParameterSignature sig, String name, 
+            List&lt;PotentialAssignment&gt; list, Object value) {
+<span class="fc bfc" id="L124" title="All 2 branches covered.">        if (type.isArray()) {</span>
+<span class="fc" id="L125">            addArrayValues(sig, name, list, value);</span>
+        }
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">        else if (Iterable.class.isAssignableFrom(type)) {</span>
+<span class="fc" id="L128">            addIterableValues(sig, name, list, (Iterable&lt;?&gt;) value);</span>
+        }
+<span class="fc" id="L130">    }</span>
+
+    private void addArrayValues(ParameterSignature sig, String name, List&lt;PotentialAssignment&gt; list, Object array) {
+<span class="fc bfc" id="L133" title="All 2 branches covered.">        for (int i = 0; i &lt; Array.getLength(array); i++) {</span>
+<span class="fc" id="L134">            Object value = Array.get(array, i);</span>
+<span class="fc bfc" id="L135" title="All 2 branches covered.">            if (sig.canAcceptValue(value)) {</span>
+<span class="fc" id="L136">                list.add(PotentialAssignment.forValue(name + &quot;[&quot; + i + &quot;]&quot;, value));</span>
+            }
+        }
+<span class="fc" id="L139">    }</span>
+    
+    private void addIterableValues(ParameterSignature sig, String name, List&lt;PotentialAssignment&gt; list, Iterable&lt;?&gt; iterable) {
+<span class="fc" id="L142">        Iterator&lt;?&gt; iterator = iterable.iterator();</span>
+<span class="fc" id="L143">        int i = 0;</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        while (iterator.hasNext()) {</span>
+<span class="fc" id="L145">            Object value = iterator.next();</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            if (sig.canAcceptValue(value)) {</span>
+<span class="fc" id="L147">                list.add(PotentialAssignment.forValue(name + &quot;[&quot; + i + &quot;]&quot;, value));</span>
+            }
+<span class="fc" id="L149">            i += 1;</span>
+<span class="fc" id="L150">        }</span>
+<span class="fc" id="L151">    }</span>
+
+    private Object getStaticFieldValue(final Field field) {
+        try {
+<span class="fc" id="L155">            return field.get(null);</span>
+<span class="nc" id="L156">        } catch (IllegalArgumentException e) {</span>
+<span class="nc" id="L157">            throw new RuntimeException(</span>
+                    &quot;unexpected: field from getClass doesn't exist on object&quot;);
+<span class="nc" id="L159">        } catch (IllegalAccessException e) {</span>
+<span class="nc" id="L160">            throw new RuntimeException(</span>
+                    &quot;unexpected: getFields returned an inaccessible field&quot;);
+        }
+    }
+    
+    private static boolean isAssignableToAnyOf(Class&lt;?&gt;[] typeArray, Object target) {
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">        for (Class&lt;?&gt; type : typeArray) {</span>
+<span class="nc bnc" id="L167" title="All 2 branches missed.">            if (type.isAssignableFrom(target.getClass())) {</span>
+<span class="nc" id="L168">                return true;</span>
+            }
+        }
+<span class="fc" id="L171">        return false;</span>
+    }
+
+    protected Collection&lt;FrameworkMethod&gt; getDataPointsMethods(ParameterSignature sig) {
+<span class="fc" id="L175">        return fClass.getAnnotatedMethods(DataPoints.class);        </span>
+    }
+    
+    protected Collection&lt;Field&gt; getSingleDataPointFields(ParameterSignature sig) {
+<span class="fc" id="L179">        List&lt;FrameworkField&gt; fields = fClass.getAnnotatedFields(DataPoint.class);</span>
+<span class="fc" id="L180">        Collection&lt;Field&gt; validFields = new ArrayList&lt;Field&gt;();</span>
+
+<span class="fc bfc" id="L182" title="All 2 branches covered.">        for (FrameworkField frameworkField : fields) {</span>
+<span class="fc" id="L183">            validFields.add(frameworkField.getField());</span>
+        }
+
+<span class="fc" id="L186">        return validFields;</span>
+    }
+    
+    protected Collection&lt;Field&gt; getDataPointsFields(ParameterSignature sig) {
+<span class="fc" id="L190">        List&lt;FrameworkField&gt; fields = fClass.getAnnotatedFields(DataPoints.class);</span>
+<span class="fc" id="L191">        Collection&lt;Field&gt; validFields = new ArrayList&lt;Field&gt;();</span>
+
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        for (FrameworkField frameworkField : fields) {</span>
+<span class="fc" id="L194">            validFields.add(frameworkField.getField());</span>
+        }
+
+<span class="fc" id="L197">        return validFields;</span>
+    }
+    
+    protected Collection&lt;FrameworkMethod&gt; getSingleDataPointMethods(ParameterSignature sig) {
+<span class="fc" id="L201">        return fClass.getAnnotatedMethods(DataPoint.class);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

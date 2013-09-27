@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>IncludeCategories.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.categories</a> &gt; <span class="el_source">IncludeCategories.java</span></div><h1>IncludeCategories.java</h1><pre class="source lang-java linenums">package org.junit.experimental.categories;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.runner.manipulation.Filter;
+
+import static org.junit.experimental.categories.Categories.CategoryFilter;
+
+/**
+ * {@link org.junit.runner.FilterFactory} to include categories.
+ *
+ * The {@link Filter} that is created will filter out tests that are categorized with any of the
+ * given categories.
+ *
+ * Usage from command line:
+ * &lt;code&gt;
+ *     --filter=org.junit.experimental.categories.IncludeCategories=pkg.of.Cat1,pkg.of.Cat2
+ * &lt;/code&gt;
+ *
+ * Usage from API:
+ * &lt;code&gt;
+ *     new IncludeCategories().createFilter(Cat1.class, Cat2.class);
+ * &lt;/code&gt;
+ */
+<span class="fc" id="L27">public final class IncludeCategories extends CategoryFilterFactory {</span>
+    /**
+     * Creates a {@link Filter} which is only passed by tests that are
+     * categorized with any of the specified categories.
+     *
+     * @param categories Category classes.
+     */
+    @Override
+    protected Filter createFilter(Class&lt;?&gt;... categories) {
+<span class="fc" id="L36">        return new IncludesAny(categories);</span>
+    }
+
+<span class="fc" id="L39">    private static class IncludesAny extends CategoryFilter {</span>
+        public IncludesAny(Class&lt;?&gt;... categories) {
+<span class="fc" id="L41">            this(new HashSet&lt;Class&lt;?&gt;&gt;(Arrays.asList(categories)));</span>
+<span class="fc" id="L42">        }</span>
+
+        public IncludesAny(Set&lt;Class&lt;?&gt;&gt; categories) {
+<span class="fc" id="L45">            super(true, categories, true, null);</span>
+<span class="fc" id="L46">        }</span>
+
+        @Override
+        public String describe() {
+<span class="fc" id="L50">            return &quot;includes &quot; + super.describe();</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

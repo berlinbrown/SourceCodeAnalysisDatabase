@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Enclosed.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.runners</a> &gt; <span class="el_source">Enclosed.java</span></div><h1>Enclosed.java</h1><pre class="source lang-java linenums">package org.junit.experimental.runners;
+
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.runners.Suite;
+import org.junit.runners.model.RunnerBuilder;
+
+/**
+ * If you put tests in inner classes, Ant, for example, won't find them. By running the outer class
+ * with Enclosed, the tests in the inner classes will be run. You might put tests in inner classes
+ * to group them for convenience or to share constants. Abstract inner classes are ignored.
+ * &lt;p&gt;
+ * So, for example:
+ * &lt;pre&gt;
+ * &amp;#064;RunWith(Enclosed.class)
+ * public class ListTests {
+ *     ...useful shared stuff...
+ *     public static class OneKindOfListTest {...}
+ *     public static class AnotherKind {...}
+ *     abstract public static class Ignored {...}
+ * }
+ * &lt;/pre&gt;
+ */
+public class Enclosed extends Suite {
+    /**
+     * Only called reflectively. Do not use programmatically.
+     */
+    public Enclosed(Class&lt;?&gt; klass, RunnerBuilder builder) throws Throwable {
+<span class="fc" id="L31">        super(builder, klass, filterAbstractClasses(klass.getClasses()));</span>
+<span class="fc" id="L32">    }</span>
+    
+    private static Class&lt;?&gt;[] filterAbstractClasses(final Class&lt;?&gt;[] classes) {     
+<span class="fc" id="L35">        final List&lt;Class&lt;?&gt;&gt; filteredList= new ArrayList&lt;Class&lt;?&gt;&gt;(classes.length);</span>
+
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        for (final Class&lt;?&gt; clazz : classes) {</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">            if (!Modifier.isAbstract(clazz.getModifiers())) {</span>
+<span class="fc" id="L39">                filteredList.add(clazz);</span>
+            }
+        }
+        
+<span class="fc" id="L43">        return filteredList.toArray(new Class&lt;?&gt;[filteredList.size()]);</span>
+    }   
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

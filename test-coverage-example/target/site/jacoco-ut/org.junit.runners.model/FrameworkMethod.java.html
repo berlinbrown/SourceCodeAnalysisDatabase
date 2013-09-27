@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FrameworkMethod.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.runners.model</a> &gt; <span class="el_source">FrameworkMethod.java</span></div><h1>FrameworkMethod.java</h1><pre class="source lang-java linenums">package org.junit.runners.model;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.lang.reflect.Type;
+import java.util.List;
+
+import org.junit.experimental.theories.ParameterSignature;
+import org.junit.internal.runners.model.ReflectiveCallable;
+
+/**
+ * Represents a method on a test class to be invoked at the appropriate point in
+ * test execution. These methods are usually marked with an annotation (such as
+ * {@code @Test}, {@code @Before}, {@code @After}, {@code @BeforeClass},
+ * {@code @AfterClass}, etc.)
+ *
+ * @since 4.5
+ */
+public class FrameworkMethod extends FrameworkMember&lt;FrameworkMethod&gt; {
+    final Method fMethod;
+
+    /**
+     * Returns a new {@code FrameworkMethod} for {@code method}
+     */
+<span class="fc" id="L27">    public FrameworkMethod(Method method) {</span>
+<span class="fc" id="L28">        fMethod = method;</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+     * Returns the underlying Java method
+     */
+    public Method getMethod() {
+<span class="fc" id="L35">        return fMethod;</span>
+    }
+
+    /**
+     * Returns the result of invoking this method on {@code target} with
+     * parameters {@code params}. {@link InvocationTargetException}s thrown are
+     * unwrapped, and their causes rethrown.
+     */
+    public Object invokeExplosively(final Object target, final Object... params)
+            throws Throwable {
+<span class="fc" id="L45">        return new ReflectiveCallable() {</span>
+            @Override
+            protected Object runReflectiveCall() throws Throwable {
+<span class="fc" id="L48">                return fMethod.invoke(target, params);</span>
+            }
+        }.run();
+    }
+
+    /**
+     * Returns the method's name
+     */
+    @Override
+    public String getName() {
+<span class="fc" id="L58">        return fMethod.getName();</span>
+    }
+
+    /**
+     * Adds to {@code errors} if this method:
+     * &lt;ul&gt;
+     * &lt;li&gt;is not public, or
+     * &lt;li&gt;takes parameters, or
+     * &lt;li&gt;returns something other than void, or
+     * &lt;li&gt;is static (given {@code isStatic is false}), or
+     * &lt;li&gt;is not static (given {@code isStatic is true}).
+     */
+    public void validatePublicVoidNoArg(boolean isStatic, List&lt;Throwable&gt; errors) {
+<span class="fc" id="L71">        validatePublicVoid(isStatic, errors);</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (fMethod.getParameterTypes().length != 0) {</span>
+<span class="fc" id="L73">            errors.add(new Exception(&quot;Method &quot; + fMethod.getName() + &quot; should have no parameters&quot;));</span>
+        }
+<span class="fc" id="L75">    }</span>
+
+
+    /**
+     * Adds to {@code errors} if this method:
+     * &lt;ul&gt;
+     * &lt;li&gt;is not public, or
+     * &lt;li&gt;returns something other than void, or
+     * &lt;li&gt;is static (given {@code isStatic is false}), or
+     * &lt;li&gt;is not static (given {@code isStatic is true}).
+     */
+    public void validatePublicVoid(boolean isStatic, List&lt;Throwable&gt; errors) {
+<span class="fc bfc" id="L87" title="All 2 branches covered.">        if (Modifier.isStatic(fMethod.getModifiers()) != isStatic) {</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">            String state = isStatic ? &quot;should&quot; : &quot;should not&quot;;</span>
+<span class="fc" id="L89">            errors.add(new Exception(&quot;Method &quot; + fMethod.getName() + &quot;() &quot; + state + &quot; be static&quot;));</span>
+        }
+<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (!Modifier.isPublic(fMethod.getDeclaringClass().getModifiers())) {</span>
+<span class="fc" id="L92">            errors.add(new Exception(&quot;Class &quot; + fMethod.getDeclaringClass().getName() + &quot; should be public&quot;));</span>
+        }
+<span class="fc bfc" id="L94" title="All 2 branches covered.">        if (!Modifier.isPublic(fMethod.getModifiers())) {</span>
+<span class="fc" id="L95">            errors.add(new Exception(&quot;Method &quot; + fMethod.getName() + &quot;() should be public&quot;));</span>
+        }
+<span class="fc bfc" id="L97" title="All 2 branches covered.">        if (fMethod.getReturnType() != Void.TYPE) {</span>
+<span class="fc" id="L98">            errors.add(new Exception(&quot;Method &quot; + fMethod.getName() + &quot;() should be void&quot;));</span>
+        }
+<span class="fc" id="L100">    }</span>
+
+    /**
+     * Returns true if this method is static, false if not
+     */
+    @Override
+    public boolean isStatic() {
+<span class="fc" id="L107">        return Modifier.isStatic(fMethod.getModifiers());</span>
+    }
+
+    /**
+     * Returns true if this method is public, false if not
+     */
+    @Override
+    public boolean isPublic() {
+<span class="fc" id="L115">        return Modifier.isPublic(fMethod.getModifiers());</span>
+    }
+
+    /**
+     * Returns the return type of the method
+     */
+    public Class&lt;?&gt; getReturnType() {
+<span class="fc" id="L122">        return fMethod.getReturnType();</span>
+    }
+
+    /**
+     * Returns the return type of the method
+     */
+    @Override
+    public Class&lt;?&gt; getType() {
+<span class="fc" id="L130">        return getReturnType();</span>
+    }
+
+    public void validateNoTypeParametersOnArgs(List&lt;Throwable&gt; errors) {
+<span class="fc" id="L134">        new NoGenericTypeParametersValidator(fMethod).validate(errors);</span>
+<span class="fc" id="L135">    }</span>
+
+    @Override
+    public boolean isShadowedBy(FrameworkMethod other) {
+<span class="fc bfc" id="L139" title="All 2 branches covered.">        if (!other.getName().equals(getName())) {</span>
+<span class="fc" id="L140">            return false;</span>
+        }
+<span class="fc bfc" id="L142" title="All 2 branches covered.">        if (other.getParameterTypes().length != getParameterTypes().length) {</span>
+<span class="fc" id="L143">            return false;</span>
+        }
+<span class="pc bpc" id="L145" title="1 of 2 branches missed.">        for (int i = 0; i &lt; other.getParameterTypes().length; i++) {</span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            if (!other.getParameterTypes()[i].equals(getParameterTypes()[i])) {</span>
+<span class="nc" id="L147">                return false;</span>
+            }
+        }
+<span class="fc" id="L150">        return true;</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="fc bfc" id="L155" title="All 2 branches covered.">        if (!FrameworkMethod.class.isInstance(obj)) {</span>
+<span class="fc" id="L156">            return false;</span>
+        }
+<span class="fc" id="L158">        return ((FrameworkMethod) obj).fMethod.equals(fMethod);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="fc" id="L163">        return fMethod.hashCode();</span>
+    }
+
+    /**
+     * Returns true if this is a no-arg method that returns a value assignable
+     * to {@code type}
+     *
+     * @deprecated This is used only by the Theories runner, and does not
+     *             use all the generic type info that it ought to. It will be replaced
+     *             with a forthcoming ParameterSignature#canAcceptResultOf(FrameworkMethod)
+     *             once Theories moves to junit-contrib.
+     */
+    @Deprecated
+    public boolean producesType(Type type) {
+<span class="nc bnc" id="L177" title="All 6 branches missed.">        return getParameterTypes().length == 0 &amp;&amp; type instanceof Class&lt;?&gt;</span>
+                &amp;&amp; ((Class&lt;?&gt;) type).isAssignableFrom(fMethod.getReturnType());
+    }
+
+    private Class&lt;?&gt;[] getParameterTypes() {
+<span class="fc" id="L182">        return fMethod.getParameterTypes();</span>
+    }
+
+    /**
+     * Returns the annotations on this method
+     */
+    @Override
+    public Annotation[] getAnnotations() {
+<span class="fc" id="L190">        return fMethod.getAnnotations();</span>
+    }
+
+    /**
+     * Returns the annotation of type {@code annotationType} on this method, if
+     * one exists.
+     */
+    public &lt;T extends Annotation&gt; T getAnnotation(Class&lt;T&gt; annotationType) {
+<span class="fc" id="L198">        return fMethod.getAnnotation(annotationType);</span>
+    }
+    
+    public List&lt;ParameterSignature&gt; getParameterSignatures() {
+<span class="fc" id="L202">        return ParameterSignature.signatures(fMethod);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

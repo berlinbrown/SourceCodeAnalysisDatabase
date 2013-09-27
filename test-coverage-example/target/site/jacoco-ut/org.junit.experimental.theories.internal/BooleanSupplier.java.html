@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BooleanSupplier.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.experimental.theories.internal</a> &gt; <span class="el_source">BooleanSupplier.java</span></div><h1>BooleanSupplier.java</h1><pre class="source lang-java linenums">package org.junit.experimental.theories.internal;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.experimental.theories.ParameterSignature;
+import org.junit.experimental.theories.ParameterSupplier;
+import org.junit.experimental.theories.PotentialAssignment;
+
+<span class="nc" id="L10">public class BooleanSupplier extends ParameterSupplier {</span>
+
+    @Override
+    public List&lt;PotentialAssignment&gt; getValueSources(ParameterSignature sig) {
+<span class="nc" id="L14">        return Arrays.asList(PotentialAssignment.forValue(&quot;true&quot;, true),</span>
+                             PotentialAssignment.forValue(&quot;false&quot;, false));
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

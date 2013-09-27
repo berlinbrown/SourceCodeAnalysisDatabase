@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>FilterFactories.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.runner</a> &gt; <span class="el_source">FilterFactories.java</span></div><h1>FilterFactories.java</h1><pre class="source lang-java linenums">package org.junit.runner;
+
+import org.junit.internal.Classes;
+import org.junit.runner.manipulation.Filter;
+
+import static org.junit.runner.FilterFactory.FilterNotCreatedException;
+
+/**
+ * Utility class whose methods create a {@link FilterFactory}.
+ */
+<span class="nc" id="L11">public class FilterFactories {</span>
+    /**
+     * Creates a {@link Filter}.
+     *
+     * A filter specification is of the form &quot;package.of.FilterFactory=args-to-filter-factory&quot; or
+     * &quot;package.of.FilterFactory&quot;.
+     *
+     * @param filterSpec The filter specification
+     * @throws org.junit.runner.FilterFactory.FilterNotCreatedException
+     */
+    public static Filter createFilterFromFilterSpec(Description description, String filterSpec)
+            throws FilterFactory.FilterNotCreatedException {
+        String[] tuple;
+
+<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (filterSpec.contains(&quot;=&quot;)) {</span>
+<span class="fc" id="L26">            tuple = filterSpec.split(&quot;=&quot;, 2);</span>
+        } else {
+<span class="fc" id="L28">            tuple = new String[]{ filterSpec, &quot;&quot; };</span>
+        }
+
+<span class="fc" id="L31">        return createFilter(tuple[0], new FilterFactoryParams(tuple[1]));</span>
+    }
+
+    /**
+     * Creates a {@link Filter}.
+     *
+     * @param filterFactoryFqcn The fully qualified class name of the {@link FilterFactory}
+     * @param params The arguments to the {@link FilterFactory}
+     * @throws org.junit.runner.FilterFactory.FilterNotCreatedException
+     */
+    public static Filter createFilter(String filterFactoryFqcn, FilterFactoryParams params)
+            throws FilterFactory.FilterNotCreatedException {
+<span class="fc" id="L43">        FilterFactory filterFactory = createFilterFactory(filterFactoryFqcn);</span>
+
+<span class="fc" id="L45">        return filterFactory.createFilter(params);</span>
+    }
+
+    /**
+     * Creates a {@link Filter}.
+     *
+     * @param filterFactoryClass The class of the {@link FilterFactory}
+     * @param params             The arguments to the {@link FilterFactory}
+     * @throws org.junit.runner.FilterFactory.FilterNotCreatedException
+     *
+     */
+    public static Filter createFilter(Class&lt;? extends FilterFactory&gt; filterFactoryClass, FilterFactoryParams params)
+            throws FilterFactory.FilterNotCreatedException {
+<span class="fc" id="L58">        FilterFactory filterFactory = createFilterFactory(filterFactoryClass);</span>
+
+<span class="fc" id="L60">        return filterFactory.createFilter(params);</span>
+    }
+
+    static FilterFactory createFilterFactory(String filterFactoryFqcn) throws FilterNotCreatedException {
+        Class&lt;? extends FilterFactory&gt; filterFactoryClass;
+
+        try {
+<span class="fc" id="L67">            filterFactoryClass = Classes.getClass(filterFactoryFqcn).asSubclass(FilterFactory.class);</span>
+<span class="fc" id="L68">        } catch (Exception e) {</span>
+<span class="fc" id="L69">            throw new FilterNotCreatedException(e);</span>
+<span class="fc" id="L70">        }</span>
+
+<span class="fc" id="L72">        return createFilterFactory(filterFactoryClass);</span>
+    }
+
+    static FilterFactory createFilterFactory(Class&lt;? extends FilterFactory&gt; filterFactoryClass)
+            throws FilterNotCreatedException {
+        try {
+<span class="fc" id="L78">            return filterFactoryClass.getConstructor().newInstance();</span>
+<span class="fc" id="L79">        } catch (Exception e) {</span>
+<span class="fc" id="L80">            throw new FilterNotCreatedException(e);</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Timeout.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="right"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Code Coverage with Jacoco</a> &gt; <a href="index.html" class="el_package">org.junit.rules</a> &gt; <span class="el_source">Timeout.java</span></div><h1>Timeout.java</h1><pre class="source lang-java linenums">package org.junit.rules;
+
+import org.junit.internal.runners.statements.FailOnTimeout;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
+
+import java.util.concurrent.TimeUnit;
+
+/**
+ * The Timeout Rule applies the same timeout to all test methods in a class:
+ * &lt;pre&gt;
+ * public static class HasGlobalLongTimeout {
+ *
+ *  &amp;#064;Rule
+ *  public Timeout globalTimeout= new Timeout(20);
+ *
+ *  &amp;#064;Test
+ *  public void run1() throws InterruptedException {
+ *      Thread.sleep(100);
+ *  }
+ *
+ *  &amp;#064;Test
+ *  public void infiniteLoop() {
+ *      while (true) {}
+ *  }
+ * }
+ * &lt;/pre&gt;
+ * &lt;p&gt;
+ * Each test is run in a new thread. If the specified timeout elapses before
+ * the test completes, its execution is interrupted via {@link Thread#interrupt()}.
+ * This happens in interruptable I/O and locks, and methods in {@link Object}
+ * and {@link Thread} throwing {@link InterruptedException}.
+ *
+ * @since 4.7
+ */
+public class Timeout implements TestRule {
+    private final long fTimeout;
+    private final TimeUnit fTimeUnit;
+
+    /**
+     * Create a {@code Timeout} instance with the timeout specified
+     * in milliseconds.
+     * &lt;p&gt;
+     * This constructor is deprecated.
+     * &lt;p&gt;
+     * Instead use {@link #Timeout(long, java.util.concurrent.TimeUnit)},
+     * {@link Timeout#millis(long)}, or {@link Timeout#seconds(long)}.
+     *
+     * @param millis the maximum time in milliseconds to allow the
+     * test to run before it should timeout
+     */
+    @Deprecated
+    public Timeout(int millis) {
+<span class="nc" id="L54">        this(millis, TimeUnit.MILLISECONDS);</span>
+<span class="nc" id="L55">    }</span>
+
+    /**
+     * Create a {@code Timeout} instance with the timeout specified
+     * at the unit of granularity of the provided {@code TimeUnit}.
+     *
+     * @param timeout the maximum time to allow the test to run
+     * before it should timeout
+     * @param unit the time unit for the {@code timeout}
+     * @since 4.12
+     */
+<span class="fc" id="L66">    public Timeout(long timeout, TimeUnit unit) {</span>
+<span class="fc" id="L67">        fTimeout = timeout;</span>
+<span class="fc" id="L68">        fTimeUnit = unit;</span>
+<span class="fc" id="L69">    }</span>
+
+    /**
+     * @param millis the timeout in milliseconds
+     * @since 4.12
+     */
+    public static Timeout millis(long millis) {
+<span class="fc" id="L76">        return new Timeout(millis, TimeUnit.MILLISECONDS);</span>
+    }
+
+    /**
+     * @param seconds the timeout in seconds
+     * @since 4.12
+     */
+    public static Timeout seconds(long seconds) {
+<span class="nc" id="L84">        return new Timeout(seconds, TimeUnit.SECONDS);</span>
+    }
+
+
+    public Statement apply(Statement base, Description description) {
+<span class="fc" id="L89">        return new FailOnTimeout(base, fTimeout, fTimeUnit);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.6.3.201306030806</span></div></body></html>
