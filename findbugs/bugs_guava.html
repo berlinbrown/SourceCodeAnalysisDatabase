@@ -1,0 +1,3493 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+		    color: red;
+		    font-weight: bold;
+		}
+		.priority-2 {
+		    color: orange;
+		    font-weight: bold;
+		}
+		.priority-3 {
+		    color: green;
+		    font-weight: bold;
+		}
+		.priority-4 {
+		    color: blue;
+		    font-weight: bold;
+		}
+		</style>
+<script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+</head>
+<body>
+<h1>
+<a href="http://findbugs.sourceforge.net">FindBugs</a> Report</h1>
+<h2>Project Information</h2>
+<p>Project: 
+		</p>
+<p>FindBugs version: 2.0.2</p>
+<p>Code analyzed:</p>
+<ul>
+<li>C:\cygwin\home\User\src\find\guava-15.0.jar</li>
+</ul>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Metrics</h2>
+<p>45786 lines of code analyzed,
+	in 1622 classes, 
+	in 16 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right">7</td>
+<td align="right">0.15</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">193</td>
+<td align="right">4.22</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>200</b>
+</td>
+<td align="right">
+<b>4.37</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Contents</h2>
+<ul>
+<li>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</li>
+<li>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+</ul>
+<h1>Summary</h1>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</td>
+<td align="right">77</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</td>
+<td align="right">1</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</td>
+<td align="right">1</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</td>
+<td align="right">3</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">116</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>200</b>
+</td>
+</tr>
+</table>
+<h1>Warnings</h1>
+<p>Click on a warning row to see full context information.</p>
+<h2>
+<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76603');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>com.google.common.util.concurrent.MoreExecutors$ScheduledListeningDecorator$ListenableScheduledTask defines compareTo(Object) and uses Object.equals()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76603" style="display: none;">
+<a href="#EQ_COMPARETO_USE_OBJECT_EQUALS">Bug type EQ_COMPARETO_USE_OBJECT_EQUALS (click for details)</a>
+<br/>In class com.google.common.util.concurrent.MoreExecutors$ScheduledListeningDecorator$ListenableScheduledTask<br/>In method com.google.common.util.concurrent.MoreExecutors$ScheduledListeningDecorator$ListenableScheduledTask.compareTo(Object)<br/>At MoreExecutors.java:[line 535]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67801');">
+<td>
+<span class="priority-2">HE</span>
+</td>
+<td>com.google.common.collect.Cut$AboveAll inherits equals and uses Object.hashCode()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67801" style="display: none;">
+<a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
+<br/>In class com.google.common.collect.Cut$AboveAll<br/>At Cut.java:[lines 182-229]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67836');">
+<td>
+<span class="priority-2">HE</span>
+</td>
+<td>com.google.common.collect.Cut$BelowAll inherits equals and uses Object.hashCode()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67836" style="display: none;">
+<a href="#HE_INHERITS_EQUALS_USE_HASHCODE">Bug type HE_INHERITS_EQUALS_USE_HASHCODE (click for details)</a>
+<br/>In class com.google.common.collect.Cut$BelowAll<br/>At Cut.java:[lines 113-168]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68035');">
+<td>
+<span class="priority-2">HE</span>
+</td>
+<td>com.google.common.collect.EmptyImmutableSortedMultiset defines equals but not hashCode</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68035" style="display: none;">
+<a href="#HE_EQUALS_NO_HASHCODE">Bug type HE_EQUALS_NO_HASHCODE (click for details)</a>
+<br/>In class com.google.common.collect.EmptyImmutableSortedMultiset<br/>In method com.google.common.collect.EmptyImmutableSortedMultiset.equals(Object)<br/>At EmptyImmutableSortedMultiset.java:[lines 93-97]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69345');">
+<td>
+<span class="priority-2">It</span>
+</td>
+<td>com.google.common.collect.LinkedListMultimap$ValueForKeyIterator.next() can't throw NoSuchElementException</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69345" style="display: none;">
+<a href="#IT_NO_SUCH_ELEMENT">Bug type IT_NO_SUCH_ELEMENT (click for details)</a>
+<br/>In class com.google.common.collect.LinkedListMultimap$ValueForKeyIterator<br/>In method com.google.common.collect.LinkedListMultimap$ValueForKeyIterator.next()<br/>At LinkedListMultimap.java:[lines 498-502]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74739');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.io.File.mkdirs() ignored in com.google.common.io.Files.createParentDirs(File)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74739" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class com.google.common.io.Files<br/>In method com.google.common.io.Files.createParentDirs(File)<br/>Called method java.io.File.mkdirs()<br/>At Files.java:[line 651]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66137');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.cache.LocalCache$LocalManualCache defines non-transient non-serializable instance field localCache</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66137" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$LocalManualCache<br/>Field com.google.common.cache.LocalCache$LocalManualCache.localCache<br/>Actual type com.google.common.cache.LocalCache<br/>In LocalCache.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66197');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.cache.LocalCache$ManualSerializationProxy defines non-transient non-serializable instance field ticker</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66197" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$ManualSerializationProxy<br/>Field com.google.common.cache.LocalCache$ManualSerializationProxy.ticker<br/>Actual type com.google.common.base.Ticker<br/>In LocalCache.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66257');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.cache.LocalCache$Segment defines non-transient non-serializable instance field keyReferenceQueue</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66257" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$Segment<br/>Field com.google.common.cache.LocalCache$Segment.keyReferenceQueue<br/>Actual type ref.ReferenceQueue<br/>In LocalCache.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66317');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.cache.LocalCache$Segment defines non-transient non-serializable instance field valueReferenceQueue</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66317" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$Segment<br/>Field com.google.common.cache.LocalCache$Segment.valueReferenceQueue<br/>Actual type ref.ReferenceQueue<br/>In LocalCache.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67906');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.DescendingImmutableSortedMultiset.forward is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67906" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.DescendingImmutableSortedMultiset<br/>Field com.google.common.collect.DescendingImmutableSortedMultiset.forward<br/>In DescendingImmutableSortedMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67988');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.EmptyImmutableSortedMap.keySet is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67988" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.EmptyImmutableSortedMap<br/>Field com.google.common.collect.EmptyImmutableSortedMap.keySet<br/>In EmptyImmutableSortedMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68363');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>com.google.common.collect.HashBiMap$Inverse is serializable and an inner class</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68363" style="display: none;">
+<a href="#SE_INNER_CLASS">Bug type SE_INNER_CLASS (click for details)</a>
+<br/>In class com.google.common.collect.HashBiMap$Inverse<br/>At HashBiMap.java:[lines 485-631]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68553');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.ImmutableEnumMap.delegate is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68553" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableEnumMap<br/>Field com.google.common.collect.ImmutableEnumMap.delegate<br/>In ImmutableEnumMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68635');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.ImmutableEnumSet.delegate is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68635" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableEnumSet<br/>Field com.google.common.collect.ImmutableEnumSet.delegate<br/>In ImmutableEnumSet.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68812');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.ImmutableMultimap$Values.multimap is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68812" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableMultimap$Values<br/>Field com.google.common.collect.ImmutableMultimap$Values.multimap<br/>In ImmutableMultimap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68894');">
+<td>
+<span class="priority-1">Se</span>
+</td>
+<td>The field com.google.common.collect.ImmutableRangeSet.complement is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68894" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableRangeSet<br/>Field com.google.common.collect.ImmutableRangeSet.complement<br/>In ImmutableRangeSet.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68941');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.ImmutableRangeSet.ranges is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68941" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableRangeSet<br/>Field com.google.common.collect.ImmutableRangeSet.ranges<br/>In ImmutableRangeSet.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69058');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.ImmutableSetMultimap$EntrySet.multimap is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69058" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableSetMultimap$EntrySet<br/>Field com.google.common.collect.ImmutableSetMultimap$EntrySet.multimap<br/>In ImmutableSetMultimap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69724');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.collect.MapMakerInternalMap defines non-transient non-serializable instance field ticker</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69724" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap<br/>Field com.google.common.collect.MapMakerInternalMap.ticker<br/>Actual type com.google.common.base.Ticker<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69784');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.MapMakerInternalMap.entryFactory is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69784" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap<br/>Field com.google.common.collect.MapMakerInternalMap.entryFactory<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69831');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.MapMakerInternalMap.segmentMask is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69831" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap<br/>Field com.google.common.collect.MapMakerInternalMap.segmentMask<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69878');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.MapMakerInternalMap.segmentShift is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69878" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap<br/>Field com.google.common.collect.MapMakerInternalMap.segmentShift<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69925');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.MapMakerInternalMap.segments is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69925" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap<br/>Field com.google.common.collect.MapMakerInternalMap.segments<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70131');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.collect.MapMakerInternalMap$Segment defines non-transient non-serializable instance field keyReferenceQueue</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70131" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$Segment<br/>Field com.google.common.collect.MapMakerInternalMap$Segment.keyReferenceQueue<br/>Actual type ref.ReferenceQueue<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70191');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.collect.MapMakerInternalMap$Segment defines non-transient non-serializable instance field valueReferenceQueue</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70191" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$Segment<br/>Field com.google.common.collect.MapMakerInternalMap$Segment.valueReferenceQueue<br/>Actual type ref.ReferenceQueue<br/>In MapMakerInternalMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70706');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.Maps$UnmodifiableNavigableMap.descendingMap is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70706" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.Maps$UnmodifiableNavigableMap<br/>Field com.google.common.collect.Maps$UnmodifiableNavigableMap.descendingMap<br/>In Maps.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71255');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>com.google.common.collect.Ordering$ArbitraryOrdering implements Comparator but not Serializable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71255" style="display: none;">
+<a href="#SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">Bug type SE_COMPARATOR_SHOULD_BE_SERIALIZABLE (click for details)</a>
+<br/>In class com.google.common.collect.Ordering$ArbitraryOrdering<br/>At Ordering.java:[lines 261-308]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71625');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableBiMap.entries is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71625" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableBiMap<br/>Field com.google.common.collect.RegularImmutableBiMap.entries<br/>In RegularImmutableBiMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71672');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableBiMap.hashCode is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71672" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableBiMap<br/>Field com.google.common.collect.RegularImmutableBiMap.hashCode<br/>In RegularImmutableBiMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71719');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableBiMap.keyTable is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71719" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableBiMap<br/>Field com.google.common.collect.RegularImmutableBiMap.keyTable<br/>In RegularImmutableBiMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71766');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableBiMap.mask is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71766" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableBiMap<br/>Field com.google.common.collect.RegularImmutableBiMap.mask<br/>In RegularImmutableBiMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71813');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableBiMap.valueTable is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71813" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableBiMap<br/>Field com.google.common.collect.RegularImmutableBiMap.valueTable<br/>In RegularImmutableBiMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71895');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableMap.entries is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71895" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableMap<br/>Field com.google.common.collect.RegularImmutableMap.entries<br/>In RegularImmutableMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71942');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableMap.mask is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71942" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableMap<br/>Field com.google.common.collect.RegularImmutableMap.mask<br/>In RegularImmutableMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71989');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableMap.table is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71989" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableMap<br/>Field com.google.common.collect.RegularImmutableMap.table<br/>In RegularImmutableMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72071');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableMultiset.map is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72071" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableMultiset<br/>Field com.google.common.collect.RegularImmutableMultiset.map<br/>In RegularImmutableMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72118');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableMultiset.size is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72118" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableMultiset<br/>Field com.google.common.collect.RegularImmutableMultiset.size<br/>In RegularImmutableMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72200');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSet.hashCode is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72200" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSet<br/>Field com.google.common.collect.RegularImmutableSet.hashCode<br/>In RegularImmutableSet.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72247');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSet.mask is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72247" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSet<br/>Field com.google.common.collect.RegularImmutableSet.mask<br/>In RegularImmutableSet.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72294');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSet.table is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72294" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSet<br/>Field com.google.common.collect.RegularImmutableSet.table<br/>In RegularImmutableSet.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72376');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMap.keySet is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72376" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMap<br/>Field com.google.common.collect.RegularImmutableSortedMap.keySet<br/>In RegularImmutableSortedMap.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72423');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMap.valueList is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72423" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMap<br/>Field com.google.common.collect.RegularImmutableSortedMap.valueList<br/>In RegularImmutableSortedMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72505');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMultiset.counts is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72505" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMultiset<br/>Field com.google.common.collect.RegularImmutableSortedMultiset.counts<br/>In RegularImmutableSortedMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72552');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMultiset.cumulativeCounts is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72552" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMultiset<br/>Field com.google.common.collect.RegularImmutableSortedMultiset.cumulativeCounts<br/>In RegularImmutableSortedMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72599');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMultiset.elementSet is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72599" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMultiset<br/>Field com.google.common.collect.RegularImmutableSortedMultiset.elementSet<br/>In RegularImmutableSortedMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72646');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMultiset.length is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72646" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMultiset<br/>Field com.google.common.collect.RegularImmutableSortedMultiset.length<br/>In RegularImmutableSortedMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72693');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.RegularImmutableSortedMultiset.offset is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72693" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMultiset<br/>Field com.google.common.collect.RegularImmutableSortedMultiset.offset<br/>In RegularImmutableSortedMultiset.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73507');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.SingletonImmutableBiMap.inverse is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73507" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.SingletonImmutableBiMap<br/>Field com.google.common.collect.SingletonImmutableBiMap.inverse<br/>In SingletonImmutableBiMap.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73624');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.SingletonImmutableSet.cachedHashCode is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73624" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.SingletonImmutableSet<br/>Field com.google.common.collect.SingletonImmutableSet.cachedHashCode<br/>In SingletonImmutableSet.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73671');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>The field com.google.common.collect.Synchronized$SynchronizedBiMap.inverse is transient but isn't set by deserialization</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73671" style="display: none;">
+<a href="#SE_TRANSIENT_FIELD_NOT_RESTORED">Bug type SE_TRANSIENT_FIELD_NOT_RESTORED (click for details)</a>
+<br/>In class com.google.common.collect.Synchronized$SynchronizedBiMap<br/>Field com.google.common.collect.Synchronized$SynchronizedBiMap.inverse<br/>In Synchronized.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74351');">
+<td>
+<span class="priority-1">Se</span>
+</td>
+<td>Class com.google.common.hash.BloomFilter defines non-transient non-serializable instance field bits</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74351" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.hash.BloomFilter<br/>Field com.google.common.hash.BloomFilter.bits<br/>Actual type com.google.common.hash.BloomFilterStrategies$BitArray<br/>In BloomFilter.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74411');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.hash.Funnels$StringCharsetFunnel defines non-transient non-serializable instance field charset</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74411" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.hash.Funnels$StringCharsetFunnel<br/>Field com.google.common.hash.Funnels$StringCharsetFunnel.charset<br/>Actual type java.nio.charset.Charset<br/>In Funnels.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74471');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class com.google.common.hash.MessageDigestHashFunction defines non-transient non-serializable instance field prototype</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74471" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class com.google.common.hash.MessageDigestHashFunction<br/>Field com.google.common.hash.MessageDigestHashFunction.prototype<br/>Actual type java.security.MessageDigest<br/>In MessageDigestHashFunction.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76093');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>com.google.common.reflect.TypeToken$TypeSet is serializable and an inner class</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76093" style="display: none;">
+<a href="#SE_INNER_CLASS">Bug type SE_INNER_CLASS (click for details)</a>
+<br/>In class com.google.common.reflect.TypeToken$TypeSet<br/>At TypeToken.java:[lines 538-575]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67871');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.DescendingImmutableSortedMultiset is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67871" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.DescendingImmutableSortedMultiset<br/>At DescendingImmutableSortedMultiset.java:[lines 24-79]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67953');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.EmptyImmutableSortedMap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67953" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.EmptyImmutableSortedMap<br/>At EmptyImmutableSortedMap.java:[lines 31-110]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68328');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.GeneralRange is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68328" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.GeneralRange<br/>At GeneralRange.java:[lines 46-281]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68518');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableEnumMap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68518" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableEnumMap<br/>At ImmutableEnumMap.java:[lines 36-134]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68600');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableEnumSet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68600" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableEnumSet<br/>At ImmutableEnumSet.java:[lines 31-101]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68682');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableList$ReverseImmutableList is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68682" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableList$ReverseImmutableList<br/>At ImmutableList.java:[lines 513-562]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68717');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableList$SubList is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68717" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableList$SubList<br/>At ImmutableList.java:[lines 402-430]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68859');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableRangeSet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68859" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableRangeSet<br/>At ImmutableRangeSet.java:[lines 42-612]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68988');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableRangeSet$AsSet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68988" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableRangeSet$AsSet<br/>At ImmutableRangeSet.java:[lines 370-507]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69023');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.ImmutableSetMultimap$EntrySet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69023" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableSetMultimap$EntrySet<br/>At ImmutableSetMultimap.java:[lines 425-453]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69398');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.MapConstraints$ConstrainedMultimap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69398" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.MapConstraints$ConstrainedMultimap<br/>At MapConstraints.java:[lines 398-503]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70671');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.Maps$UnmodifiableNavigableMap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70671" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.Maps$UnmodifiableNavigableMap<br/>At Maps.java:[lines 3035-3173]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71590');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableBiMap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71590" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableBiMap<br/>At RegularImmutableBiMap.java:[lines 33-247]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71860');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableList is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71860" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableList<br/>At RegularImmutableList.java:[lines 29-106]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72036');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableMultiset is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72036" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableMultiset<br/>At RegularImmutableMultiset.java:[lines 31-77]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72165');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableSet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72165" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSet<br/>At RegularImmutableSet.java:[lines 27-92]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72341');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableSortedMap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72341" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMap<br/>At RegularImmutableSortedMap.java:[lines 29-124]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72470');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableSortedMultiset is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72470" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedMultiset<br/>At RegularImmutableSortedMultiset.java:[lines 30-112]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72740');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.RegularImmutableSortedSet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72740" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.RegularImmutableSortedSet<br/>At RegularImmutableSortedSet.java:[lines 46-288]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73472');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.SingletonImmutableBiMap is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73472" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.SingletonImmutableBiMap<br/>At SingletonImmutableBiMap.java:[lines 31-96]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73554');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.SingletonImmutableList is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73554" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.SingletonImmutableList<br/>At SingletonImmutableList.java:[lines 33-116]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73589');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>com.google.common.collect.SingletonImmutableSet is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73589" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class com.google.common.collect.SingletonImmutableSet<br/>At SingletonImmutableSet.java:[lines 32-109]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76709');">
+<td>
+<span class="priority-1">RV</span>
+</td>
+<td>return value of String.format(String, Object[]) ignored in com.google.common.util.concurrent.ThreadFactoryBuilder.setNameFormat(String)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76709" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED">Bug type RV_RETURN_VALUE_IGNORED (click for details)</a>
+<br/>In class com.google.common.util.concurrent.ThreadFactoryBuilder<br/>In method com.google.common.util.concurrent.ThreadFactoryBuilder.setNameFormat(String)<br/>Called method String.format(String, Object[])<br/>At ThreadFactoryBuilder.java:[line 71]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69553');">
+<td>
+<span class="priority-2">UwF</span>
+</td>
+<td>Unwritten field: com.google.common.collect.MapMaker.ticker</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69553" style="display: none;">
+<a href="#UWF_UNWRITTEN_FIELD">Bug type UWF_UNWRITTEN_FIELD (click for details)</a>
+<br/>In class com.google.common.collect.MapMaker<br/>Field com.google.common.collect.MapMaker.ticker<br/>At MapMaker.java:[line 448]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_EXPERIMENTAL">Experimental Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74651');">
+<td>
+<span class="priority-2">OBL</span>
+</td>
+<td>com.google.common.io.FileBackedOutputStream.update(int) may fail to clean up java.io.OutputStream on checked exception</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74651" style="display: none;">
+<a href="#OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">Bug type OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE (click for details)</a>
+<br/>In class com.google.common.io.FileBackedOutputStream<br/>In method com.google.common.io.FileBackedOutputStream.update(int)<br/>Reference type java.io.OutputStream<br/>1 instances of obligation remaining<br/>Obligation to clean up resource created at FileBackedOutputStream.java:[line 215] is not discharged<br/>Path continues at FileBackedOutputStream.java:[line 216]<br/>Remaining obligations: {OutputStream x 1}</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65610');">
+<td>
+<span class="priority-2">DP</span>
+</td>
+<td>com.google.common.base.FinalizableReferenceQueue$DecoupledLoader.newLoader(URL) creates a java.net.URLClassLoader classloader, which should be performed within a doPrivileged block</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65610" style="display: none;">
+<a href="#DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED">Bug type DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED (click for details)</a>
+<br/>In class com.google.common.base.FinalizableReferenceQueue$DecoupledLoader<br/>In method com.google.common.base.FinalizableReferenceQueue$DecoupledLoader.newLoader(URL)<br/>In class java.net.URLClassLoader<br/>At FinalizableReferenceQueue.java:[line 278]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65735');">
+<td>
+<span class="priority-2">IS</span>
+</td>
+<td>Inconsistent synchronization of com.google.common.base.Suppliers$MemoizingSupplier.value; locked 50% of time</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65735" style="display: none;">
+<a href="#IS2_INCONSISTENT_SYNC">Bug type IS2_INCONSISTENT_SYNC (click for details)</a>
+<br/>In class com.google.common.base.Suppliers$MemoizingSupplier<br/>Field com.google.common.base.Suppliers$MemoizingSupplier.value<br/>Synchronized 50% of the time<br/>Unsynchronized access at Suppliers.java:[line 132]<br/>Synchronized access at Suppliers.java:[line 126]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76377');">
+<td>
+<span class="priority-1">UL</span>
+</td>
+<td>com.google.common.util.concurrent.ExecutionQueue$RunnableExecutorPair.submit() does not release lock on all paths</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76377" style="display: none;">
+<a href="#UL_UNRELEASED_LOCK">Bug type UL_UNRELEASED_LOCK (click for details)</a>
+<br/>In class com.google.common.util.concurrent.ExecutionQueue$RunnableExecutorPair<br/>In method com.google.common.util.concurrent.ExecutionQueue$RunnableExecutorPair.submit()<br/>At ExecutionQueue.java:[line 126]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76550');">
+<td>
+<span class="priority-1">UL</span>
+</td>
+<td>com.google.common.util.concurrent.Monitor.enterIf(Monitor$Guard) does not release lock on all paths</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76550" style="display: none;">
+<a href="#UL_UNRELEASED_LOCK">Bug type UL_UNRELEASED_LOCK (click for details)</a>
+<br/>In class com.google.common.util.concurrent.Monitor<br/>In method com.google.common.util.concurrent.Monitor.enterIf(Monitor$Guard)<br/>At Monitor.java:[line 544]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66648');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.Set in com.google.common.collect.AbstractMapBasedMultimap$WrappedSet.removeAll(Collection)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66648" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.AbstractMapBasedMultimap$WrappedSet<br/>In method com.google.common.collect.AbstractMapBasedMultimap$WrappedSet.removeAll(Collection)<br/>Actual type java.util.Collection<br/>Expected java.util.Set<br/>Value loaded from field com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection.delegate<br/>At AbstractMapBasedMultimap.java:[line 616]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70753');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.List in com.google.common.collect.Multimaps$TransformedEntriesListMultimap.transform(Object, Collection)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70753" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Multimaps$TransformedEntriesListMultimap<br/>In method com.google.common.collect.Multimaps$TransformedEntriesListMultimap.transform(Object, Collection)<br/>Actual type java.util.Collection<br/>Expected java.util.List<br/>Value loaded from values<br/>At Multimaps.java:[line 1393]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72835');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.Set in com.google.common.collect.Sets.filter(Set, Predicate)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72835" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets<br/>In method com.google.common.collect.Sets.filter(Set, Predicate)<br/>Actual type java.util.Collection<br/>Expected java.util.Set<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 756]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72926');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.SortedSet in com.google.common.collect.Sets.filterSortedIgnoreNavigable(SortedSet, Predicate)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72926" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets<br/>In method com.google.common.collect.Sets.filterSortedIgnoreNavigable(SortedSet, Predicate)<br/>Actual type java.util.Collection<br/>Expected java.util.SortedSet<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 821]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73017');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.SortedSet in com.google.common.collect.Sets$FilteredSortedSet.comparator()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73017" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets$FilteredSortedSet<br/>In method com.google.common.collect.Sets$FilteredSortedSet.comparator()<br/>Actual type java.util.Collection<br/>Expected java.util.SortedSet<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 838]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73108');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.SortedSet in com.google.common.collect.Sets$FilteredSortedSet.headSet(Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73108" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets$FilteredSortedSet<br/>In method com.google.common.collect.Sets$FilteredSortedSet.headSet(Object)<br/>Actual type java.util.Collection<br/>Expected java.util.SortedSet<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 849]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73199');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.SortedSet in com.google.common.collect.Sets$FilteredSortedSet.last()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73199" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets$FilteredSortedSet<br/>In method com.google.common.collect.Sets$FilteredSortedSet.last()<br/>Actual type java.util.Collection<br/>Expected java.util.SortedSet<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 864]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73290');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.SortedSet in com.google.common.collect.Sets$FilteredSortedSet.subSet(Object, Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73290" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets$FilteredSortedSet<br/>In method com.google.common.collect.Sets$FilteredSortedSet.subSet(Object, Object)<br/>Actual type java.util.Collection<br/>Expected java.util.SortedSet<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 843]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73381');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Questionable cast from Collection to abstract class java.util.SortedSet in com.google.common.collect.Sets$FilteredSortedSet.tailSet(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73381" style="display: none;">
+<a href="#BC_BAD_CAST_TO_ABSTRACT_COLLECTION">Bug type BC_BAD_CAST_TO_ABSTRACT_COLLECTION (click for details)</a>
+<br/>In class com.google.common.collect.Sets$FilteredSortedSet<br/>In method com.google.common.collect.Sets$FilteredSortedSet.tailSet(Object)<br/>Actual type java.util.Collection<br/>Expected java.util.SortedSet<br/>Value loaded from field com.google.common.collect.Collections2$FilteredCollection.unfiltered<br/>At Sets.java:[line 854]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75575');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Unchecked/unconfirmed cast from java.net.InetAddress to java.net.Inet6Address in com.google.common.net.InetAddresses.getCoercedIPv4Address(InetAddress)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75575" style="display: none;">
+<a href="#BC_UNCONFIRMED_CAST">Bug type BC_UNCONFIRMED_CAST (click for details)</a>
+<br/>In class com.google.common.net.InetAddresses<br/>In method com.google.common.net.InetAddresses.getCoercedIPv4Address(InetAddress)<br/>Actual type java.net.InetAddress<br/>Expected java.net.Inet6Address<br/>Value loaded from ip<br/>At InetAddresses.java:[line 891]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66377');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to newValue in com.google.common.cache.LocalCache$Segment$1.run()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66377" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$Segment$1<br/>In method com.google.common.cache.LocalCache$Segment$1.run()<br/>Local variable named newValue<br/>At LocalCache.java:[line 2327]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67269');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to start in com.google.common.collect.ComputingConcurrentHashMap$ComputingSegment.compute(Object, int, MapMakerInternalMap$ReferenceEntry, ComputingConcurrentHashMap$ComputingValueReference)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67269" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.google.common.collect.ComputingConcurrentHashMap$ComputingSegment<br/>In method com.google.common.collect.ComputingConcurrentHashMap$ComputingSegment.compute(Object, int, MapMakerInternalMap$ReferenceEntry, ComputingConcurrentHashMap$ComputingValueReference)<br/>Local variable named start<br/>At ComputingConcurrentHashMap.java:[line 175]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76308');">
+<td>
+<span class="priority-2">DLS</span>
+</td>
+<td>Dead store to state in com.google.common.util.concurrent.AbstractService.awaitTerminated(long, TimeUnit)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76308" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class com.google.common.util.concurrent.AbstractService<br/>In method com.google.common.util.concurrent.AbstractService.awaitTerminated(long, TimeUnit)<br/>Local variable named state<br/>At AbstractService.java:[line 312]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74064');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>com.google.common.collect.TreeRangeSet$SubRangeSet doesn't override TreeRangeSet.equals(Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74064" style="display: none;">
+<a href="#EQ_DOESNT_OVERRIDE_EQUALS">Bug type EQ_DOESNT_OVERRIDE_EQUALS (click for details)</a>
+<br/>In class com.google.common.collect.TreeRangeSet$SubRangeSet<br/>Did you intend to override com.google.common.collect.TreeRangeSet.equals(Object)<br/>At TreeRangeSet.java:[line 42]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75778');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>com.google.common.reflect.ClassPath$ClassInfo doesn't override ClassPath$ResourceInfo.equals(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75778" style="display: none;">
+<a href="#EQ_DOESNT_OVERRIDE_EQUALS">Bug type EQ_DOESNT_OVERRIDE_EQUALS (click for details)</a>
+<br/>In class com.google.common.reflect.ClassPath$ClassInfo<br/>Did you intend to override com.google.common.reflect.ClassPath$ResourceInfo.equals(Object)<br/>At ClassPath.java:[lines 171-176]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75087');">
+<td>
+<span class="priority-2">FE</span>
+</td>
+<td>Test for floating point equality in com.google.common.math.DoubleMath.roundIntermediate(double, RoundingMode)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75087" style="display: none;">
+<a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+<br/>In class com.google.common.math.DoubleMath<br/>In method com.google.common.math.DoubleMath.roundIntermediate(double, RoundingMode)<br/>At DoubleMath.java:[line 91]<br/>Another occurrence at DoubleMath.java:[line 100]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76656');">
+<td>
+<span class="priority-1">FE</span>
+</td>
+<td>Test for floating point equality in com.google.common.util.concurrent.RateLimiter$WarmingUp.doSetRate(double, double)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76656" style="display: none;">
+<a href="#FE_FLOATING_POINT_EQUALITY">Bug type FE_FLOATING_POINT_EQUALITY (click for details)</a>
+<br/>In class com.google.common.util.concurrent.RateLimiter$WarmingUp<br/>In method com.google.common.util.concurrent.RateLimiter$WarmingUp.doSetRate(double, double)<br/>At RateLimiter.java:[line 620]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66563');">
+<td>
+<span class="priority-2">IA</span>
+</td>
+<td>Ambiguous invocation of either an outer or inherited method com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection.size() in com.google.common.collect.AbstractMapBasedMultimap$WrappedList.addAll(int, Collection)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66563" style="display: none;">
+<a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+<br/>In class com.google.common.collect.AbstractMapBasedMultimap$WrappedList<br/>In method com.google.common.collect.AbstractMapBasedMultimap$WrappedList.addAll(int, Collection)<br/>Inherited method com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection.size()<br/>Did you intend to invoke com.google.common.collect.AbstractMapBasedMultimap.size()<br/>At AbstractMapBasedMultimap.java:[line 773]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66739');">
+<td>
+<span class="priority-2">IA</span>
+</td>
+<td>Ambiguous invocation of either an outer or inherited method com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection.size() in com.google.common.collect.AbstractMapBasedMultimap$WrappedSet.removeAll(Collection)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66739" style="display: none;">
+<a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+<br/>In class com.google.common.collect.AbstractMapBasedMultimap$WrappedSet<br/>In method com.google.common.collect.AbstractMapBasedMultimap$WrappedSet.removeAll(Collection)<br/>Inherited method com.google.common.collect.AbstractMapBasedMultimap$WrappedCollection.size()<br/>Did you intend to invoke com.google.common.collect.AbstractMapBasedMultimap.size()<br/>At AbstractMapBasedMultimap.java:[line 611]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67184');">
+<td>
+<span class="priority-2">IA</span>
+</td>
+<td>Ambiguous invocation of either an outer or inherited method com.google.common.collect.Maps$EntrySet.size() in com.google.common.collect.ArrayTable$ArrayMap$1.iterator()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67184" style="display: none;">
+<a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+<br/>In class com.google.common.collect.ArrayTable$ArrayMap$1<br/>In method com.google.common.collect.ArrayTable$ArrayMap$1.iterator()<br/>Inherited method com.google.common.collect.Maps$EntrySet.size()<br/>Did you intend to invoke com.google.common.collect.ArrayTable$ArrayMap.size()<br/>At ArrayTable.java:[line 237]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67631');">
+<td>
+<span class="priority-2">IA</span>
+</td>
+<td>Ambiguous invocation of either an outer or inherited method com.google.common.collect.AbstractMultiset$EntrySet.iterator() in com.google.common.collect.ConcurrentHashMultiset$EntrySet.snapshot()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67631" style="display: none;">
+<a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+<br/>In class com.google.common.collect.ConcurrentHashMultiset$EntrySet<br/>In method com.google.common.collect.ConcurrentHashMultiset$EntrySet.snapshot()<br/>Inherited method com.google.common.collect.AbstractMultiset$EntrySet.iterator()<br/>Did you intend to invoke com.google.common.collect.ConcurrentHashMultiset.iterator()<br/>At ConcurrentHashMultiset.java:[line 559]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67716');">
+<td>
+<span class="priority-2">IA</span>
+</td>
+<td>Ambiguous invocation of either an outer or inherited method com.google.common.collect.AbstractMultiset$EntrySet.size() in com.google.common.collect.ConcurrentHashMultiset$EntrySet.snapshot()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67716" style="display: none;">
+<a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+<br/>In class com.google.common.collect.ConcurrentHashMultiset$EntrySet<br/>In method com.google.common.collect.ConcurrentHashMultiset$EntrySet.snapshot()<br/>Inherited method com.google.common.collect.AbstractMultiset$EntrySet.size()<br/>Did you intend to invoke com.google.common.collect.ConcurrentHashMultiset.size()<br/>At ConcurrentHashMultiset.java:[line 557]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75892');">
+<td>
+<span class="priority-2">IA</span>
+</td>
+<td>Ambiguous invocation of either an outer or inherited method com.google.common.reflect.TypeToken$TypeCollector$ForwardingTypeCollector.getRawType(Object) in com.google.common.reflect.TypeToken$TypeCollector$3.collectTypes(Iterable)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75892" style="display: none;">
+<a href="#IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">Bug type IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD (click for details)</a>
+<br/>In class com.google.common.reflect.TypeToken$TypeCollector$3<br/>In method com.google.common.reflect.TypeToken$TypeCollector$3.collectTypes(Iterable)<br/>Inherited method com.google.common.reflect.TypeToken$TypeCollector$ForwardingTypeCollector.getRawType(Object)<br/>Did you intend to invoke com.google.common.reflect.TypeToken$TypeCollector.getRawType(Object)<br/>At TypeToken.java:[line 1101]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74238');">
+<td>
+<span class="priority-2">ICAST</span>
+</td>
+<td>integral division result cast to double or float in com.google.common.hash.BloomFilter.optimalNumOfHashFunctions(long, long)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74238" style="display: none;">
+<a href="#ICAST_IDIV_CAST_TO_DOUBLE">Bug type ICAST_IDIV_CAST_TO_DOUBLE (click for details)</a>
+<br/>In class com.google.common.hash.BloomFilter<br/>In method com.google.common.hash.BloomFilter.optimalNumOfHashFunctions(long, long)<br/>At BloomFilter.java:[line 341]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75661');">
+<td>
+<span class="priority-2">INT</span>
+</td>
+<td>Vacuous comparison of integer value com.google.common.primitives.AndroidInteger.tryParse(String, int, int, boolean) </td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75661" style="display: none;">
+<a href="#INT_VACUOUS_COMPARISON">Bug type INT_VACUOUS_COMPARISON (click for details)</a>
+<br/>In class com.google.common.primitives.AndroidInteger<br/>In method com.google.common.primitives.AndroidInteger.tryParse(String, int, int, boolean)<br/>At AndroidInteger.java:[line 84]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75714');">
+<td>
+<span class="priority-2">INT</span>
+</td>
+<td>Vacuous iand operation on value in new com.google.common.primitives.UnsignedInteger(int)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75714" style="display: none;">
+<a href="#INT_VACUOUS_BIT_OPERATION">Bug type INT_VACUOUS_BIT_OPERATION (click for details)</a>
+<br/>In class com.google.common.primitives.UnsignedInteger<br/>In method new com.google.common.primitives.UnsignedInteger(int)<br/>Value iand<br/>Local variable named value<br/>At UnsignedInteger.java:[line 54]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65550');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>character must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65550" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.base.CharMatcher$14<br/>In method com.google.common.base.CharMatcher$14.apply(Character)<br/>Local variable named character<br/>At CharMatcher.java:[line 584]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65675');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>o must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65675" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.base.Functions$ToStringFunction<br/>In method com.google.common.base.Functions$ToStringFunction.apply(Object)<br/>Local variable named o<br/>At Functions.java:[lines 65-66]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65803');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65803" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.base.Suppliers$SupplierFunction<br/>In method com.google.common.base.Suppliers$SupplierFunction.apply(Supplier)<br/>Local variable named input<br/>At Suppliers.java:[line 299]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65863');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65863" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.cache.AbstractLoadingCache<br/>In method com.google.common.cache.AbstractLoadingCache.apply(Object)<br/>Local variable named key<br/>At AbstractLoadingCache.java:[line 72]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66077');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66077" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$LocalLoadingCache<br/>In method com.google.common.cache.LocalCache$LocalLoadingCache.apply(Object)<br/>Local variable named key<br/>At LocalCache.java:[line 4830]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66443');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>value must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66443" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$WeightedSoftValueReference<br/>In method com.google.common.cache.LocalCache$WeightedSoftValueReference.copyFor(ReferenceQueue, Object, LocalCache$ReferenceEntry)<br/>Local variable named value<br/>At LocalCache.java:[line 1763]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66503');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>value must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66503" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$WeightedWeakValueReference<br/>In method com.google.common.cache.LocalCache$WeightedWeakValueReference.copyFor(ReferenceQueue, Object, LocalCache$ReferenceEntry)<br/>Local variable named value<br/>At LocalCache.java:[line 1740]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66824');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>element must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66824" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.AbstractMultiset<br/>In method com.google.common.collect.AbstractMultiset.setCount(Object, int)<br/>Local variable named element<br/>At AbstractMultiset.java:[line 100]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66884');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>element must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66884" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.AbstractMultiset<br/>In method com.google.common.collect.AbstractMultiset.setCount(Object, int, int)<br/>Local variable named element<br/>At AbstractMultiset.java:[line 105]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66944');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>fromElement must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66944" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.AbstractSortedMultiset<br/>In method com.google.common.collect.AbstractSortedMultiset.subMultiset(Object, BoundType, Object, BoundType)<br/>Local variable named fromElement<br/>At AbstractSortedMultiset.java:[lines 105-107]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67004');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>toElement must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67004" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.AbstractSortedMultiset<br/>In method com.google.common.collect.AbstractSortedMultiset.subMultiset(Object, BoundType, Object, BoundType)<br/>Local variable named toElement<br/>At AbstractSortedMultiset.java:[lines 105-107]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67064');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>columnKey must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67064" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.AbstractTable<br/>In method com.google.common.collect.AbstractTable.containsColumn(Object)<br/>Local variable named columnKey<br/>At AbstractTable.java:[line 43]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67124');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>rowKey must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67124" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.AbstractTable<br/>In method com.google.common.collect.AbstractTable.containsRow(Object)<br/>Local variable named rowKey<br/>At AbstractTable.java:[line 38]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67338');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.google.common.collect.ComputingConcurrentHashMap$ComputingSegment.getOrCompute(Object, int, Function)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67338" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.google.common.collect.ComputingConcurrentHashMap$ComputingSegment<br/>In method com.google.common.collect.ComputingConcurrentHashMap$ComputingSegment.getOrCompute(Object, int, Function)<br/>At ComputingConcurrentHashMap.java:[line 114]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67391');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>newValue must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67391" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ComputingConcurrentHashMap$ComputingValueReference<br/>In method com.google.common.collect.ComputingConcurrentHashMap$ComputingValueReference.clear(MapMakerInternalMap$ValueReference)<br/>Local variable named newValue<br/>At ComputingConcurrentHashMap.java:[lines 348-351]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67451');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>element must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67451" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ConcurrentHashMultiset<br/>In method com.google.common.collect.ConcurrentHashMultiset.add(Object, int)<br/>Local variable named element<br/>At ConcurrentHashMultiset.java:[lines 212-255]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67511');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>element must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67511" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ConcurrentHashMultiset<br/>In method com.google.common.collect.ConcurrentHashMultiset.setCount(Object, int)<br/>Local variable named element<br/>At ConcurrentHashMultiset.java:[lines 350-390]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67571');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>element must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67571" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ConcurrentHashMultiset<br/>In method com.google.common.collect.ConcurrentHashMultiset.setCount(Object, int, int)<br/>Local variable named element<br/>At ConcurrentHashMultiset.java:[lines 405-443]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68088');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68088" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.EnumBiMap<br/>In method com.google.common.collect.EnumBiMap.checkKey(Enum)<br/>Local variable named key<br/>At EnumBiMap.java:[line 116]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68148');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>value must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68148" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.EnumBiMap<br/>In method com.google.common.collect.EnumBiMap.checkValue(Enum)<br/>Local variable named value<br/>At EnumBiMap.java:[line 121]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68208');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68208" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.EnumHashBiMap<br/>In method com.google.common.collect.EnumHashBiMap.checkKey(Enum)<br/>Local variable named key<br/>At EnumHashBiMap.java:[line 90]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68268');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>object must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68268" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ForwardingMap<br/>In method com.google.common.collect.ForwardingMap.standardEquals(Object)<br/>Local variable named object<br/>At ForwardingMap.java:[line 285]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68398');">
+<td>
+<span class="priority-1">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68398" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableEnumMap<br/>In method com.google.common.collect.ImmutableEnumMap.containsKey(Object)<br/>Local variable named key<br/>At ImmutableEnumMap.java:[line 90]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68458');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68458" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableEnumMap<br/>In method com.google.common.collect.ImmutableEnumMap.get(Object)<br/>Local variable named key<br/>At ImmutableEnumMap.java:[line 95]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68752');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>object must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68752" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ImmutableMap<br/>In method com.google.common.collect.ImmutableMap.equals(Object)<br/>Local variable named object<br/>At ImmutableMap.java:[line 507]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69105');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>iterable must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69105" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Iterables$15<br/>In method com.google.common.collect.Iterables$15.apply(Iterable)<br/>Local variable named iterable<br/>At Iterables.java:[line 1027]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69165');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>leftIterable must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69165" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.LexicographicalOrdering<br/>In method com.google.common.collect.LexicographicalOrdering.compare(Iterable, Iterable)<br/>Local variable named leftIterable<br/>At LexicographicalOrdering.java:[lines 41-55]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69225');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>rightIterable must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69225" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.LexicographicalOrdering<br/>In method com.google.common.collect.LexicographicalOrdering.compare(Iterable, Iterable)<br/>Local variable named rightIterable<br/>At LexicographicalOrdering.java:[lines 41-55]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69285');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69285" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.LinkedHashMultimap<br/>In method com.google.common.collect.LinkedHashMultimap.createCollection(Object)<br/>Local variable named key<br/>At LinkedHashMultimap.java:[line 261]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69433');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69433" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MapConstraints$NotNullMapConstraint<br/>In method com.google.common.collect.MapConstraints$NotNullMapConstraint.checkKeyValue(Object, Object)<br/>Local variable named key<br/>At MapConstraints.java:[lines 63-65]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69493');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>value must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69493" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MapConstraints$NotNullMapConstraint<br/>In method com.google.common.collect.MapConstraints$NotNullMapConstraint.checkKeyValue(Object, Object)<br/>Local variable named value<br/>At MapConstraints.java:[lines 63-65]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69604');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69604" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MapMaker$ComputingMapAdapter<br/>In method com.google.common.collect.MapMaker$ComputingMapAdapter.get(Object)<br/>Local variable named key<br/>At MapMaker.java:[lines 886-896]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69664');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>k must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69664" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MapMaker$NullComputingConcurrentMap<br/>In method com.google.common.collect.MapMaker$NullComputingConcurrentMap.get(Object)<br/>Local variable named k<br/>At MapMaker.java:[lines 845-849]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69972');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.google.common.collect.MapMakerInternalMap$Segment.put(Object, int, Object, boolean)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69972" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$Segment<br/>In method com.google.common.collect.MapMakerInternalMap$Segment.put(Object, int, Object, boolean)<br/>At MapMakerInternalMap.java:[line 2526]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70025');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.google.common.collect.MapMakerInternalMap$Segment.replace(Object, int, Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70025" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$Segment<br/>In method com.google.common.collect.MapMakerInternalMap$Segment.replace(Object, int, Object)<br/>At MapMakerInternalMap.java:[line 2709]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70078');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.google.common.collect.MapMakerInternalMap$Segment.replace(Object, int, Object, Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70078" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$Segment<br/>In method com.google.common.collect.MapMakerInternalMap$Segment.replace(Object, int, Object, Object)<br/>At MapMakerInternalMap.java:[line 2658]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70251');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>value must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70251" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$SoftValueReference<br/>In method com.google.common.collect.MapMakerInternalMap$SoftValueReference.copyFor(ReferenceQueue, Object, MapMakerInternalMap$ReferenceEntry)<br/>Local variable named value<br/>At MapMakerInternalMap.java:[line 1747]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70311');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>value must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70311" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MapMakerInternalMap$WeakValueReference<br/>In method com.google.common.collect.MapMakerInternalMap$WeakValueReference.copyFor(ReferenceQueue, Object, MapMakerInternalMap$ReferenceEntry)<br/>Local variable named value<br/>At MapMakerInternalMap.java:[line 1708]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70371');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70371" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Maps$11<br/>In method com.google.common.collect.Maps$11.apply(Map$Entry)<br/>Local variable named entry<br/>At Maps.java:[line 1807]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70431');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70431" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Maps$9<br/>In method com.google.common.collect.Maps$9.apply(Map$Entry)<br/>Local variable named entry<br/>At Maps.java:[line 1773]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70491');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70491" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Maps$EntryFunction$1<br/>In method com.google.common.collect.Maps$EntryFunction$1.apply(Map$Entry)<br/>Local variable named entry<br/>At Maps.java:[line 88]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70551');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70551" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Maps$EntryFunction$2<br/>In method com.google.common.collect.Maps$EntryFunction$2.apply(Map$Entry)<br/>Local variable named entry<br/>At Maps.java:[line 95]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70611');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70611" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Maps$FilteredEntryBiMap$1<br/>In method com.google.common.collect.Maps$FilteredEntryBiMap$1.apply(Map$Entry)<br/>Local variable named input<br/>At Maps.java:[line 2968]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70835');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70835" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Multimaps$TransformedEntriesListMultimap<br/>In method com.google.common.collect.Multimaps$TransformedEntriesListMultimap.get(Object)<br/>Local variable named key<br/>At Multimaps.java:[line 1397]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70895');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70895" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Multimaps$TransformedEntriesListMultimap<br/>In method com.google.common.collect.Multimaps$TransformedEntriesListMultimap.removeAll(Object)<br/>Local variable named key<br/>At Multimaps.java:[line 1402]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70955');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry1 must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70955" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Multisets$5<br/>In method com.google.common.collect.Multisets$5.compare(Multiset$Entry, Multiset$Entry)<br/>Local variable named entry1<br/>At Multisets.java:[line 1066]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71015');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry2 must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71015" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Multisets$5<br/>In method com.google.common.collect.Multisets$5.compare(Multiset$Entry, Multiset$Entry)<br/>Local variable named entry2<br/>At Multisets.java:[line 1066]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71075');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>key must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71075" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.MutableClassToInstanceMap$1<br/>In method com.google.common.collect.MutableClassToInstanceMap$1.checkKeyValue(Class, Object)<br/>Local variable named key<br/>At MutableClassToInstanceMap.java:[lines 67-68]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71135');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>left must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71135" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.NaturalOrdering<br/>In method com.google.common.collect.NaturalOrdering.compare(Comparable, Comparable)<br/>Local variable named left<br/>At NaturalOrdering.java:[lines 33-35]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71195');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>right must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71195" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.NaturalOrdering<br/>In method com.google.common.collect.NaturalOrdering.compare(Comparable, Comparable)<br/>Local variable named right<br/>At NaturalOrdering.java:[lines 33-35]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71290');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71290" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Range<br/>In method com.google.common.collect.Range.apply(Comparable)<br/>Local variable named input<br/>At Range.java:[line 457]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71350');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>range must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71350" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Range$1<br/>In method com.google.common.collect.Range$1.apply(Range)<br/>Local variable named range<br/>At Range.java:[line 123]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71410');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>range must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71410" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Range$2<br/>In method com.google.common.collect.Range$2.apply(Range)<br/>Local variable named range<br/>At Range.java:[line 135]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71470');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>left must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71470" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Range$3<br/>In method com.google.common.collect.Range$3.compare(Range, Range)<br/>Local variable named left<br/>At Range.java:[line 147]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71530');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>right must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71530" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Range$3<br/>In method com.google.common.collect.Range$3.compare(Range, Range)<br/>Local variable named right<br/>At Range.java:[line 147]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72775');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>left must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72775" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.ReverseNaturalOrdering<br/>In method com.google.common.collect.ReverseNaturalOrdering.compare(Comparable, Comparable)<br/>Local variable named left<br/>At ReverseNaturalOrdering.java:[lines 34-39]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73718');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73718" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Tables$1<br/>In method com.google.common.collect.Tables$1.apply(Map)<br/>Local variable named input<br/>At Tables.java:[line 595]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73778');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>cell must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73778" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Tables$TransposeTable$1<br/>In method com.google.common.collect.Tables$TransposeTable$1.apply(Table$Cell)<br/>Local variable named cell<br/>At Tables.java:[line 243]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73838');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>columnKey must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73838" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Tables$UnmodifiableTable<br/>In method com.google.common.collect.Tables$UnmodifiableTable.column(Object)<br/>Local variable named columnKey<br/>At Tables.java:[line 484]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N73898');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>rowKey must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N73898" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.Tables$UnmodifiableTable<br/>In method com.google.common.collect.Tables$UnmodifiableTable.row(Object)<br/>Local variable named rowKey<br/>At Tables.java:[line 515]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N73958');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.google.common.collect.TreeMultimap.createCollection(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N73958" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.google.common.collect.TreeMultimap<br/>In method com.google.common.collect.TreeMultimap.createCollection(Object)<br/>At TreeMultimap.java:[line 148]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74011');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in com.google.common.collect.TreeMultiset.add(Object, int)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74011" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class com.google.common.collect.TreeMultiset<br/>In method com.google.common.collect.TreeMultiset.add(Object, int)<br/>At TreeMultiset.java:[line 255]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74118');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>left must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74118" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.UsingToStringOrdering<br/>In method com.google.common.collect.UsingToStringOrdering.compare(Object, Object)<br/>Local variable named left<br/>At UsingToStringOrdering.java:[line 33]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74178');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>right must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74178" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.collect.UsingToStringOrdering<br/>In method com.google.common.collect.UsingToStringOrdering.compare(Object, Object)<br/>Local variable named right<br/>At UsingToStringOrdering.java:[line 33]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74291');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74291" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.hash.BloomFilter<br/>In method com.google.common.hash.BloomFilter.apply(Object)<br/>Local variable named input<br/>At BloomFilter.java:[line 135]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74531');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74531" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.io.ByteStreams$2<br/>In method com.google.common.io.ByteStreams$2.apply(InputSupplier)<br/>Local variable named input<br/>At ByteStreams.java:[line 877]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74591');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74591" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.io.CharStreams$1<br/>In method com.google.common.io.CharStreams$1.apply(InputSupplier)<br/>Local variable named input<br/>At CharStreams.java:[line 356]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74808');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>file must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74808" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.io.Files$FilePredicate$1<br/>In method com.google.common.io.Files$FilePredicate$1.apply(File)<br/>Local variable named file<br/>At Files.java:[line 1032]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74868');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>file must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74868" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.io.Files$FilePredicate$2<br/>In method com.google.common.io.Files$FilePredicate$2.apply(File)<br/>Local variable named file<br/>At Files.java:[line 1044]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75832');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>entry must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75832" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.reflect.MutableTypeToInstanceMap$UnmodifiableEntry$2<br/>In method com.google.common.reflect.MutableTypeToInstanceMap$UnmodifiableEntry$2.apply(Map$Entry)<br/>Local variable named entry<br/>At MutableTypeToInstanceMap.java:[line 126]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76128');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>from must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76128" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.reflect.Types$1<br/>In method com.google.common.reflect.Types$1.apply(Type)<br/>Local variable named from<br/>At Types.java:[line 56]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75973');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>type must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75973" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.reflect.TypeToken$TypeFilter$1<br/>In method com.google.common.reflect.TypeToken$TypeFilter$1.apply(TypeToken)<br/>Local variable named type<br/>At TypeToken.java:[line 675]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76033');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>type must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76033" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.reflect.TypeToken$TypeFilter$2<br/>In method com.google.common.reflect.TypeToken$TypeFilter$2.apply(TypeToken)<br/>Local variable named type<br/>At TypeToken.java:[line 681]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76188');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>runnable must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76188" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.util.concurrent.AbstractListeningExecutorService<br/>In method com.google.common.util.concurrent.AbstractListeningExecutorService.newTaskFor(Runnable, Object)<br/>Local variable named runnable<br/>At AbstractListeningExecutorService.java:[line 42]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76248');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>callable must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76248" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.util.concurrent.AbstractListeningExecutorService<br/>In method com.google.common.util.concurrent.AbstractListeningExecutorService.newTaskFor(Callable)<br/>Local variable named callable<br/>At AbstractListeningExecutorService.java:[line 46]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N76430');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>result must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N76430" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.util.concurrent.ForwardingListeningExecutorService<br/>In method com.google.common.util.concurrent.ForwardingListeningExecutorService.submit(Runnable, Object)<br/>Local variable named result<br/>At ForwardingListeningExecutorService.java:[line 50]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N76490');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>input must be nonnull but is marked as nullable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N76490" style="display: none;">
+<a href="#NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">Bug type NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE (click for details)</a>
+<br/>In class com.google.common.util.concurrent.Futures$5<br/>In method com.google.common.util.concurrent.Futures$5.apply(Constructor)<br/>Local variable named input<br/>At Futures.java:[line 1423]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65923');">
+<td>
+<span class="priority-2">RCN</span>
+</td>
+<td>Redundant nullcheck of result, which is known to be non-null in com.google.common.cache.LocalCache.loadAll(Set, CacheLoader)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65923" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache<br/>In method com.google.common.cache.LocalCache.loadAll(Set, CacheLoader)<br/>Value loaded from result<br/>Return value of com.google.common.cache.CacheLoader.loadAll(Iterable)<br/>Redundant null check at LocalCache.java:[line 4041]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66000');">
+<td>
+<span class="priority-2">RCN</span>
+</td>
+<td>Redundant nullcheck of newValue, which is known to be non-null in com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(Object, CacheLoader)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66000" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class com.google.common.cache.LocalCache$LoadingValueReference<br/>In method com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(Object, CacheLoader)<br/>Value loaded from newValue<br/>Return value of com.google.common.cache.CacheLoader.reload(Object, Object)<br/>Redundant null check at LocalCache.java:[line 3526]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N74928');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.BigIntegerMath.log10(BigInteger, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N74928" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.BigIntegerMath<br/>In method com.google.common.math.BigIntegerMath.log10(BigInteger, RoundingMode)<br/>At BigIntegerMath.java:[lines 173-177]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N74981');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.BigIntegerMath.log2(BigInteger, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N74981" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.BigIntegerMath<br/>In method com.google.common.math.BigIntegerMath.log2(BigInteger, RoundingMode)<br/>At BigIntegerMath.java:[lines 74-77]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75034');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.BigIntegerMath.sqrt(BigInteger, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75034" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.BigIntegerMath<br/>In method com.google.common.math.BigIntegerMath.sqrt(BigInteger, RoundingMode)<br/>At BigIntegerMath.java:[lines 215-218]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75151');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.DoubleMath.log2(double, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75151" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.DoubleMath<br/>In method com.google.common.math.DoubleMath.log2(double, RoundingMode)<br/>At DoubleMath.java:[lines 234-237]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75204');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.IntMath.divide(int, int, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75204" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.IntMath<br/>In method com.google.common.math.IntMath.divide(int, int, RoundingMode)<br/>At IntMath.java:[lines 301-304]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75257');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.IntMath.log10(int, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75257" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.IntMath<br/>In method com.google.common.math.IntMath.log10(int, RoundingMode)<br/>At IntMath.java:[lines 134-138]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75310');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.IntMath.log2(int, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75310" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.IntMath<br/>In method com.google.common.math.IntMath.log2(int, RoundingMode)<br/>At IntMath.java:[lines 91-95]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75363');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.IntMath.sqrt(int, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75363" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.IntMath<br/>In method com.google.common.math.IntMath.sqrt(int, RoundingMode)<br/>At IntMath.java:[lines 236-239]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75416');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.LongMath.divide(long, long, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75416" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.LongMath<br/>In method com.google.common.math.LongMath.divide(long, long, RoundingMode)<br/>At LongMath.java:[lines 367-370]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N75469');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.LongMath.log10(long, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N75469" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.LongMath<br/>In method com.google.common.math.LongMath.log10(long, RoundingMode)<br/>At LongMath.java:[lines 133-137]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N75522');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in com.google.common.math.LongMath.log2(long, RoundingMode) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N75522" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class com.google.common.math.LongMath<br/>In method com.google.common.math.LongMath.log2(long, RoundingMode)<br/>At LongMath.java:[lines 89-93]</p>
+</td>
+</tr>
+</table>
+<h1>
+<a name="Details">Details</a>
+</h1>
+<h2>
+<a name="BC_BAD_CAST_TO_ABSTRACT_COLLECTION">BC_BAD_CAST_TO_ABSTRACT_COLLECTION: Questionable cast to abstract collection </a>
+</h2>
+
+<p>
+This code casts a Collection to an abstract collection
+(such as <code>List</code>, <code>Set</code>, or <code>Map</code>).
+Ensure that you are guaranteed that the object is of the type
+you are casting to. If all you need is to be able
+to iterate through a collection, you don't need to cast it to a Set or List.
+</p>
+
+    
+<h2>
+<a name="BC_UNCONFIRMED_CAST">BC_UNCONFIRMED_CAST: Unchecked/unconfirmed cast</a>
+</h2>
+
+<p>
+This cast is unchecked, and not all instances of the type casted from can be cast to
+the type it is being cast to. Check that your program logic ensures that this
+cast will not fail.
+</p>
+
+    
+<h2>
+<a name="DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE: Dead store to local variable</a>
+</h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables.  Because FindBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    
+<h2>
+<a name="DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED">DP_CREATE_CLASSLOADER_INSIDE_DO_PRIVILEGED: Classloaders should only be created inside doPrivileged block</a>
+</h2>
+
+  <p> This code creates a classloader,  which needs permission if a security manage is installed.
+  If this code might be invoked by code that does not
+  have security permissions, then the classloader creation needs to occur inside a doPrivileged block.</p>
+
+    
+<h2>
+<a name="EQ_COMPARETO_USE_OBJECT_EQUALS">EQ_COMPARETO_USE_OBJECT_EQUALS: Class defines compareTo(...) and uses Object.equals()</a>
+</h2>
+
+  <p> This class defines a <code>compareTo(...)</code> method but inherits its
+  <code>equals()</code> method from <code>java.lang.Object</code>.
+    Generally, the value of compareTo should return zero if and only if
+    equals returns true. If this is violated, weird and unpredictable
+    failures will occur in classes such as PriorityQueue.
+    In Java 5 the PriorityQueue.remove method uses the compareTo method,
+    while in Java 6 it uses the equals method.
+
+<p>From the JavaDoc for the compareTo method in the Comparable interface:
+<blockquote>
+It is strongly recommended, but not strictly required that <code>(x.compareTo(y)==0) == (x.equals(y))</code>.
+Generally speaking, any class that implements the Comparable interface and violates this condition
+should clearly indicate this fact. The recommended language
+is "Note: this class has a natural ordering that is inconsistent with equals."
+</blockquote>
+
+    
+<h2>
+<a name="EQ_DOESNT_OVERRIDE_EQUALS">EQ_DOESNT_OVERRIDE_EQUALS: Class doesn't override equals in superclass</a>
+</h2>
+
+  <p> This class extends a class that defines an equals method and adds fields, but doesn't
+define an equals method itself. Thus, equality on instances of this class will
+ignore the identity of the subclass and the added fields. Be sure this is what is intended,
+and that you don't need to override the equals method. Even if you don't need to override
+the equals method, consider overriding it anyway to document the fact
+that the equals method for the subclass just return the result of
+invoking super.equals(o).
+  </p>
+
+    
+<h2>
+<a name="FE_FLOATING_POINT_EQUALITY">FE_FLOATING_POINT_EQUALITY: Test for floating point equality</a>
+</h2>
+   
+    <p>
+    This operation compares two floating point values for equality.
+    Because floating point calculations may involve rounding,
+   calculated float and double values may not be accurate.
+    For values that must be precise, such as monetary values,
+   consider using a fixed-precision type such as BigDecimal.
+    For values that need not be precise, consider comparing for equality
+    within some range, for example:
+    <code>if ( Math.abs(x - y) &lt; .0000001 )</code>.
+   See the Java Language Specification, section 4.2.4.
+    </p>
+    
+     
+<h2>
+<a name="HE_EQUALS_NO_HASHCODE">HE_EQUALS_NO_HASHCODE: Class defines equals() but not hashCode()</a>
+</h2>
+
+  <p> This class overrides <code>equals(Object)</code>, but does not
+  override <code>hashCode()</code>.&nbsp; Therefore, the class may violate the
+  invariant that equal objects must have equal hashcodes.</p>
+
+    
+<h2>
+<a name="HE_INHERITS_EQUALS_USE_HASHCODE">HE_INHERITS_EQUALS_USE_HASHCODE: Class inherits equals() and uses Object.hashCode()</a>
+</h2>
+
+  <p> This class inherits <code>equals(Object)</code> from an abstract
+  superclass, and <code>hashCode()</code> from
+<code>java.lang.Object</code> (which returns
+  the identity hash code, an arbitrary value assigned to the object
+  by the VM).&nbsp; Therefore, the class is very likely to violate the
+  invariant that equal objects must have equal hashcodes.</p>
+
+  <p>If you don't want to define a hashCode method, and/or don't
+   believe the object will ever be put into a HashMap/Hashtable,
+   define the <code>hashCode()</code> method
+   to throw <code>UnsupportedOperationException</code>.</p>
+
+    
+<h2>
+<a name="IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD">IA_AMBIGUOUS_INVOCATION_OF_INHERITED_OR_OUTER_METHOD: Ambiguous invocation of either an inherited or outer method</a>
+</h2>
+
+  <p> An inner class is invoking a method that could be resolved to either a inherited method or a method defined in an outer class. By the Java semantics,
+it will be resolved to invoke the inherited method, but this may not be want
+you intend. If you really intend to invoke the inherited method,
+invoke it by invoking the method on super (e.g., invoke super.foo(17)), and
+thus it will be clear to other readers of your code and to FindBugs
+that you want to invoke the inherited method, not the method in the outer class.
+</p>
+
+    
+<h2>
+<a name="ICAST_IDIV_CAST_TO_DOUBLE">ICAST_IDIV_CAST_TO_DOUBLE: integral division result cast to double or float</a>
+</h2>
+
+<p>
+This code casts the result of an integral division (e.g., int or long division)
+operation to double or
+float.
+Doing division on integers truncates the result
+to the integer value closest to zero.  The fact that the result
+was cast to double suggests that this precision should have been retained.
+What was probably meant was to cast one or both of the operands to
+double <em>before</em> performing the division.  Here is an example:
+</p>
+<blockquote>
+<pre>
+int x = 2;
+int y = 5;
+// Wrong: yields result 0.0
+double value1 =  x / y;
+
+// Right: yields result 0.4
+double value2 =  x / (double) y;
+</pre>
+</blockquote>
+
+    
+<h2>
+<a name="INT_VACUOUS_BIT_OPERATION">INT_VACUOUS_BIT_OPERATION: Vacuous bit mask operation on integer value</a>
+</h2>
+
+<p> This is an integer bit operation (and, or, or exclusive or) that doesn't do any useful work
+(e.g., <code>v & 0xffffffff</code>).
+
+</p>
+
+    
+<h2>
+<a name="INT_VACUOUS_COMPARISON">INT_VACUOUS_COMPARISON: Vacuous comparison of integer value</a>
+</h2>
+
+<p> There is an integer comparison that always returns
+the same value (e.g., x &lt;= Integer.MAX_VALUE).
+</p>
+
+    
+<h2>
+<a name="IS2_INCONSISTENT_SYNC">IS2_INCONSISTENT_SYNC: Inconsistent synchronization</a>
+</h2>
+
+  <p> The fields of this class appear to be accessed inconsistently with respect
+  to synchronization.&nbsp; This bug report indicates that the bug pattern detector
+  judged that
+  </p>
+  <ul>
+  <li> The class contains a mix of locked and unlocked accesses,</li>
+  <li> At least one locked access was performed by one of the class's own methods, and</li>
+  <li> The number of unsynchronized field accesses (reads and writes) was no more than
+       one third of all accesses, with writes being weighed twice as high as reads</li>
+  </ul>
+
+  <p> A typical bug matching this bug pattern is forgetting to synchronize
+  one of the methods in a class that is intended to be thread-safe.</p>
+
+  <p> You can select the nodes labeled "Unsynchronized access" to show the
+  code locations where the detector believed that a field was accessed
+  without synchronization.</p>
+
+  <p> Note that there are various sources of inaccuracy in this detector;
+  for example, the detector cannot statically detect all situations in which
+  a lock is held.&nbsp; Also, even when the detector is accurate in
+  distinguishing locked vs. unlocked accesses, the code in question may still
+  be correct.</p>
+
+
+    
+<h2>
+<a name="IT_NO_SUCH_ELEMENT">IT_NO_SUCH_ELEMENT: Iterator next() method can't throw NoSuchElementException</a>
+</h2>
+
+  <p> This class implements the <code>java.util.Iterator</code> interface.&nbsp;
+  However, its <code>next()</code> method is not capable of throwing
+  <code>java.util.NoSuchElementException</code>.&nbsp; The <code>next()</code>
+  method should be changed so it throws <code>NoSuchElementException</code>
+  if is called when there are no more elements to return.</p>
+
+    
+<h2>
+<a name="NP_LOAD_OF_KNOWN_NULL_VALUE">NP_LOAD_OF_KNOWN_NULL_VALUE: Load of known null value</a>
+</h2>
+
+  <p> The variable referenced at this point is known to be null due to an earlier
+   check against null. Although this is valid, it might be a mistake (perhaps you
+intended to refer to a different variable, or perhaps the earlier check to see if the
+variable is null should have been a check to see if it was nonnull).
+</p>
+
+    
+<h2>
+<a name="NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE">NP_PARAMETER_MUST_BE_NONNULL_BUT_MARKED_AS_NULLABLE: Parameter must be nonnull but is marked as nullable</a>
+</h2>
+
+<p> This parameter is always used in a way that requires it to be nonnull,
+but the parameter is explicitly annotated as being Nullable. Either the use
+of the parameter or the annotation is wrong.
+</p>
+
+    
+<h2>
+<a name="OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE">OBL_UNSATISFIED_OBLIGATION_EXCEPTION_EDGE: Method may fail to clean up stream or resource on checked exception</a>
+</h2>
+          
+          <p>
+          This method may fail to clean up (close, dispose of) a stream,
+          database object, or other
+          resource requiring an explicit cleanup operation.
+          </p>
+
+          <p>
+          In general, if a method opens a stream or other resource,
+          the method should use a try/finally block to ensure that
+          the stream or resource is cleaned up before the method
+          returns.
+          </p>
+
+          <p>
+          This bug pattern is essentially the same as the
+          OS_OPEN_STREAM and ODR_OPEN_DATABASE_RESOURCE
+          bug patterns, but is based on a different
+          (and hopefully better) static analysis technique.
+          We are interested is getting feedback about the
+          usefulness of this bug pattern.
+          To send feedback, either:
+          </p>
+          <ul>
+            <li>send email to findbugs@cs.umd.edu</li>
+            <li>file a bug report: <a href="http://findbugs.sourceforge.net/reportingBugs.html">http://findbugs.sourceforge.net/reportingBugs.html</a></li>
+          </ul>
+
+          <p>
+          In particular,
+          the false-positive suppression heuristics for this
+          bug pattern have not been extensively tuned, so
+          reports about false positives are helpful to us.
+          </p>
+
+          <p>
+          See Weimer and Necula, <i>Finding and Preventing Run-Time Error Handling Mistakes</i>, for
+          a description of the analysis technique.
+          </p>
+          
+      
+<h2>
+<a name="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE: Redundant nullcheck of value known to be non-null</a>
+</h2>
+
+<p> This method contains a redundant check of a known non-null value against
+the constant null.</p>
+
+    
+<h2>
+<a name="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">RV_RETURN_VALUE_IGNORED_BAD_PRACTICE: Method ignores exceptional return value</a>
+</h2>
+
+   <p> This method returns a value that is not checked. The return value should be checked
+since it can indicate an unusual or unexpected function execution. For
+example, the <code>File.delete()</code> method returns false
+if the file could not be successfully deleted (rather than
+throwing an Exception).
+If you don't check the result, you won't notice if the method invocation
+signals unexpected behavior by returning an atypical return value.
+</p>
+
+    
+<h2>
+<a name="RV_RETURN_VALUE_IGNORED">RV_RETURN_VALUE_IGNORED: Method ignores return value</a>
+</h2>
+
+   <p> The return value of this method should be checked. One common
+cause of this warning is to invoke a method on an immutable object,
+thinking that it updates the object. For example, in the following code
+fragment,</p>
+<blockquote>
+<pre>
+String dateString = getHeaderField(name);
+dateString.trim();
+</pre>
+</blockquote>
+<p>the programmer seems to be thinking that the trim() method will update
+the String referenced by dateString. But since Strings are immutable, the trim()
+function returns a new String value, which is being ignored here. The code
+should be corrected to: </p>
+<blockquote>
+<pre>
+String dateString = getHeaderField(name);
+dateString = dateString.trim();
+</pre>
+</blockquote>
+
+    
+<h2>
+<a name="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">SE_COMPARATOR_SHOULD_BE_SERIALIZABLE: Comparator doesn't implement Serializable</a>
+</h2>
+
+  <p> This class implements the <code>Comparator</code> interface. You
+should consider whether or not it should also implement the <code>Serializable</code>
+interface. If a comparator is used to construct an ordered collection
+such as a <code>TreeMap</code>, then the <code>TreeMap</code>
+will be serializable only if the comparator is also serializable.
+As most comparators have little or no state, making them serializable
+is generally easy and good defensive programming.
+</p>
+
+    
+<h2>
+<a name="SE_BAD_FIELD">SE_BAD_FIELD: Non-transient non-serializable instance field in serializable class</a>
+</h2>
+
+<p> This Serializable class defines a non-primitive instance field which is neither transient,
+Serializable, or <code>java.lang.Object</code>, and does not appear to implement
+the <code>Externalizable</code> interface or the
+<code>readObject()</code> and <code>writeObject()</code> methods.&nbsp;
+Objects of this class will not be deserialized correctly if a non-Serializable
+object is stored in this field.</p>
+
+    
+<h2>
+<a name="SE_INNER_CLASS">SE_INNER_CLASS: Serializable inner class</a>
+</h2>
+
+<p> This Serializable class is an inner class.  Any attempt to serialize
+it will also serialize the associated outer instance. The outer instance is serializable,
+so this won't fail, but it might serialize a lot more data than intended.
+If possible, making the inner class a static inner class (also known as a nested class) should solve the
+problem.
+
+    
+<h2>
+<a name="SE_TRANSIENT_FIELD_NOT_RESTORED">SE_TRANSIENT_FIELD_NOT_RESTORED: Transient field that isn't set by deserialization. </a>
+</h2>
+
+  <p> This class contains a field that is updated at multiple places in the class, thus it seems to be part of the state of the class. However, since the field is marked as transient and not set in readObject or readResolve, it will contain the default value in any
+deserialized instance of the class.
+</p>
+
+    
+<h2>
+<a name="SF_SWITCH_FALLTHROUGH">SF_SWITCH_FALLTHROUGH: Switch statement found where one case falls through to the next case</a>
+</h2>
+
+  <p> This method contains a switch statement where one case branch will fall through to the next case.
+  Usually you need to end this case with a break or return.</p>
+
+    
+<h2>
+<a name="SE_NO_SERIALVERSIONID">SE_NO_SERIALVERSIONID: Class is Serializable, but doesn't define serialVersionUID</a>
+</h2>
+
+  <p> This class implements the <code>Serializable</code> interface, but does
+  not define a <code>serialVersionUID</code> field.&nbsp;
+  A change as simple as adding a reference to a .class object
+    will add synthetic fields to the class,
+   which will unfortunately change the implicit
+   serialVersionUID (e.g., adding a reference to <code>String.class</code>
+   will generate a static field <code>class$java$lang$String</code>).
+   Also, different source code to bytecode compilers may use different
+   naming conventions for synthetic variables generated for
+   references to class objects or inner classes.
+   To ensure interoperability of Serializable across versions,
+   consider adding an explicit serialVersionUID.</p>
+
+    
+<h2>
+<a name="UL_UNRELEASED_LOCK">UL_UNRELEASED_LOCK: Method does not release lock on all paths</a>
+</h2>
+
+<p> This method acquires a JSR-166 (<code>java.util.concurrent</code>) lock,
+but does not release it on all paths out of the method.  In general, the correct idiom
+for using a JSR-166 lock is:
+</p>
+<pre>
+    Lock l = ...;
+    l.lock();
+    try {
+        // do something
+    } finally {
+        l.unlock();
+    }
+</pre>
+
+    
+<h2>
+<a name="UWF_UNWRITTEN_FIELD">UWF_UNWRITTEN_FIELD: Unwritten field</a>
+</h2>
+
+  <p> This field is never written.&nbsp; All reads of it will return the default
+value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
+
+    </body>
+</html>

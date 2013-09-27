@@ -1,0 +1,1204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+		    color: red;
+		    font-weight: bold;
+		}
+		.priority-2 {
+		    color: orange;
+		    font-weight: bold;
+		}
+		.priority-3 {
+		    color: green;
+		    font-weight: bold;
+		}
+		.priority-4 {
+		    color: blue;
+		    font-weight: bold;
+		}
+		</style>
+<script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+</head>
+<body>
+<h1>
+<a href="http://findbugs.sourceforge.net">FindBugs</a> Report</h1>
+<h2>Project Information</h2>
+<p>Project: 
+		</p>
+<p>FindBugs version: 2.0.2</p>
+<p>Code analyzed:</p>
+<ul>
+<li>C:\cygwin\home\User\src\find\spring-webmvc-3.2.4.RELEASE.jar</li>
+</ul>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Metrics</h2>
+<p>14900 lines of code analyzed,
+	in 351 classes, 
+	in 28 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right">3</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">51</td>
+<td align="right">3.42</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>54</b>
+</td>
+<td align="right">
+<b>3.62</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Contents</h2>
+<ul>
+<li>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</li>
+<li>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</li>
+<li>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+</ul>
+<h1>Summary</h1>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</td>
+<td align="right">32</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</td>
+<td align="right">7</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</td>
+<td align="right">9</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>54</b>
+</td>
+</tr>
+</table>
+<h1>Warnings</h1>
+<p>Click on a warning row to see full context information.</p>
+<h2>
+<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67073');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Equals method for org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo assumes the argument is of type AnnotationMethodHandlerAdapter$RequestMappingInfo</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67073" style="display: none;">
+<a href="#BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS">Bug type BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo.equals(Object)<br/>At AnnotationMethodHandlerAdapter.java:[line 1127]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67126');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo.equals(Object) does not check for null argument</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67126" style="display: none;">
+<a href="#NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT">Bug type NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo.equals(Object)<br/>Local variable named obj<br/>At AnnotationMethodHandlerAdapter.java:[lines 1127-1128]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68017');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Null passed for nonnull parameter of exhaustiveCompare(Object, Object, PropertyEditor, Map) in org.springframework.web.servlet.tags.form.SelectedValueComparator.exhaustiveCollectionCompare(Collection, Object, BindStatus)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68017" style="display: none;">
+<a href="#NP_NULL_PARAM_DEREF">Bug type NP_NULL_PARAM_DEREF (click for details)</a>
+<br/>In class org.springframework.web.servlet.tags.form.SelectedValueComparator<br/>In method org.springframework.web.servlet.tags.form.SelectedValueComparator.exhaustiveCollectionCompare(Collection, Object, BindStatus)<br/>Called method org.springframework.web.servlet.tags.form.SelectedValueComparator.exhaustiveCompare(Object, Object, PropertyEditor, Map)<br/>Argument 1 might be null but must not be null<br/>Value loaded from element<br/>Method invoked at SelectedValueComparator.java:[line 145]<br/>Known null at SelectedValueComparator.java:[line 142]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67388');">
+<td>
+<span class="priority-1">USELESS_STRING</span>
+</td>
+<td>Invocation of toString on CompositeRequestCondition.requestConditions in org.springframework.web.servlet.mvc.condition.CompositeRequestCondition.assertNumberOfConditions(CompositeRequestCondition)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67388" style="display: none;">
+<a href="#DMI_INVOKING_TOSTRING_ON_ARRAY">Bug type DMI_INVOKING_TOSTRING_ON_ARRAY (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.condition.CompositeRequestCondition<br/>In method org.springframework.web.servlet.mvc.condition.CompositeRequestCondition.assertNumberOfConditions(CompositeRequestCondition)<br/>Value loaded from field org.springframework.web.servlet.mvc.condition.CompositeRequestCondition.requestConditions<br/>At CompositeRequestCondition.java:[line 130]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65818');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.handler.MappedInterceptor.getPathPatterns() may expose internal representation by returning MappedInterceptor.includePatterns</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65818" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.handler.MappedInterceptor<br/>In method org.springframework.web.servlet.handler.MappedInterceptor.getPathPatterns()<br/>Field org.springframework.web.servlet.handler.MappedInterceptor.includePatterns<br/>At MappedInterceptor.java:[line 84]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65550');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.HandlerExecutionChain.getInterceptors() may expose internal representation by returning HandlerExecutionChain.interceptors</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65550" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.HandlerExecutionChain<br/>In method org.springframework.web.servlet.HandlerExecutionChain.getInterceptors()<br/>Field org.springframework.web.servlet.HandlerExecutionChain.interceptors<br/>At HandlerExecutionChain.java:[line 117]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66280');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.AbstractWizardFormController.getPages() may expose internal representation by returning AbstractWizardFormController.pages</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66280" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.AbstractWizardFormController<br/>In method org.springframework.web.servlet.mvc.AbstractWizardFormController.getPages()<br/>Field org.springframework.web.servlet.mvc.AbstractWizardFormController.pages<br/>At AbstractWizardFormController.java:[line 155]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66703');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.getMessageConverters() may expose internal representation by returning AnnotationMethodHandlerAdapter.messageConverters</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66703" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.getMessageConverters()<br/>Field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.messageConverters<br/>At AnnotationMethodHandlerAdapter.java:[line 369]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66421');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.BaseCommandController.getPropertyEditorRegistrars() may expose internal representation by returning BaseCommandController.propertyEditorRegistrars</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66421" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.BaseCommandController<br/>In method org.springframework.web.servlet.mvc.BaseCommandController.getPropertyEditorRegistrars()<br/>Field org.springframework.web.servlet.mvc.BaseCommandController.propertyEditorRegistrars<br/>At BaseCommandController.java:[line 302]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66488');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.BaseCommandController.getValidators() may expose internal representation by returning BaseCommandController.validators</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66488" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.BaseCommandController<br/>In method org.springframework.web.servlet.mvc.BaseCommandController.getValidators()<br/>Field org.springframework.web.servlet.mvc.BaseCommandController.validators<br/>At BaseCommandController.java:[line 220]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67456');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.multiaction.MultiActionController.getValidators() may expose internal representation by returning MultiActionController.validators</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67456" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.multiaction.MultiActionController<br/>In method org.springframework.web.servlet.mvc.multiaction.MultiActionController.getValidators()<br/>Field org.springframework.web.servlet.mvc.multiaction.MultiActionController.validators<br/>At MultiActionController.java:[line 239]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67830');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.support.BindStatus.getErrorCodes() may expose internal representation by returning BindStatus.errorCodes</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67830" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.support.BindStatus<br/>In method org.springframework.web.servlet.support.BindStatus.getErrorCodes()<br/>Field org.springframework.web.servlet.support.BindStatus.errorCodes<br/>At BindStatus.java:[line 258]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67897');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.web.servlet.support.BindStatus.getErrorMessages() may expose internal representation by returning BindStatus.errorMessages</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67897" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.web.servlet.support.BindStatus<br/>In method org.springframework.web.servlet.support.BindStatus.getErrorMessages()<br/>Field org.springframework.web.servlet.support.BindStatus.errorMessages<br/>At BindStatus.java:[line 274]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65691');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.setMappedHandlerClasses(Class[]) may expose internal representation by storing an externally mutable object into AbstractHandlerExceptionResolver.mappedHandlerClasses</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65691" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver<br/>In method org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.setMappedHandlerClasses(Class[])<br/>Field org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver.mappedHandlerClasses<br/>Local variable named mappedHandlerClasses<br/>At AbstractHandlerExceptionResolver.java:[line 93]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65885');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.web.servlet.handler.MappedInterceptor(String[], String[], HandlerInterceptor) may expose internal representation by storing an externally mutable object into MappedInterceptor.excludePatterns</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65885" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.handler.MappedInterceptor<br/>In method new org.springframework.web.servlet.handler.MappedInterceptor(String[], String[], HandlerInterceptor)<br/>Field org.springframework.web.servlet.handler.MappedInterceptor.excludePatterns<br/>Local variable named excludePatterns<br/>At MappedInterceptor.java:[line 57]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65959');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.web.servlet.handler.MappedInterceptor(String[], String[], HandlerInterceptor) may expose internal representation by storing an externally mutable object into MappedInterceptor.includePatterns</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65959" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.handler.MappedInterceptor<br/>In method new org.springframework.web.servlet.handler.MappedInterceptor(String[], String[], HandlerInterceptor)<br/>Field org.springframework.web.servlet.handler.MappedInterceptor.includePatterns<br/>Local variable named includePatterns<br/>At MappedInterceptor.java:[line 56]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66033');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor.setAuthorizedRoles(String[]) may expose internal representation by storing an externally mutable object into UserRoleAuthorizationInterceptor.authorizedRoles</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66033" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor<br/>In method org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor.setAuthorizedRoles(String[])<br/>Field org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor.authorizedRoles<br/>Local variable named authorizedRoles<br/>At UserRoleAuthorizationInterceptor.java:[line 42]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65617');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.web.servlet.HandlerExecutionChain(Object, HandlerInterceptor[]) may expose internal representation by storing an externally mutable object into HandlerExecutionChain.interceptors</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65617" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.HandlerExecutionChain<br/>In method new org.springframework.web.servlet.HandlerExecutionChain(Object, HandlerInterceptor[])<br/>Field org.springframework.web.servlet.HandlerExecutionChain.interceptors<br/>Local variable named interceptors<br/>At HandlerExecutionChain.java:[line 75]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66347');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.AbstractWizardFormController.setPages(String[]) may expose internal representation by storing an externally mutable object into AbstractWizardFormController.pages</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66347" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.AbstractWizardFormController<br/>In method org.springframework.web.servlet.mvc.AbstractWizardFormController.setPages(String[])<br/>Field org.springframework.web.servlet.mvc.AbstractWizardFormController.pages<br/>Local variable named pages<br/>At AbstractWizardFormController.java:[line 143]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66770');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.setCustomArgumentResolvers(WebArgumentResolver[]) may expose internal representation by storing an externally mutable object into AnnotationMethodHandlerAdapter.customArgumentResolvers</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66770" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.setCustomArgumentResolvers(WebArgumentResolver[])<br/>Field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.customArgumentResolvers<br/>Local variable named argumentResolvers<br/>At AnnotationMethodHandlerAdapter.java:[line 336]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66844');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.setCustomModelAndViewResolvers(ModelAndViewResolver[]) may expose internal representation by storing an externally mutable object into AnnotationMethodHandlerAdapter.customModelAndViewResolvers</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66844" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.setCustomModelAndViewResolvers(ModelAndViewResolver[])<br/>Field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.customModelAndViewResolvers<br/>Local variable named customModelAndViewResolvers<br/>At AnnotationMethodHandlerAdapter.java:[line 354]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66918');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.setMessageConverters(HttpMessageConverter[]) may expose internal representation by storing an externally mutable object into AnnotationMethodHandlerAdapter.messageConverters</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66918" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.setMessageConverters(HttpMessageConverter[])<br/>Field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.messageConverters<br/>Local variable named messageConverters<br/>At AnnotationMethodHandlerAdapter.java:[line 362]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67240');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver.setCustomArgumentResolvers(WebArgumentResolver[]) may expose internal representation by storing an externally mutable object into AnnotationMethodHandlerExceptionResolver.customArgumentResolvers</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67240" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver.setCustomArgumentResolvers(WebArgumentResolver[])<br/>Field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver.customArgumentResolvers<br/>Local variable named argumentResolvers<br/>At AnnotationMethodHandlerExceptionResolver.java:[line 118]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67314');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver.setMessageConverters(HttpMessageConverter[]) may expose internal representation by storing an externally mutable object into AnnotationMethodHandlerExceptionResolver.messageConverters</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67314" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver.setMessageConverters(HttpMessageConverter[])<br/>Field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver.messageConverters<br/>Local variable named messageConverters<br/>At AnnotationMethodHandlerExceptionResolver.java:[line 126]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66555');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.BaseCommandController.setPropertyEditorRegistrars(PropertyEditorRegistrar[]) may expose internal representation by storing an externally mutable object into BaseCommandController.propertyEditorRegistrars</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66555" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.BaseCommandController<br/>In method org.springframework.web.servlet.mvc.BaseCommandController.setPropertyEditorRegistrars(PropertyEditorRegistrar[])<br/>Field org.springframework.web.servlet.mvc.BaseCommandController.propertyEditorRegistrars<br/>Local variable named propertyEditorRegistrars<br/>At BaseCommandController.java:[line 294]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66629');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.BaseCommandController.setValidators(Validator[]) may expose internal representation by storing an externally mutable object into BaseCommandController.validators</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66629" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.BaseCommandController<br/>In method org.springframework.web.servlet.mvc.BaseCommandController.setValidators(Validator[])<br/>Field org.springframework.web.servlet.mvc.BaseCommandController.validators<br/>Local variable named validators<br/>At BaseCommandController.java:[line 213]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67523');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.multiaction.MultiActionController.setValidators(Validator[]) may expose internal representation by storing an externally mutable object into MultiActionController.validators</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67523" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.multiaction.MultiActionController<br/>In method org.springframework.web.servlet.mvc.multiaction.MultiActionController.setValidators(Validator[])<br/>Field org.springframework.web.servlet.mvc.multiaction.MultiActionController.validators<br/>Local variable named validators<br/>At MultiActionController.java:[line 232]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67597');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver.setMethodParamNames(String[]) may expose internal representation by storing an externally mutable object into ParameterMethodNameResolver.methodParamNames</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67597" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver<br/>In method org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver.setMethodParamNames(String[])<br/>Field org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver.methodParamNames<br/>Local variable named methodParamNames<br/>At ParameterMethodNameResolver.java:[line 128]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68110');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.InternalResourceViewResolver.setExposedContextBeanNames(String[]) may expose internal representation by storing an externally mutable object into InternalResourceViewResolver.exposedContextBeanNames</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68110" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.InternalResourceViewResolver<br/>In method org.springframework.web.servlet.view.InternalResourceViewResolver.setExposedContextBeanNames(String[])<br/>Field org.springframework.web.servlet.view.InternalResourceViewResolver.exposedContextBeanNames<br/>Local variable named exposedContextBeanNames<br/>At InternalResourceViewResolver.java:[line 112]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68711');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.jasperreports.AbstractJasperReportsView.setSubReportDataKeys(String[]) may expose internal representation by storing an externally mutable object into AbstractJasperReportsView.subReportDataKeys</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68711" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.jasperreports.AbstractJasperReportsView<br/>In method org.springframework.web.servlet.view.jasperreports.AbstractJasperReportsView.setSubReportDataKeys(String[])<br/>Field org.springframework.web.servlet.view.jasperreports.AbstractJasperReportsView.subReportDataKeys<br/>Local variable named subReportDataKeys<br/>At AbstractJasperReportsView.java:[line 230]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68785');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver.setSubReportDataKeys(String[]) may expose internal representation by storing an externally mutable object into JasperReportsViewResolver.subReportDataKeys</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68785" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver<br/>In method org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver.setSubReportDataKeys(String[])<br/>Field org.springframework.web.servlet.view.jasperreports.JasperReportsViewResolver.subReportDataKeys<br/>Local variable named subReportDataKeys<br/>At JasperReportsViewResolver.java:[line 79]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68184');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.ResourceBundleViewResolver.setBasenames(String[]) may expose internal representation by storing an externally mutable object into ResourceBundleViewResolver.basenames</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68184" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.ResourceBundleViewResolver<br/>In method org.springframework.web.servlet.view.ResourceBundleViewResolver.setBasenames(String[])<br/>Field org.springframework.web.servlet.view.ResourceBundleViewResolver.basenames<br/>Local variable named basenames<br/>At ResourceBundleViewResolver.java:[line 133]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68258');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.ResourceBundleViewResolver.setLocalesToInitialize(Locale[]) may expose internal representation by storing an externally mutable object into ResourceBundleViewResolver.localesToInitialize</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68258" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.ResourceBundleViewResolver<br/>In method org.springframework.web.servlet.view.ResourceBundleViewResolver.setLocalesToInitialize(Locale[])<br/>Field org.springframework.web.servlet.view.ResourceBundleViewResolver.localesToInitialize<br/>Local variable named localesToInitialize<br/>At ResourceBundleViewResolver.java:[line 176]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69062');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.tiles2.TilesConfigurer.setDefinitions(String[]) may expose internal representation by storing an externally mutable object into TilesConfigurer.definitions</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69062" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles2.TilesConfigurer<br/>In method org.springframework.web.servlet.view.tiles2.TilesConfigurer.setDefinitions(String[])<br/>Field org.springframework.web.servlet.view.tiles2.TilesConfigurer.definitions<br/>Local variable named definitions<br/>At TilesConfigurer.java:[line 218]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69217');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.tiles3.TilesConfigurer.setDefinitions(String[]) may expose internal representation by storing an externally mutable object into TilesConfigurer.definitions</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69217" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles3.TilesConfigurer<br/>In method org.springframework.web.servlet.view.tiles3.TilesConfigurer.setDefinitions(String[])<br/>Field org.springframework.web.servlet.view.tiles3.TilesConfigurer.definitions<br/>Local variable named definitions<br/>At TilesConfigurer.java:[line 174]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68468');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.web.servlet.view.UrlBasedViewResolver.setViewNames(String[]) may expose internal representation by storing an externally mutable object into UrlBasedViewResolver.viewNames</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68468" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.UrlBasedViewResolver<br/>In method org.springframework.web.servlet.view.UrlBasedViewResolver.setViewNames(String[])<br/>Field org.springframework.web.servlet.view.UrlBasedViewResolver.viewNames<br/>Local variable named viewNames<br/>At UrlBasedViewResolver.java:[line 314]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68332');">
+<td>
+<span class="priority-2">IS</span>
+</td>
+<td>Inconsistent synchronization of org.springframework.web.servlet.view.ResourceBundleViewResolver.basenames; locked 50% of time</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68332" style="display: none;">
+<a href="#IS2_INCONSISTENT_SYNC">Bug type IS2_INCONSISTENT_SYNC (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.ResourceBundleViewResolver<br/>Field org.springframework.web.servlet.view.ResourceBundleViewResolver.basenames<br/>Synchronized 50% of the time<br/>Unsynchronized access at ResourceBundleViewResolver.java:[line 133]<br/>Synchronized access at ResourceBundleViewResolver.java:[line 224]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68400');">
+<td>
+<span class="priority-2">IS</span>
+</td>
+<td>Inconsistent synchronization of org.springframework.web.servlet.view.ResourceBundleViewResolver.defaultParentView; locked 50% of time</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68400" style="display: none;">
+<a href="#IS2_INCONSISTENT_SYNC">Bug type IS2_INCONSISTENT_SYNC (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.ResourceBundleViewResolver<br/>Field org.springframework.web.servlet.view.ResourceBundleViewResolver.defaultParentView<br/>Synchronized 50% of the time<br/>Unsynchronized access at ResourceBundleViewResolver.java:[line 167]<br/>Synchronized access at ResourceBundleViewResolver.java:[line 246]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68542');">
+<td>
+<span class="priority-2">IS</span>
+</td>
+<td>Inconsistent synchronization of org.springframework.web.servlet.view.XmlViewResolver.cachedFactory; locked 50% of time</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68542" style="display: none;">
+<a href="#IS2_INCONSISTENT_SYNC">Bug type IS2_INCONSISTENT_SYNC (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.XmlViewResolver<br/>Field org.springframework.web.servlet.view.XmlViewResolver.cachedFactory<br/>Synchronized 50% of the time<br/>Unsynchronized access at XmlViewResolver.java:[line 156]<br/>Unsynchronized access at XmlViewResolver.java:[line 157]<br/>Synchronized access at XmlViewResolver.java:[line 123]<br/>Synchronized access at XmlViewResolver.java:[line 124]<br/>Synchronized access at XmlViewResolver.java:[line 146]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68643');">
+<td>
+<span class="priority-2">IS</span>
+</td>
+<td>Inconsistent synchronization of org.springframework.web.servlet.view.XmlViewResolver.location; locked 50% of time</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68643" style="display: none;">
+<a href="#IS2_INCONSISTENT_SYNC">Bug type IS2_INCONSISTENT_SYNC (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.XmlViewResolver<br/>Field org.springframework.web.servlet.view.XmlViewResolver.location<br/>Synchronized 50% of the time<br/>Unsynchronized access at XmlViewResolver.java:[line 82]<br/>Synchronized access at XmlViewResolver.java:[line 127]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66992');">
+<td>
+<span class="priority-2">JLM</span>
+</td>
+<td>Synchronization performed on java.util.concurrent.ConcurrentHashMap in org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.getMethodResolver(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66992" style="display: none;">
+<a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">Bug type JLM_JSR166_UTILCONCURRENT_MONITORENTER (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter<br/>In method org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.getMethodResolver(Object)<br/>Type java.util.concurrent.ConcurrentHashMap<br/>Value loaded from field org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter.methodResolverCache<br/>At AnnotationMethodHandlerAdapter.java:[line 467]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68859');">
+<td>
+<span class="priority-2">JLM</span>
+</td>
+<td>Synchronization performed on java.util.concurrent.ConcurrentHashMap in org.springframework.web.servlet.view.tiles2.SimpleSpringPreparerFactory.getPreparer(String, WebApplicationContext)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68859" style="display: none;">
+<a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">Bug type JLM_JSR166_UTILCONCURRENT_MONITORENTER (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles2.SimpleSpringPreparerFactory<br/>In method org.springframework.web.servlet.view.tiles2.SimpleSpringPreparerFactory.getPreparer(String, WebApplicationContext)<br/>Type java.util.concurrent.ConcurrentHashMap<br/>Value loaded from field org.springframework.web.servlet.view.tiles2.SimpleSpringPreparerFactory.sharedPreparers<br/>At SimpleSpringPreparerFactory.java:[line 50]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69136');">
+<td>
+<span class="priority-2">JLM</span>
+</td>
+<td>Synchronization performed on java.util.concurrent.ConcurrentHashMap in org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory.getPreparer(String, WebApplicationContext)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69136" style="display: none;">
+<a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">Bug type JLM_JSR166_UTILCONCURRENT_MONITORENTER (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory<br/>In method org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory.getPreparer(String, WebApplicationContext)<br/>Type java.util.concurrent.ConcurrentHashMap<br/>Value loaded from field org.springframework.web.servlet.view.tiles3.SimpleSpringPreparerFactory.sharedPreparers<br/>At SimpleSpringPreparerFactory.java:[line 50]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_PERFORMANCE">Performance Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66107');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.web.servlet.mvc.AbstractWizardFormController.processFormSubmission(HttpServletRequest, HttpServletResponse, Object, BindException) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66107" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.AbstractWizardFormController<br/>In method org.springframework.web.servlet.mvc.AbstractWizardFormController.processFormSubmission(HttpServletRequest, HttpServletResponse, Object, BindException)<br/>Called method new Integer(int)<br/>Should call Integer.valueOf(int) instead<br/>At AbstractWizardFormController.java:[line 485]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66188');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.web.servlet.mvc.AbstractWizardFormController.showPage(HttpServletRequest, BindException, int) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66188" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.AbstractWizardFormController<br/>In method org.springframework.web.servlet.mvc.AbstractWizardFormController.showPage(HttpServletRequest, BindException, int)<br/>Called method new Integer(int)<br/>Should call Integer.valueOf(int) instead<br/>At AbstractWizardFormController.java:[line 342]<br/>Another occurrence at AbstractWizardFormController.java:[line 355]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68940');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>org.springframework.web.servlet.view.tiles2.SpringTilesApplicationContextFactory$SpringWildcardServletTilesApplicationContext.getResources(String) is or uses a map or set of URLs, which can be a performance hog</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68940" style="display: none;">
+<a href="#DMI_COLLECTION_OF_URLS">Bug type DMI_COLLECTION_OF_URLS (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles2.SpringTilesApplicationContextFactory$SpringWildcardServletTilesApplicationContext<br/>In method org.springframework.web.servlet.view.tiles2.SpringTilesApplicationContextFactory$SpringWildcardServletTilesApplicationContext.getResources(String)<br/>At SpringTilesApplicationContextFactory.java:[lines 100-108]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68993');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>org.springframework.web.servlet.view.tiles2.SpringTilesApplicationContextFactory$SpringWildcardServletTilesApplicationContext.getResources(String) is or uses a map or set of URLs, which can be a performance hog</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68993" style="display: none;">
+<a href="#DMI_COLLECTION_OF_URLS">Bug type DMI_COLLECTION_OF_URLS (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles2.SpringTilesApplicationContextFactory$SpringWildcardServletTilesApplicationContext<br/>In method org.springframework.web.servlet.view.tiles2.SpringTilesApplicationContextFactory$SpringWildcardServletTilesApplicationContext.getResources(String)<br/>Called method java.util.HashSet.add(Object)<br/>At SpringTilesApplicationContextFactory.java:[line 105]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69291');">
+<td>
+<span class="priority-2">SIC</span>
+</td>
+<td>Should org.springframework.web.servlet.view.tiles3.TilesConfigurer$SpringCompleteAutoloadTilesContainerFactory be a _static_ inner class?</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69291" style="display: none;">
+<a href="#SIC_INNER_SHOULD_BE_STATIC">Bug type SIC_INNER_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.springframework.web.servlet.view.tiles3.TilesConfigurer$SpringCompleteAutoloadTilesContainerFactory<br/>At TilesConfigurer.java:[lines 374-384]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67671');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap.addAllAttributes(Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67671" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap<br/>In method org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap.addAllAttributes(Map)<br/>At RedirectAttributesModelMap.java:[line 105]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67724');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap.mergeAttributes(Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67724" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap<br/>In method org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap.mergeAttributes(Map)<br/>At RedirectAttributesModelMap.java:[line 119]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67777');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap.putAll(Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67777" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap<br/>In method org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap.putAll(Map)<br/>At RedirectAttributesModelMap.java:[line 147]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67964');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.web.servlet.tags.form.FormTag.writeHiddenFields(Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67964" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.web.servlet.tags.form.FormTag<br/>In method org.springframework.web.servlet.tags.form.FormTag.writeHiddenFields(Map)<br/>At FormTag.java:[line 502]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67186');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestSpecificMappingInfo doesn't override AnnotationMethodHandlerAdapter$RequestMappingInfo.equals(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67186" style="display: none;">
+<a href="#EQ_DOESNT_OVERRIDE_EQUALS">Bug type EQ_DOESNT_OVERRIDE_EQUALS (click for details)</a>
+<br/>In class org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestSpecificMappingInfo<br/>Did you intend to override org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter$RequestMappingInfo.equals(Object)<br/>At AnnotationMethodHandlerAdapter.java:[lines 1127-1128]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65765');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Load of known null value in org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.shouldApplyTo(HttpServletRequest, Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65765" style="display: none;">
+<a href="#NP_LOAD_OF_KNOWN_NULL_VALUE">Bug type NP_LOAD_OF_KNOWN_NULL_VALUE (click for details)</a>
+<br/>In class org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver<br/>In method org.springframework.web.servlet.handler.AbstractHandlerMethodExceptionResolver.shouldApplyTo(HttpServletRequest, Object)<br/>At AbstractHandlerMethodExceptionResolver.java:[line 43]</p>
+</td>
+</tr>
+</table>
+<h1>
+<a name="Details">Details</a>
+</h1>
+<h2>
+<a name="BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS">BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS: Equals method should not assume anything about the type of its argument</a>
+</h2>
+
+<p>
+The <code>equals(Object o)</code> method shouldn't make any assumptions
+about the type of <code>o</code>. It should simply return
+false if <code>o</code> is not the same type as <code>this</code>.
+</p>
+
+    
+<h2>
+<a name="DM_NUMBER_CTOR">DM_NUMBER_CTOR: Method invokes inefficient Number constructor; use static valueOf instead</a>
+</h2>
+      
+      <p>
+      Using <code>new Integer(int)</code> is guaranteed to always result in a new object whereas
+      <code>Integer.valueOf(int)</code> allows caching of values to be done by the compiler, class library, or JVM.
+      Using of cached values avoids object allocation and the code will be faster.
+      </p>
+      <p>
+      Values between -128 and 127 are guaranteed to have corresponding cached instances
+      and using <code>valueOf</code> is approximately 3.5 times faster than using constructor.
+      For values outside the constant range the performance of both styles is the same.
+      </p>
+      <p>
+      Unless the class must be compatible with JVMs predating Java 1.5,
+      use either autoboxing or the <code>valueOf()</code> method when creating instances of
+      <code>Long</code>, <code>Integer</code>, <code>Short</code>, <code>Character</code>, and <code>Byte</code>.
+      </p>
+      
+    
+<h2>
+<a name="DMI_COLLECTION_OF_URLS">DMI_COLLECTION_OF_URLS: Maps and sets of URLs can be performance hogs</a>
+</h2>
+
+  <p> This method or field is or uses a Map or Set of URLs. Since both the equals and hashCode
+method of URL perform domain name resolution, this can result in a big performance hit.
+See <a href="http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html">http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html</a> for more information.
+Consider using <code>java.net.URI</code> instead.
+   </p>
+
+    
+<h2>
+<a name="EI_EXPOSE_REP">EI_EXPOSE_REP: May expose internal representation by returning reference to mutable object</a>
+</h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    
+<h2>
+<a name="EI_EXPOSE_REP2">EI_EXPOSE_REP2: May expose internal representation by incorporating reference to mutable object</a>
+</h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    
+<h2>
+<a name="EQ_DOESNT_OVERRIDE_EQUALS">EQ_DOESNT_OVERRIDE_EQUALS: Class doesn't override equals in superclass</a>
+</h2>
+
+  <p> This class extends a class that defines an equals method and adds fields, but doesn't
+define an equals method itself. Thus, equality on instances of this class will
+ignore the identity of the subclass and the added fields. Be sure this is what is intended,
+and that you don't need to override the equals method. Even if you don't need to override
+the equals method, consider overriding it anyway to document the fact
+that the equals method for the subclass just return the result of
+invoking super.equals(o).
+  </p>
+
+    
+<h2>
+<a name="IS2_INCONSISTENT_SYNC">IS2_INCONSISTENT_SYNC: Inconsistent synchronization</a>
+</h2>
+
+  <p> The fields of this class appear to be accessed inconsistently with respect
+  to synchronization.&nbsp; This bug report indicates that the bug pattern detector
+  judged that
+  </p>
+  <ul>
+  <li> The class contains a mix of locked and unlocked accesses,</li>
+  <li> At least one locked access was performed by one of the class's own methods, and</li>
+  <li> The number of unsynchronized field accesses (reads and writes) was no more than
+       one third of all accesses, with writes being weighed twice as high as reads</li>
+  </ul>
+
+  <p> A typical bug matching this bug pattern is forgetting to synchronize
+  one of the methods in a class that is intended to be thread-safe.</p>
+
+  <p> You can select the nodes labeled "Unsynchronized access" to show the
+  code locations where the detector believed that a field was accessed
+  without synchronization.</p>
+
+  <p> Note that there are various sources of inaccuracy in this detector;
+  for example, the detector cannot statically detect all situations in which
+  a lock is held.&nbsp; Also, even when the detector is accurate in
+  distinguishing locked vs. unlocked accesses, the code in question may still
+  be correct.</p>
+
+
+    
+<h2>
+<a name="JLM_JSR166_UTILCONCURRENT_MONITORENTER">JLM_JSR166_UTILCONCURRENT_MONITORENTER: Synchronization performed on util.concurrent instance</a>
+</h2>
+
+<p> This method performs synchronization an object that is an instance of
+a class from the java.util.concurrent package (or its subclasses). Instances
+of these classes have their own concurrency control mechanisms that are orthogonal to
+the synchronization provided by the Java keyword <code>synchronized</code>. For example,
+synchronizing on an <code>AtomicBoolean</code> will not prevent other threads
+from modifying the  <code>AtomicBoolean</code>.</p>
+<p>Such code may be correct, but should be carefully reviewed and documented,
+and may confuse people who have to maintain the code at a later date.
+</p>
+
+
+<h2>
+<a name="NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT">NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT: equals() method does not check for null argument</a>
+</h2>
+      
+      <p>
+      This implementation of equals(Object) violates the contract defined
+      by java.lang.Object.equals() because it does not check for null
+      being passed as the argument.  All equals() methods should return
+      false if passed a null value.
+      </p>
+      
+   
+<h2>
+<a name="NP_LOAD_OF_KNOWN_NULL_VALUE">NP_LOAD_OF_KNOWN_NULL_VALUE: Load of known null value</a>
+</h2>
+
+  <p> The variable referenced at this point is known to be null due to an earlier
+   check against null. Although this is valid, it might be a mistake (perhaps you
+intended to refer to a different variable, or perhaps the earlier check to see if the
+variable is null should have been a check to see if it was nonnull).
+</p>
+
+    
+<h2>
+<a name="NP_NULL_PARAM_DEREF">NP_NULL_PARAM_DEREF: Method call passes null for nonnull parameter</a>
+</h2>
+      
+      <p>
+      This method call passes a null value for a nonnull method parameter.
+    Either the parameter is annotated as a parameter that should
+    always be nonnull, or analysis has shown that it will always be
+    dereferenced.
+      </p>
+      
+   
+<h2>
+<a name="SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC: Should be a static inner class</a>
+</h2>
+
+  <p> This class is an inner class, but does not use its embedded reference
+  to the object which created it.&nbsp; This reference makes the instances
+  of the class larger, and may keep the reference to the creator object
+  alive longer than necessary.&nbsp; If possible, the class should be
+   made static.
+</p>
+
+    
+<h2>
+<a name="DMI_INVOKING_TOSTRING_ON_ARRAY">DMI_INVOKING_TOSTRING_ON_ARRAY: Invocation of toString on an array</a>
+</h2>
+
+<p>
+The code invokes toString on an array, which will generate a fairly useless result
+such as [C@16f0472. Consider using Arrays.toString to convert the array into a readable
+String that gives the contents of the array. See Programming Puzzlers, chapter 3, puzzle 12.
+</p>
+
+    
+<h2>
+<a name="WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR: Inefficient use of keySet iterator instead of entrySet iterator</a>
+</h2>
+
+<p> This method accesses the value of a Map entry, using a key that was retrieved from
+a keySet iterator. It is more efficient to use an iterator on the entrySet of the map, to avoid the
+Map.get(key) lookup.</p>
+
+        </body>
+</html>

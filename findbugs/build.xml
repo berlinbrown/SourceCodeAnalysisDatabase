@@ -1,0 +1,17 @@
+<project name="test">
+  
+  <taskdef name="findbugs" classname="edu.umd.cs.findbugs.anttask.FindBugsTask"/>  
+  
+  <property name="findbugs.home" value="C:\Users\User\Downloads\findbugs-2.0.2\findbugs-2.0.2\lib" />
+  
+  <target name="findbugs">
+    <findbugs home="${findbugs.home}"
+              workHard="true"
+              output="html"
+              outputFile="bugs.html" >
+      <sourcePath path="commons-lang3-3.1-sources.jar" />
+      <class location="commons-lang3-3.1.jar" />
+    </findbugs>
+  </target>
+
+</project>

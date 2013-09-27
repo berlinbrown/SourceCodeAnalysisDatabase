@@ -1,0 +1,2258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>FindBugs Report</title>
+<style type="text/css">
+		.tablerow0 {
+			background: #EEEEEE;
+		}
+
+		.tablerow1 {
+			background: white;
+		}
+
+		.detailrow0 {
+			background: #EEEEEE;
+		}
+
+		.detailrow1 {
+			background: white;
+		}
+
+		.tableheader {
+			background: #b9b9fe;
+			font-size: larger;
+		}
+
+		.tablerow0:hover, .tablerow1:hover {
+			background: #aaffaa;
+		}
+
+		.priority-1 {
+		    color: red;
+		    font-weight: bold;
+		}
+		.priority-2 {
+		    color: orange;
+		    font-weight: bold;
+		}
+		.priority-3 {
+		    color: green;
+		    font-weight: bold;
+		}
+		.priority-4 {
+		    color: blue;
+		    font-weight: bold;
+		}
+		</style>
+<script type="text/javascript">
+			function toggleRow(elid) {
+				if (document.getElementById) {
+					element = document.getElementById(elid);
+					if (element) {
+						if (element.style.display == 'none') {
+							element.style.display = 'block';
+							//window.status = 'Toggle on!';
+						} else {
+							element.style.display = 'none';
+							//window.status = 'Toggle off!';
+						}
+					}
+				}
+			}
+		</script>
+</head>
+<body>
+<h1>
+<a href="http://findbugs.sourceforge.net">FindBugs</a> Report</h1>
+<h2>Project Information</h2>
+<p>Project: 
+		</p>
+<p>FindBugs version: 2.0.2</p>
+<p>Code analyzed:</p>
+<ul>
+<li>C:\cygwin\home\User\src\find\spring-core-3.2.4.RELEASE.jar</li>
+</ul>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Metrics</h2>
+<p>27468 lines of code analyzed,
+	in 643 classes, 
+	in 32 packages.</p>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Metric</th>
+<th align="right">Total</th>
+<th align="right">Density*</th>
+</tr>
+<tr class="tablerow0">
+<td>High Priority Warnings</td>
+<td align="right">12</td>
+<td align="right">0.44</td>
+</tr>
+<tr class="tablerow1">
+<td>Medium Priority Warnings</td>
+<td align="right">100</td>
+<td align="right">3.64</td>
+</tr>
+<tr class="$totalClass">
+<td>
+<b>Total Warnings</b>
+</td>
+<td align="right">
+<b>112</b>
+</td>
+<td align="right">
+<b>4.08</b>
+</td>
+</tr>
+</table>
+<p>
+<i>(* Defects per Thousand lines of non-commenting source statements)</i>
+</p>
+<p>
+<br/>
+<br/>
+</p>
+<h2>Contents</h2>
+<ul>
+<li>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</li>
+<li>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_I18N">Internationalization Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</li>
+<li>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</li>
+<li>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</li>
+<li>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</li>
+<li>
+<a href="#Details">Details</a>
+</li>
+</ul>
+<h1>Summary</h1>
+<table width="500" cellpadding="5" cellspacing="2">
+<tr class="tableheader">
+<th align="left">Warning Type</th>
+<th align="right">Number</th>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</td>
+<td align="right">30</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_CORRECTNESS">Correctness Warnings</a>
+</td>
+<td align="right">6</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_I18N">Internationalization Warnings</a>
+</td>
+<td align="right">3</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</td>
+<td align="right">27</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</td>
+<td align="right">2</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<a href="#Warnings_PERFORMANCE">Performance Warnings</a>
+</td>
+<td align="right">24</td>
+</tr>
+<tr class="tablerow0">
+<td>
+<a href="#Warnings_STYLE">Dodgy code Warnings</a>
+</td>
+<td align="right">20</td>
+</tr>
+<tr class="tablerow1">
+<td>
+<b>Total</b>
+</td>
+<td align="right">
+<b>112</b>
+</td>
+</tr>
+</table>
+<h1>Warnings</h1>
+<p>Click on a warning row to see full context information.</p>
+<h2>
+<a name="Warnings_BAD_PRACTICE">Bad practice Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68706');">
+<td>
+<span class="priority-2">BC</span>
+</td>
+<td>Equals method for org.springframework.cglib.reflect.MethodDelegate assumes the argument is of type MethodDelegate</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68706" style="display: none;">
+<a href="#BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS">Bug type BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS (click for details)</a>
+<br/>In class org.springframework.cglib.reflect.MethodDelegate<br/>In method org.springframework.cglib.reflect.MethodDelegate.equals(Object)<br/>At MethodDelegate.java:[line 135]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65607');">
+<td>
+<span class="priority-2">ES</span>
+</td>
+<td>Comparison of String objects using == or != in org.springframework.asm.ClassReader.accept(ClassVisitor, Attribute[], int) </td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65607" style="display: none;">
+<a href="#ES_COMPARING_STRINGS_WITH_EQ">Bug type ES_COMPARING_STRINGS_WITH_EQ (click for details)</a>
+<br/>In class org.springframework.asm.ClassReader<br/>In method org.springframework.asm.ClassReader.accept(ClassVisitor, Attribute[], int)<br/>Actual type String<br/>Value loaded from field org.springframework.asm.MethodWriter.g<br/>Value loaded from ?<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68759');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.cglib.reflect.MethodDelegate.equals(Object) does not check for null argument</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68759" style="display: none;">
+<a href="#NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT">Bug type NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT (click for details)</a>
+<br/>In class org.springframework.cglib.reflect.MethodDelegate<br/>In method org.springframework.cglib.reflect.MethodDelegate.equals(Object)<br/>Local variable named obj<br/>At MethodDelegate.java:[lines 135-136]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69978');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.core.convert.support.StringToBooleanConverter.convert(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69978" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.springframework.core.convert.support.StringToBooleanConverter<br/>In method org.springframework.core.convert.support.StringToBooleanConverter.convert(String)<br/>At StringToBooleanConverter.java:[line 52]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71462');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter.matchInterface(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71462" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter<br/>In method org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter.matchInterface(String)<br/>At AbstractTypeHierarchyTraversingFilter.java:[line 135]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71515');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter.matchSuperClass(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71515" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter<br/>In method org.springframework.core.type.filter.AbstractTypeHierarchyTraversingFilter.matchSuperClass(String)<br/>At AbstractTypeHierarchyTraversingFilter.java:[line 128]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71568');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.core.type.filter.AnnotationTypeFilter.matchSuperClass(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71568" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.springframework.core.type.filter.AnnotationTypeFilter<br/>In method org.springframework.core.type.filter.AnnotationTypeFilter.matchSuperClass(String)<br/>At AnnotationTypeFilter.java:[line 99]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71621');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>org.springframework.core.type.filter.AssignableTypeFilter.matchTargetType(String) has Boolean return type and returns explicit null</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71621" style="display: none;">
+<a href="#NP_BOOLEAN_RETURN_NULL">Bug type NP_BOOLEAN_RETURN_NULL (click for details)</a>
+<br/>In class org.springframework.core.type.filter.AssignableTypeFilter<br/>In method org.springframework.core.type.filter.AssignableTypeFilter.matchTargetType(String)<br/>At AssignableTypeFilter.java:[line 73]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70813');">
+<td>
+<span class="priority-2">OS</span>
+</td>
+<td>org.springframework.core.io.support.PathMatchingResourcePatternResolver.doFindPathMatchingJarResources(Resource, String) may fail to close stream</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70813" style="display: none;">
+<a href="#OS_OPEN_STREAM">Bug type OS_OPEN_STREAM (click for details)</a>
+<br/>In class org.springframework.core.io.support.PathMatchingResourcePatternResolver<br/>In method org.springframework.core.io.support.PathMatchingResourcePatternResolver.doFindPathMatchingJarResources(Resource, String)<br/>Need to close java.util.zip.ZipFile <br/>At PathMatchingResourcePatternResolver.java:[line 455]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65799');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.AnalyzerAdapter.execute(int, int, String)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65799" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.AnalyzerAdapter<br/>In method org.springframework.asm.commons.AnalyzerAdapter.execute(int, int, String)<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.DOUBLE<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65865');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.AnalyzerAdapter.execute(int, int, String)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65865" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.AnalyzerAdapter<br/>In method org.springframework.asm.commons.AnalyzerAdapter.execute(int, int, String)<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.LONG<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65931');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.AnalyzerAdapter.visitFrameTypes(int, Object[], List)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65931" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.AnalyzerAdapter<br/>In method org.springframework.asm.commons.AnalyzerAdapter.visitFrameTypes(int, Object[], List)<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.DOUBLE<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65997');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.AnalyzerAdapter.visitFrameTypes(int, Object[], List)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65997" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.AnalyzerAdapter<br/>In method org.springframework.asm.commons.AnalyzerAdapter.visitFrameTypes(int, Object[], List)<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.LONG<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66063');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.AnalyzerAdapter.visitMethodInsn(int, String, String, String)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66063" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.AnalyzerAdapter<br/>In method org.springframework.asm.commons.AnalyzerAdapter.visitMethodInsn(int, String, String, String)<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.UNINITIALIZED_THIS<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66129');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66129" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.LocalVariablesSorter<br/>In method org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.DOUBLE<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66195');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66195" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.LocalVariablesSorter<br/>In method org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.FLOAT<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66261');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66261" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.LocalVariablesSorter<br/>In method org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.INTEGER<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66327');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66327" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.LocalVariablesSorter<br/>In method org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.LONG<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66393');">
+<td>
+<span class="priority-2">RC</span>
+</td>
+<td>Suspicious comparison of a Integer reference to constant in org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66393" style="display: none;">
+<a href="#RC_REF_COMPARISON_BAD_PRACTICE">Bug type RC_REF_COMPARISON_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.asm.commons.LocalVariablesSorter<br/>In method org.springframework.asm.commons.LocalVariablesSorter.visitFrame(int, int, Object[], int, Object[])<br/>Actual type Integer<br/>Value loaded from field org.springframework.asm.Opcodes.TOP<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67482');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.io.File.mkdirs() ignored in org.springframework.cglib.core.DebuggingClassWriter$1.run()</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67482" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.cglib.core.DebuggingClassWriter$1<br/>In method org.springframework.cglib.core.DebuggingClassWriter$1.run()<br/>Called method java.io.File.mkdirs()<br/>At DebuggingClassWriter.java:[line 82]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68921');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.io.File.delete() ignored in org.springframework.cglib.transform.AbstractTransformTask.processJarFile(File)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68921" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.cglib.transform.AbstractTransformTask<br/>In method org.springframework.cglib.transform.AbstractTransformTask.processJarFile(File)<br/>Called method java.io.File.delete()<br/>At AbstractTransformTask.java:[line 209]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71832');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>exceptional return value of java.io.File.mkdir() ignored in org.springframework.util.FileSystemUtils.doCopyRecursively(File, File)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71832" style="display: none;">
+<a href="#RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">Bug type RV_RETURN_VALUE_IGNORED_BAD_PRACTICE (click for details)</a>
+<br/>In class org.springframework.util.FileSystemUtils<br/>In method org.springframework.util.FileSystemUtils.doCopyRecursively(File, File)<br/>Called method java.io.File.mkdir()<br/>At FileSystemUtils.java:[line 75]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68613');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class org.springframework.cglib.proxy.Proxy defines non-transient non-serializable instance field h</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68613" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Proxy<br/>Field org.springframework.cglib.proxy.Proxy.h<br/>Actual type org.springframework.cglib.proxy.InvocationHandler<br/>In Proxy.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69920');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class org.springframework.core.convert.TypeDescriptor defines non-transient non-serializable instance field annotations</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69920" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class org.springframework.core.convert.TypeDescriptor<br/>Field org.springframework.core.convert.TypeDescriptor.annotations<br/>Actual type annotation.Annotation<br/>In TypeDescriptor.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69485');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>org.springframework.core.ExceptionDepthComparator implements Comparator but not Serializable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69485" style="display: none;">
+<a href="#SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">Bug type SE_COMPARATOR_SHOULD_BE_SERIALIZABLE (click for details)</a>
+<br/>In class org.springframework.core.ExceptionDepthComparator<br/>At ExceptionDepthComparator.java:[lines 34-93]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71351');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>Class org.springframework.core.task.SimpleAsyncTaskExecutor defines non-transient non-serializable instance field threadFactory</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71351" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class org.springframework.core.task.SimpleAsyncTaskExecutor<br/>Field org.springframework.core.task.SimpleAsyncTaskExecutor.threadFactory<br/>Actual type java.util.concurrent.ThreadFactory<br/>In SimpleAsyncTaskExecutor.java</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71674');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>org.springframework.util.AntPathMatcher$AntPatternComparator implements Comparator but not Serializable</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71674" style="display: none;">
+<a href="#SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">Bug type SE_COMPARATOR_SHOULD_BE_SERIALIZABLE (click for details)</a>
+<br/>In class org.springframework.util.AntPathMatcher$AntPatternComparator<br/>At AntPathMatcher.java:[lines 395-473]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72353');">
+<td>
+<span class="priority-2">Se</span>
+</td>
+<td>org.springframework.util.comparator.InstanceComparator implements Comparator but not Serializable</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72353" style="display: none;">
+<a href="#SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">Bug type SE_COMPARATOR_SHOULD_BE_SERIALIZABLE (click for details)</a>
+<br/>In class org.springframework.util.comparator.InstanceComparator<br/>At InstanceComparator.java:[lines 49-69]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71772');">
+<td>
+<span class="priority-1">Se</span>
+</td>
+<td>Class org.springframework.util.CustomizableThreadCreator defines non-transient non-serializable instance field threadGroup</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71772" style="display: none;">
+<a href="#SE_BAD_FIELD">Bug type SE_BAD_FIELD (click for details)</a>
+<br/>In class org.springframework.util.CustomizableThreadCreator<br/>Field org.springframework.util.CustomizableThreadCreator.threadGroup<br/>Actual type ThreadGroup<br/>In CustomizableThreadCreator.java</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68671');">
+<td>
+<span class="priority-2">SnVI</span>
+</td>
+<td>org.springframework.cglib.proxy.Proxy is Serializable; consider declaring a serialVersionUID</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68671" style="display: none;">
+<a href="#SE_NO_SERIALVERSIONID">Bug type SE_NO_SERIALVERSIONID (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Proxy<br/>At Proxy.java:[lines 41-98]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_CORRECTNESS">Correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66569');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Possible null pointer dereference of value in org.springframework.cglib.beans.BeanMap.containsValue(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66569" style="display: none;">
+<a href="#NP_NULL_ON_SOME_PATH">Bug type NP_NULL_ON_SOME_PATH (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanMap<br/>In method org.springframework.cglib.beans.BeanMap.containsValue(Object)<br/>Value loaded from value<br/>Dereferenced at BeanMap.java:[line 219]<br/>Known null at BeanMap.java:[line 219]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68138');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Possible null pointer dereference of actualMethod in org.springframework.cglib.proxy.Enhancer.emitMethods(ClassEmitter, List, List)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68138" style="display: none;">
+<a href="#NP_NULL_ON_SOME_PATH">Bug type NP_NULL_ON_SOME_PATH (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.emitMethods(ClassEmitter, List, List)<br/>Value loaded from actualMethod<br/>Dereferenced at Enhancer.java:[line 901]<br/>Known null at Enhancer.java:[line 891]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68213');">
+<td>
+<span class="priority-2">NP</span>
+</td>
+<td>Null passed for nonnull parameter of CallbackInfo.determineTypes(Class[]) in org.springframework.cglib.proxy.Enhancer.setCallbackTypes(Class[])</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68213" style="display: none;">
+<a href="#NP_NULL_PARAM_DEREF">Bug type NP_NULL_PARAM_DEREF (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.setCallbackTypes(Class[])<br/>Called method org.springframework.cglib.proxy.CallbackInfo.determineTypes(Class[])<br/>Argument 1 might be null but must not be null<br/>Value loaded from callbackTypes<br/>Method invoked at Enhancer.java:[line 273]<br/>Known null at Enhancer.java:[line 270]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71709');">
+<td>
+<span class="priority-1">RpC</span>
+</td>
+<td>Repeated conditional test in org.springframework.util.ConcurrentReferenceHashMap.calculateShift(int, int)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71709" style="display: none;">
+<a href="#RpC_REPEATED_CONDITIONAL_TEST">Bug type RpC_REPEATED_CONDITIONAL_TEST (click for details)</a>
+<br/>In class org.springframework.util.ConcurrentReferenceHashMap<br/>In method org.springframework.util.ConcurrentReferenceHashMap.calculateShift(int, int)<br/>At ConcurrentReferenceHashMap.java:[line 370]<br/>At ConcurrentReferenceHashMap.java:[line 370]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72388');">
+<td>
+<span class="priority-2">RV</span>
+</td>
+<td>Check to see if return value of java.util.Comparator.compare(Object, Object) is equal to 0x80000000</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72388" style="display: none;">
+<a href="#RV_CHECK_COMPARETO_FOR_SPECIFIC_RETURN_VALUE">Bug type RV_CHECK_COMPARETO_FOR_SPECIFIC_RETURN_VALUE (click for details)</a>
+<br/>In class org.springframework.util.comparator.InvertibleComparator<br/>In method org.springframework.util.comparator.InvertibleComparator.compare(Object, Object)<br/>Called method java.util.Comparator.compare(Object, Object)<br/>Value 0x80000000<br/>At InvertibleComparator.java:[line 92]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67710');">
+<td>
+<span class="priority-1">UMAC</span>
+</td>
+<td>Uncallable method org.springframework.cglib.core.ReflectUtils$3.getAttribute() defined in anonymous class</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67710" style="display: none;">
+<a href="#UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS">Bug type UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS (click for details)</a>
+<br/>In class org.springframework.cglib.core.ReflectUtils$3<br/>In method org.springframework.cglib.core.ReflectUtils$3.getAttribute()<br/>superclass is org.springframework.cglib.core.MethodInfo<br/>At ReflectUtils.java:[line 418]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_I18N">Internationalization Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67413');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.springframework.cglib.core.DebuggingClassWriter$1.run(): new java.io.OutputStreamWriter(OutputStream)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67413" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.springframework.cglib.core.DebuggingClassWriter$1<br/>In method org.springframework.cglib.core.DebuggingClassWriter$1.run()<br/>Called method new java.io.OutputStreamWriter(OutputStream)<br/>At DebuggingClassWriter.java:[line 97]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70744');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.springframework.core.io.support.EncodedResource.getReader(): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70744" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.springframework.core.io.support.EncodedResource<br/>In method org.springframework.core.io.support.EncodedResource.getReader()<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At EncodedResource.java:[line 132]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72564');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>Found reliance on default encoding in org.springframework.util.xml.XmlValidationModeDetector.detectValidationMode(InputStream): new java.io.InputStreamReader(InputStream)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72564" style="display: none;">
+<a href="#DM_DEFAULT_ENCODING">Bug type DM_DEFAULT_ENCODING (click for details)</a>
+<br/>In class org.springframework.util.xml.XmlValidationModeDetector<br/>In method org.springframework.util.xml.XmlValidationModeDetector.detectValidationMode(InputStream)<br/>Called method new java.io.InputStreamReader(InputStream)<br/>At XmlValidationModeDetector.java:[line 91]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MALICIOUS_CODE">Malicious code vulnerability Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69853');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.core.convert.TypeDescriptor.getAnnotations() may expose internal representation by returning TypeDescriptor.annotations</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69853" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.core.convert.TypeDescriptor<br/>In method org.springframework.core.convert.TypeDescriptor.getAnnotations()<br/>Field org.springframework.core.convert.TypeDescriptor.annotations<br/>At TypeDescriptor.java:[line 346]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70309');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.core.io.ByteArrayResource.getByteArray() may expose internal representation by returning ByteArrayResource.byteArray</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70309" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.core.io.ByteArrayResource<br/>In method org.springframework.core.io.ByteArrayResource.getByteArray()<br/>Field org.springframework.core.io.ByteArrayResource.byteArray<br/>At ByteArrayResource.java:[line 71]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69520');">
+<td>
+<span class="priority-2">EI</span>
+</td>
+<td>org.springframework.core.MethodParameter.getParameterAnnotations() may expose internal representation by returning MethodParameter.parameterAnnotations</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69520" style="display: none;">
+<a href="#EI_EXPOSE_REP">Bug type EI_EXPOSE_REP (click for details)</a>
+<br/>In class org.springframework.core.MethodParameter<br/>In method org.springframework.core.MethodParameter.getParameterAnnotations()<br/>Field org.springframework.core.MethodParameter.parameterAnnotations<br/>At MethodParameter.java:[line 290]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65550');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.asm.ClassReader(byte[], int, int) may expose internal representation by storing an externally mutable object into ClassReader.b</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65550" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.asm.ClassReader<br/>In method new org.springframework.asm.ClassReader(byte[], int, int)<br/>Field org.springframework.asm.ClassReader.b<br/>Local variable stored in JVM register 1<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66459');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.asm.commons.SerialVersionUIDAdder.visit(int, int, String, String, String, String[]) may expose internal representation by storing an externally mutable object into SerialVersionUIDAdder.interfaces</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66459" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.asm.commons.SerialVersionUIDAdder<br/>In method org.springframework.asm.commons.SerialVersionUIDAdder.visit(int, int, String, String, String, String[])<br/>Field org.springframework.asm.commons.SerialVersionUIDAdder.interfaces<br/>Local variable stored in JVM register 6<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66957');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.beans.BulkBean$Generator.setGetters(String[]) may expose internal representation by storing an externally mutable object into BulkBean$Generator.getters</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66957" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BulkBean$Generator<br/>In method org.springframework.cglib.beans.BulkBean$Generator.setGetters(String[])<br/>Field org.springframework.cglib.beans.BulkBean$Generator.getters<br/>Local variable named getters<br/>At BulkBean.java:[line 89]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67031');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.beans.BulkBean$Generator.setSetters(String[]) may expose internal representation by storing an externally mutable object into BulkBean$Generator.setters</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67031" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BulkBean$Generator<br/>In method org.springframework.cglib.beans.BulkBean$Generator.setSetters(String[])<br/>Field org.springframework.cglib.beans.BulkBean$Generator.setters<br/>Local variable named setters<br/>At BulkBean.java:[line 93]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67105');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.beans.BulkBean$Generator.setTypes(Class[]) may expose internal representation by storing an externally mutable object into BulkBean$Generator.types</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67105" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BulkBean$Generator<br/>In method org.springframework.cglib.beans.BulkBean$Generator.setTypes(Class[])<br/>Field org.springframework.cglib.beans.BulkBean$Generator.types<br/>Local variable named types<br/>At BulkBean.java:[line 97]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67842');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.proxy.Enhancer.create(Class[], Object[]) may expose internal representation by storing an externally mutable object into Enhancer.argumentTypes</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67842" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.create(Class[], Object[])<br/>Field org.springframework.cglib.proxy.Enhancer.argumentTypes<br/>Local variable named argumentTypes<br/>At Enhancer.java:[line 302]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67916');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.proxy.Enhancer.create(Class[], Object[]) may expose internal representation by storing an externally mutable object into Enhancer.arguments</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67916" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.create(Class[], Object[])<br/>Field org.springframework.cglib.proxy.Enhancer.arguments<br/>Local variable named arguments<br/>At Enhancer.java:[line 303]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67990');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.proxy.Enhancer.setCallbacks(Callback[]) may expose internal representation by storing an externally mutable object into Enhancer.callbacks</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67990" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.setCallbacks(Callback[])<br/>Field org.springframework.cglib.proxy.Enhancer.callbacks<br/>Local variable named callbacks<br/>At Enhancer.java:[line 222]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68064');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.proxy.Enhancer.setInterfaces(Class[]) may expose internal representation by storing an externally mutable object into Enhancer.interfaces</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68064" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.setInterfaces(Class[])<br/>Field org.springframework.cglib.proxy.Enhancer.interfaces<br/>Local variable named interfaces<br/>At Enhancer.java:[line 183]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68359');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.proxy.Mixin$Generator.setClasses(Class[]) may expose internal representation by storing an externally mutable object into Mixin$Generator.classes</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68359" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Mixin$Generator<br/>In method org.springframework.cglib.proxy.Mixin$Generator.setClasses(Class[])<br/>Field org.springframework.cglib.proxy.Mixin$Generator.classes<br/>Local variable named classes<br/>At Mixin.java:[line 124]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68433');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.proxy.Mixin$Generator.setDelegates(Object[]) may expose internal representation by storing an externally mutable object into Mixin$Generator.delegates</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68433" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Mixin$Generator<br/>In method org.springframework.cglib.proxy.Mixin$Generator.setDelegates(Object[])<br/>Field org.springframework.cglib.proxy.Mixin$Generator.delegates<br/>Local variable named delegates<br/>At Mixin.java:[line 128]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68990');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.cglib.transform.impl.AddDelegateTransformer(Class[], Class) may expose internal representation by storing an externally mutable object into AddDelegateTransformer.delegateIf</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68990" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.transform.impl.AddDelegateTransformer<br/>In method new org.springframework.cglib.transform.impl.AddDelegateTransformer(Class[], Class)<br/>Field org.springframework.cglib.transform.impl.AddDelegateTransformer.delegateIf<br/>Local variable named delegateIf<br/>At AddDelegateTransformer.java:[line 41]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69064');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.cglib.transform.impl.AddPropertyTransformer(String[], Type[]) may expose internal representation by storing an externally mutable object into AddPropertyTransformer.names</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69064" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.transform.impl.AddPropertyTransformer<br/>In method new org.springframework.cglib.transform.impl.AddPropertyTransformer(String[], Type[])<br/>Field org.springframework.cglib.transform.impl.AddPropertyTransformer.names<br/>Local variable named names<br/>At AddPropertyTransformer.java:[line 37]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69138');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.cglib.transform.impl.AddPropertyTransformer(String[], Type[]) may expose internal representation by storing an externally mutable object into AddPropertyTransformer.types</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69138" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.transform.impl.AddPropertyTransformer<br/>In method new org.springframework.cglib.transform.impl.AddPropertyTransformer(String[], Type[])<br/>Field org.springframework.cglib.transform.impl.AddPropertyTransformer.types<br/>Local variable named types<br/>At AddPropertyTransformer.java:[line 38]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69263');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.util.ParallelSorter$Generator.setArrays(Object[]) may expose internal representation by storing an externally mutable object into ParallelSorter$Generator.arrays</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69263" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.util.ParallelSorter$Generator<br/>In method org.springframework.cglib.util.ParallelSorter$Generator.setArrays(Object[])<br/>Field org.springframework.cglib.util.ParallelSorter$Generator.arrays<br/>Local variable named arrays<br/>At ParallelSorter.java:[line 267]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69337');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.util.StringSwitcher$Generator.setInts(int[]) may expose internal representation by storing an externally mutable object into StringSwitcher$Generator.ints</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69337" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.util.StringSwitcher$Generator<br/>In method org.springframework.cglib.util.StringSwitcher$Generator.setInts(int[])<br/>Field org.springframework.cglib.util.StringSwitcher$Generator.ints<br/>Local variable named ints<br/>At StringSwitcher.java:[line 94]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69411');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.cglib.util.StringSwitcher$Generator.setStrings(String[]) may expose internal representation by storing an externally mutable object into StringSwitcher$Generator.strings</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69411" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.cglib.util.StringSwitcher$Generator<br/>In method org.springframework.cglib.util.StringSwitcher$Generator.setStrings(String[])<br/>Field org.springframework.cglib.util.StringSwitcher$Generator.strings<br/>Local variable named strings<br/>At StringSwitcher.java:[line 85]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70376');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>new org.springframework.core.io.ByteArrayResource(byte[], String) may expose internal representation by storing an externally mutable object into ByteArrayResource.byteArray</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70376" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.core.io.ByteArrayResource<br/>In method new org.springframework.core.io.ByteArrayResource(byte[], String)<br/>Field org.springframework.core.io.ByteArrayResource.byteArray<br/>Local variable named byteArray<br/>At ByteArrayResource.java:[line 63]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70879');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.core.io.support.PropertiesLoaderSupport.setLocations(Resource[]) may expose internal representation by storing an externally mutable object into PropertiesLoaderSupport.locations</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70879" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.core.io.support.PropertiesLoaderSupport<br/>In method org.springframework.core.io.support.PropertiesLoaderSupport.setLocations(Resource[])<br/>Field org.springframework.core.io.support.PropertiesLoaderSupport.locations<br/>Local variable named locations<br/>At PropertiesLoaderSupport.java:[line 92]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70953');">
+<td>
+<span class="priority-2">EI2</span>
+</td>
+<td>org.springframework.core.io.support.PropertiesLoaderSupport.setPropertiesArray(Properties[]) may expose internal representation by storing an externally mutable object into PropertiesLoaderSupport.localProperties</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70953" style="display: none;">
+<a href="#EI_EXPOSE_REP2">Bug type EI_EXPOSE_REP2 (click for details)</a>
+<br/>In class org.springframework.core.io.support.PropertiesLoaderSupport<br/>In method org.springframework.core.io.support.PropertiesLoaderSupport.setPropertiesArray(Properties[])<br/>Field org.springframework.core.io.support.PropertiesLoaderSupport.localProperties<br/>Local variable named propertiesArray<br/>At PropertiesLoaderSupport.java:[line 70]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70642');">
+<td>
+<span class="priority-1">MS</span>
+</td>
+<td>org.springframework.core.io.VfsUtils.VIRTUAL_FILE_METHOD_VISIT isn't final but should be</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70642" style="display: none;">
+<a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+<br/>In class org.springframework.core.io.VfsUtils<br/>Field org.springframework.core.io.VfsUtils.VIRTUAL_FILE_METHOD_VISIT<br/>At VfsUtils.java:[line 143]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70693');">
+<td>
+<span class="priority-1">MS</span>
+</td>
+<td>org.springframework.core.io.VfsUtils.VIRTUAL_FILE_VISITOR_INTERFACE isn't final but should be</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70693" style="display: none;">
+<a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+<br/>In class org.springframework.core.io.VfsUtils<br/>Field org.springframework.core.io.VfsUtils.VIRTUAL_FILE_VISITOR_INTERFACE<br/>At VfsUtils.java:[line 142]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69587');">
+<td>
+<span class="priority-2">MS</span>
+</td>
+<td>org.springframework.core.OverridingClassLoader.DEFAULT_EXCLUDED_PACKAGES should be package protected</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69587" style="display: none;">
+<a href="#MS_PKGPROTECT">Bug type MS_PKGPROTECT (click for details)</a>
+<br/>In class org.springframework.core.OverridingClassLoader<br/>Field org.springframework.core.OverridingClassLoader.DEFAULT_EXCLUDED_PACKAGES<br/>At OverridingClassLoader.java:[line 39]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72302');">
+<td>
+<span class="priority-1">MS</span>
+</td>
+<td>org.springframework.util.ReflectionUtils.COPYABLE_FIELDS isn't final but should be</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72302" style="display: none;">
+<a href="#MS_SHOULD_BE_FINAL">Bug type MS_SHOULD_BE_FINAL (click for details)</a>
+<br/>In class org.springframework.util.ReflectionUtils<br/>Field org.springframework.util.ReflectionUtils.COPYABLE_FIELDS<br/>At ReflectionUtils.java:[line 664]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_MT_CORRECTNESS">Multithreaded correctness Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N69638');">
+<td>
+<span class="priority-2">JLM</span>
+</td>
+<td>Synchronization performed on java.util.concurrent.ConcurrentHashMap in org.springframework.core.SimpleAliasRegistry.getAliases(String)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N69638" style="display: none;">
+<a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">Bug type JLM_JSR166_UTILCONCURRENT_MONITORENTER (click for details)</a>
+<br/>In class org.springframework.core.SimpleAliasRegistry<br/>In method org.springframework.core.SimpleAliasRegistry.getAliases(String)<br/>Type java.util.concurrent.ConcurrentHashMap<br/>Value loaded from field org.springframework.core.SimpleAliasRegistry.aliasMap<br/>At SimpleAliasRegistry.java:[line 84]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69719');">
+<td>
+<span class="priority-2">JLM</span>
+</td>
+<td>Synchronization performed on java.util.concurrent.ConcurrentHashMap in org.springframework.core.SimpleAliasRegistry.resolveAliases(StringValueResolver)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69719" style="display: none;">
+<a href="#JLM_JSR166_UTILCONCURRENT_MONITORENTER">Bug type JLM_JSR166_UTILCONCURRENT_MONITORENTER (click for details)</a>
+<br/>In class org.springframework.core.SimpleAliasRegistry<br/>In method org.springframework.core.SimpleAliasRegistry.resolveAliases(StringValueResolver)<br/>Type java.util.concurrent.ConcurrentHashMap<br/>Value loaded from field org.springframework.core.SimpleAliasRegistry.aliasMap<br/>At SimpleAliasRegistry.java:[line 115]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_PERFORMANCE">Performance Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70066');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>new org.springframework.core.enums.LetterCodedLabeledEnum(char, String) invokes inefficient new Character(char) constructor; use Character.valueOf(char) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70066" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.enums.LetterCodedLabeledEnum<br/>In method new org.springframework.core.enums.LetterCodedLabeledEnum(char, String)<br/>Called method new Character(char)<br/>Should call Character.valueOf(char) instead<br/>At LetterCodedLabeledEnum.java:[line 51]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70147');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>new org.springframework.core.enums.ShortCodedLabeledEnum(int, String) invokes inefficient new Short(short) constructor; use Short.valueOf(short) instead</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70147" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.enums.ShortCodedLabeledEnum<br/>In method new org.springframework.core.enums.ShortCodedLabeledEnum(int, String)<br/>Called method new Short(short)<br/>Should call Short.valueOf(short) instead<br/>At ShortCodedLabeledEnum.java:[line 48]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70228');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>new org.springframework.core.enums.StaticLabeledEnum(int, String) invokes inefficient new Short(short) constructor; use Short.valueOf(short) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70228" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.enums.StaticLabeledEnum<br/>In method new org.springframework.core.enums.StaticLabeledEnum(int, String)<br/>Called method new Short(short)<br/>Should call Short.valueOf(short) instead<br/>At StaticLabeledEnum.java:[line 67]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71027');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.core.style.ToStringCreator.append(String, byte) invokes inefficient new Byte(byte) constructor; use Byte.valueOf(byte) instead</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71027" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.style.ToStringCreator<br/>In method org.springframework.core.style.ToStringCreator.append(String, byte)<br/>Called method new Byte(byte)<br/>Should call Byte.valueOf(byte) instead<br/>At ToStringCreator.java:[line 85]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71108');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.core.style.ToStringCreator.append(String, int) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71108" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.style.ToStringCreator<br/>In method org.springframework.core.style.ToStringCreator.append(String, int)<br/>Called method new Integer(int)<br/>Should call Integer.valueOf(int) instead<br/>At ToStringCreator.java:[line 105]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71189');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.core.style.ToStringCreator.append(String, long) invokes inefficient new Long(long) constructor; use Long.valueOf(long) instead</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71189" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.style.ToStringCreator<br/>In method org.springframework.core.style.ToStringCreator.append(String, long)<br/>Called method new Long(long)<br/>Should call Long.valueOf(long) instead<br/>At ToStringCreator.java:[line 115]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71270');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.core.style.ToStringCreator.append(String, short) invokes inefficient new Short(short) constructor; use Short.valueOf(short) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71270" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.core.style.ToStringCreator<br/>In method org.springframework.core.style.ToStringCreator.append(String, short)<br/>Called method new Short(short)<br/>Should call Short.valueOf(short) instead<br/>At ToStringCreator.java:[line 95]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71901');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class) invokes inefficient new Byte(byte) constructor; use Byte.valueOf(byte) instead</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71901" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.util.NumberUtils<br/>In method org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class)<br/>Called method new Byte(byte)<br/>Should call Byte.valueOf(byte) instead<br/>At NumberUtils.java:[line 67]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N71982');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class) invokes inefficient new Integer(int) constructor; use Integer.valueOf(int) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N71982" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.util.NumberUtils<br/>In method org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class)<br/>Called method new Integer(int)<br/>Should call Integer.valueOf(int) instead<br/>At NumberUtils.java:[line 81]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72063');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class) invokes inefficient new Long(long) constructor; use Long.valueOf(long) instead</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72063" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.util.NumberUtils<br/>In method org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class)<br/>Called method new Long(long)<br/>Should call Long.valueOf(long) instead<br/>At NumberUtils.java:[line 84]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72144');">
+<td>
+<span class="priority-2">Bx</span>
+</td>
+<td>org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class) invokes inefficient new Short(short) constructor; use Short.valueOf(short) instead</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72144" style="display: none;">
+<a href="#DM_NUMBER_CTOR">Bug type DM_NUMBER_CTOR (click for details)</a>
+<br/>In class org.springframework.util.NumberUtils<br/>In method org.springframework.util.NumberUtils.convertNumberToTargetClass(Number, Class)<br/>Called method new Short(short)<br/>Should call Short.valueOf(short) instead<br/>At NumberUtils.java:[line 74]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70504');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>invocation of java.net.URL.equals(Object), which blocks to do domain name resolution, in org.springframework.core.io.UrlResource.equals(Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70504" style="display: none;">
+<a href="#DMI_BLOCKING_METHODS_ON_URL">Bug type DMI_BLOCKING_METHODS_ON_URL (click for details)</a>
+<br/>In class org.springframework.core.io.UrlResource<br/>In method org.springframework.core.io.UrlResource.equals(Object)<br/>Called method java.net.URL.equals(Object)<br/>At UrlResource.java:[line 251]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N70573');">
+<td>
+<span class="priority-1">Dm</span>
+</td>
+<td>invocation of java.net.URL.hashCode(), which blocks to do domain name resolution, in org.springframework.core.io.UrlResource.hashCode()</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N70573" style="display: none;">
+<a href="#DMI_BLOCKING_METHODS_ON_URL">Bug type DMI_BLOCKING_METHODS_ON_URL (click for details)</a>
+<br/>In class org.springframework.core.io.UrlResource<br/>In method org.springframework.core.io.UrlResource.hashCode()<br/>Called method java.net.URL.hashCode()<br/>At UrlResource.java:[line 260]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70031');">
+<td>
+<span class="priority-2">SIC</span>
+</td>
+<td>Should org.springframework.core.convert.support.StringToEnumConverterFactory$StringToEnum be a _static_ inner class?</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70031" style="display: none;">
+<a href="#SIC_INNER_SHOULD_BE_STATIC">Bug type SIC_INNER_SHOULD_BE_STATIC (click for details)</a>
+<br/>In class org.springframework.core.convert.support.StringToEnumConverterFactory$StringToEnum<br/>At StringToEnumConverterFactory.java:[lines 42-55]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66516');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.beans.BeanGenerator.addProperties(BeanGenerator, Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66516" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanGenerator<br/>In method org.springframework.cglib.beans.BeanGenerator.addProperties(BeanGenerator, Map)<br/>At BeanGenerator.java:[line 131]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66641');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.beans.BeanMap.entrySet() makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66641" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanMap<br/>In method org.springframework.cglib.beans.BeanMap.entrySet()<br/>At BeanMap.java:[line 282]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66694');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.beans.BeanMap.equals(Object) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66694" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanMap<br/>In method org.springframework.cglib.beans.BeanMap.equals(Object)<br/>At BeanMap.java:[line 257]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66747');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.beans.BeanMap.hashCode() makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66747" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanMap<br/>In method org.springframework.cglib.beans.BeanMap.hashCode()<br/>At BeanMap.java:[line 270]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N66800');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.beans.BeanMap.putAll(Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N66800" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanMap<br/>In method org.springframework.cglib.beans.BeanMap.putAll(Map)<br/>At BeanMap.java:[line 240]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66853');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.beans.BeanMap.toString() makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66853" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BeanMap<br/>In method org.springframework.cglib.beans.BeanMap.toString()<br/>At BeanMap.java:[line 307]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67360');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.core.CollectionUtils.reverse(Map, Map) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67360" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.core.CollectionUtils<br/>In method org.springframework.cglib.core.CollectionUtils.reverse(Map, Map)<br/>At CollectionUtils.java:[line 45]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68306');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.cglib.proxy.MethodInterceptorGenerator.generateStatic(CodeEmitter, CallbackGenerator$Context, List) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68306" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.MethodInterceptorGenerator<br/>In method org.springframework.cglib.proxy.MethodInterceptorGenerator.generateStatic(CodeEmitter, CallbackGenerator$Context, List)<br/>At MethodInterceptorGenerator.java:[line 174]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68560');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>new org.springframework.cglib.proxy.Mixin$Route(Object[]) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68560" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Mixin$Route<br/>In method new org.springframework.cglib.proxy.Mixin$Route(Object[])<br/>At Mixin.java:[line 232]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69800');">
+<td>
+<span class="priority-2">WMI</span>
+</td>
+<td>org.springframework.core.SimpleAliasRegistry.resolveAliases(StringValueResolver) makes inefficient use of keySet iterator instead of entrySet iterator</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69800" style="display: none;">
+<a href="#WMI_WRONG_MAP_ITERATOR">Bug type WMI_WRONG_MAP_ITERATOR (click for details)</a>
+<br/>In class org.springframework.core.SimpleAliasRegistry<br/>In method org.springframework.core.SimpleAliasRegistry.resolveAliases(StringValueResolver)<br/>At SimpleAliasRegistry.java:[line 118]</p>
+</td>
+</tr>
+</table>
+<h2>
+<a name="Warnings_STYLE">Dodgy code Warnings</a>
+</h2>
+<table class="warningtable" width="100%" cellspacing="0">
+<tr class="tableheader">
+<th align="left">Code</th>
+<th align="left">Warning</th>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67776');">
+<td>
+<span class="priority-1">DLS</span>
+</td>
+<td>Dead store to state in org.springframework.cglib.proxy.Enhancer.emitMethods(ClassEmitter, List, List)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67776" style="display: none;">
+<a href="#DLS_DEAD_LOCAL_STORE">Bug type DLS_DEAD_LOCAL_STORE (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Enhancer<br/>In method org.springframework.cglib.proxy.Enhancer.emitMethods(ClassEmitter, List, List)<br/>Local variable named state<br/>At Enhancer.java:[line 920]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N70450');">
+<td>
+<span class="priority-2">Eq</span>
+</td>
+<td>org.springframework.core.io.ClassRelativeResourceLoader$ClassRelativeContextResource doesn't override ClassPathResource.equals(Object)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N70450" style="display: none;">
+<a href="#EQ_DOESNT_OVERRIDE_EQUALS">Bug type EQ_DOESNT_OVERRIDE_EQUALS (click for details)</a>
+<br/>In class org.springframework.core.io.ClassRelativeResourceLoader$ClassRelativeContextResource<br/>Did you intend to override org.springframework.core.io.ClassPathResource.equals(Object)<br/>At ClassPathResource.java:[lines 226-235]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72225');">
+<td>
+<span class="priority-2">RCN</span>
+</td>
+<td>Redundant nullcheck of str, which is known to be non-null in org.springframework.util.ObjectUtils.nullSafeToString(Object)</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72225" style="display: none;">
+<a href="#RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">Bug type RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE (click for details)</a>
+<br/>In class org.springframework.util.ObjectUtils<br/>In method org.springframework.util.ObjectUtils.nullSafeToString(Object)<br/>Value loaded from str<br/>Return value of Object.toString()<br/>Redundant null check at ObjectUtils.java:[line 611]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N71409');">
+<td>
+<span class="priority-2">REC</span>
+</td>
+<td>Exception is caught when Exception is not thrown in org.springframework.core.type.classreading.AnnotationMetadataReadingVisitor.convertClassValues(AnnotationAttributes, boolean)</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N71409" style="display: none;">
+<a href="#REC_CATCH_EXCEPTION">Bug type REC_CATCH_EXCEPTION (click for details)</a>
+<br/>In class org.springframework.core.type.classreading.AnnotationMetadataReadingVisitor<br/>In method org.springframework.core.type.classreading.AnnotationMetadataReadingVisitor.convertClassValues(AnnotationAttributes, boolean)<br/>At AnnotationMetadataReadingVisitor.java:[line 157]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67179');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.core.CodeEmitter.if_cmp(Type, int, Label) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67179" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class org.springframework.cglib.core.CodeEmitter<br/>In method org.springframework.cglib.core.CodeEmitter.if_cmp(Type, int, Label)<br/>At CodeEmitter.java:[lines 199-200]<br/>Another occurrence at CodeEmitter.java:[lines 201-202]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67243');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.core.CodeEmitter.if_cmp(Type, int, Label) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67243" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.cglib.core.CodeEmitter<br/>In method org.springframework.cglib.core.CodeEmitter.if_cmp(Type, int, Label)<br/>At CodeEmitter.java:[lines 170-172]<br/>Another occurrence at CodeEmitter.java:[lines 196-202]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67307');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.core.CodeEmitter.unbox(Type) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67307" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.cglib.core.CodeEmitter<br/>In method org.springframework.cglib.core.CodeEmitter.unbox(Type)<br/>At CodeEmitter.java:[lines 735-758]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67551');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.core.EmitUtils.hash_primitive(CodeEmitter, Type) where one case falls through to the next case</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67551" style="display: none;">
+<a href="#SF_SWITCH_FALLTHROUGH">Bug type SF_SWITCH_FALLTHROUGH (click for details)</a>
+<br/>In class org.springframework.cglib.core.EmitUtils<br/>In method org.springframework.cglib.core.EmitUtils.hash_primitive(CodeEmitter, Type)<br/>At EmitUtils.java:[lines 452-455]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N67604');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.core.EmitUtils.append_string_helper(CodeEmitter, Type, EmitUtils$ArrayDelimiters, Customizer, ProcessArrayCallback) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N67604" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.cglib.core.EmitUtils<br/>In method org.springframework.cglib.core.EmitUtils.append_string_helper(CodeEmitter, Type, EmitUtils$ArrayDelimiters, Customizer, ProcessArrayCallback)<br/>At EmitUtils.java:[lines 586-605]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N67657');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.core.EmitUtils.hash_primitive(CodeEmitter, Type) where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N67657" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.cglib.core.EmitUtils<br/>In method org.springframework.cglib.core.EmitUtils.hash_primitive(CodeEmitter, Type)<br/>At EmitUtils.java:[lines 440-455]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68507');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.cglib.proxy.Mixin$Generator.generateClass(ClassVisitor) where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68507" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.cglib.proxy.Mixin$Generator<br/>In method org.springframework.cglib.proxy.Mixin$Generator.generateClass(ClassVisitor)<br/>At Mixin.java:[lines 168-176]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N72458');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.util.xml.StaxEventXMLReader.parseInternal() where default case is missing</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N72458" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.util.xml.StaxEventXMLReader<br/>In method org.springframework.util.xml.StaxEventXMLReader.parseInternal()<br/>At StaxEventXMLReader.java:[lines 107-147]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N72511');">
+<td>
+<span class="priority-2">SF</span>
+</td>
+<td>Switch statement found in org.springframework.util.xml.StaxStreamXMLReader.parseInternal() where default case is missing</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N72511" style="display: none;">
+<a href="#SF_SWITCH_NO_DEFAULT">Bug type SF_SWITCH_NO_DEFAULT (click for details)</a>
+<br/>In class org.springframework.util.xml.StaxStreamXMLReader<br/>In method org.springframework.util.xml.StaxStreamXMLReader.parseInternal()<br/>At StaxStreamXMLReader.java:[lines 84-118]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N65719');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.springframework.asm.commons.AdviceAdapter.methodAccess</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N65719" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.asm.commons.AdviceAdapter<br/>Field org.springframework.asm.commons.AdviceAdapter.methodAccess<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65759');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.springframework.asm.commons.AdviceAdapter.methodDesc</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65759" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.asm.commons.AdviceAdapter<br/>Field org.springframework.asm.commons.AdviceAdapter.methodDesc<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N66906');">
+<td>
+<span class="priority-2">UrF</span>
+</td>
+<td>Unread public/protected field: org.springframework.cglib.beans.BulkBean.target</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N66906" style="display: none;">
+<a href="#URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">Bug type URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.cglib.beans.BulkBean<br/>Field org.springframework.cglib.beans.BulkBean.target<br/>At BulkBean.java:[line 118]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N65680');">
+<td>
+<span class="priority-2">UuF</span>
+</td>
+<td>Unused public or protected field: org.springframework.asm.Label.info</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N65680" style="display: none;">
+<a href="#UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">Bug type UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.asm.Label<br/>Field org.springframework.asm.Label.info<br/>In &lt;Unknown&gt;</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N68819');">
+<td>
+<span class="priority-2">UwF</span>
+</td>
+<td>Unwritten public or protected field: org.springframework.cglib.reflect.MethodDelegate.eqMethod</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N68819" style="display: none;">
+<a href="#UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.cglib.reflect.MethodDelegate<br/>Field org.springframework.cglib.reflect.MethodDelegate.eqMethod<br/>At MethodDelegate.java:[line 136]</p>
+</td>
+</tr>
+<tr class="tablerow1" onclick="toggleRow('N68870');">
+<td>
+<span class="priority-2">UwF</span>
+</td>
+<td>Unwritten public or protected field: org.springframework.cglib.reflect.MethodDelegate.target</td>
+</tr>
+<tr class="detailrow1">
+<td/>
+<td>
+<p id="N68870" style="display: none;">
+<a href="#UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.cglib.reflect.MethodDelegate<br/>Field org.springframework.cglib.reflect.MethodDelegate.target<br/>At MethodDelegate.java:[line 136]</p>
+</td>
+</tr>
+<tr class="tablerow0" onclick="toggleRow('N69212');">
+<td>
+<span class="priority-2">UwF</span>
+</td>
+<td>Unwritten public or protected field: org.springframework.cglib.util.ParallelSorter.a</td>
+</tr>
+<tr class="detailrow0">
+<td/>
+<td>
+<p id="N69212" style="display: none;">
+<a href="#UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">Bug type UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD (click for details)</a>
+<br/>In class org.springframework.cglib.util.ParallelSorter<br/>Field org.springframework.cglib.util.ParallelSorter.a<br/>At ParallelSorter.java:[line 72]</p>
+</td>
+</tr>
+</table>
+<h1>
+<a name="Details">Details</a>
+</h1>
+<h2>
+<a name="BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS">BC_EQUALS_METHOD_SHOULD_WORK_FOR_ALL_OBJECTS: Equals method should not assume anything about the type of its argument</a>
+</h2>
+
+<p>
+The <code>equals(Object o)</code> method shouldn't make any assumptions
+about the type of <code>o</code>. It should simply return
+false if <code>o</code> is not the same type as <code>this</code>.
+</p>
+
+    
+<h2>
+<a name="DM_NUMBER_CTOR">DM_NUMBER_CTOR: Method invokes inefficient Number constructor; use static valueOf instead</a>
+</h2>
+      
+      <p>
+      Using <code>new Integer(int)</code> is guaranteed to always result in a new object whereas
+      <code>Integer.valueOf(int)</code> allows caching of values to be done by the compiler, class library, or JVM.
+      Using of cached values avoids object allocation and the code will be faster.
+      </p>
+      <p>
+      Values between -128 and 127 are guaranteed to have corresponding cached instances
+      and using <code>valueOf</code> is approximately 3.5 times faster than using constructor.
+      For values outside the constant range the performance of both styles is the same.
+      </p>
+      <p>
+      Unless the class must be compatible with JVMs predating Java 1.5,
+      use either autoboxing or the <code>valueOf()</code> method when creating instances of
+      <code>Long</code>, <code>Integer</code>, <code>Short</code>, <code>Character</code>, and <code>Byte</code>.
+      </p>
+      
+    
+<h2>
+<a name="DLS_DEAD_LOCAL_STORE">DLS_DEAD_LOCAL_STORE: Dead store to local variable</a>
+</h2>
+
+<p>
+This instruction assigns a value to a local variable,
+but the value is not read or used in any subsequent instruction.
+Often, this indicates an error, because the value computed is never
+used.
+</p>
+<p>
+Note that Sun's javac compiler often generates dead stores for
+final local variables.  Because FindBugs is a bytecode-based tool,
+there is no easy way to eliminate these false positives.
+</p>
+
+    
+<h2>
+<a name="DM_DEFAULT_ENCODING">DM_DEFAULT_ENCODING: Reliance on default encoding</a>
+</h2>
+
+<p> Found a call to a method which will perform a byte to String (or String to byte) conversion, and will assume that the default platform encoding is suitable. This will cause the application behaviour to vary between platforms. Use an alternative API and specify a charset name or Charset object explicitly.  </p>
+
+      
+<h2>
+<a name="DMI_BLOCKING_METHODS_ON_URL">DMI_BLOCKING_METHODS_ON_URL: The equals and hashCode methods of URL are blocking</a>
+</h2>
+
+  <p> The equals and hashCode
+method of URL perform domain name resolution, this can result in a big performance hit.
+See <a href="http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html">http://michaelscharf.blogspot.com/2006/11/javaneturlequals-and-hashcode-make.html</a> for more information.
+Consider using <code>java.net.URI</code> instead.
+   </p>
+
+    
+<h2>
+<a name="EI_EXPOSE_REP">EI_EXPOSE_REP: May expose internal representation by returning reference to mutable object</a>
+</h2>
+
+  <p> Returning a reference to a mutable object value stored in one of the object's fields
+  exposes the internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Returning a new copy of the object is better approach in many situations.</p>
+
+    
+<h2>
+<a name="EI_EXPOSE_REP2">EI_EXPOSE_REP2: May expose internal representation by incorporating reference to mutable object</a>
+</h2>
+
+  <p> This code stores a reference to an externally mutable object into the
+  internal representation of the object.&nbsp;
+   If instances
+   are accessed by untrusted code, and unchecked changes to
+   the mutable object would compromise security or other
+   important properties, you will need to do something different.
+  Storing a copy of the object is better approach in many situations.</p>
+
+    
+<h2>
+<a name="EQ_DOESNT_OVERRIDE_EQUALS">EQ_DOESNT_OVERRIDE_EQUALS: Class doesn't override equals in superclass</a>
+</h2>
+
+  <p> This class extends a class that defines an equals method and adds fields, but doesn't
+define an equals method itself. Thus, equality on instances of this class will
+ignore the identity of the subclass and the added fields. Be sure this is what is intended,
+and that you don't need to override the equals method. Even if you don't need to override
+the equals method, consider overriding it anyway to document the fact
+that the equals method for the subclass just return the result of
+invoking super.equals(o).
+  </p>
+
+    
+<h2>
+<a name="ES_COMPARING_STRINGS_WITH_EQ">ES_COMPARING_STRINGS_WITH_EQ: Comparison of String objects using == or !=</a>
+</h2>
+
+  <p>This code compares <code>java.lang.String</code> objects for reference
+equality using the == or != operators.
+Unless both strings are either constants in a source file, or have been
+interned using the <code>String.intern()</code> method, the same string
+value may be represented by two different String objects. Consider
+using the <code>equals(Object)</code> method instead.</p>
+
+    
+<h2>
+<a name="JLM_JSR166_UTILCONCURRENT_MONITORENTER">JLM_JSR166_UTILCONCURRENT_MONITORENTER: Synchronization performed on util.concurrent instance</a>
+</h2>
+
+<p> This method performs synchronization an object that is an instance of
+a class from the java.util.concurrent package (or its subclasses). Instances
+of these classes have their own concurrency control mechanisms that are orthogonal to
+the synchronization provided by the Java keyword <code>synchronized</code>. For example,
+synchronizing on an <code>AtomicBoolean</code> will not prevent other threads
+from modifying the  <code>AtomicBoolean</code>.</p>
+<p>Such code may be correct, but should be carefully reviewed and documented,
+and may confuse people who have to maintain the code at a later date.
+</p>
+
+
+<h2>
+<a name="MS_SHOULD_BE_FINAL">MS_SHOULD_BE_FINAL: Field isn't final but should be</a>
+</h2>
+
+   <p>
+This static field public but not final, and
+could be changed by malicious code or
+        by accident from another package.
+        The field could be made final to avoid
+        this vulnerability.</p>
+
+    
+<h2>
+<a name="MS_PKGPROTECT">MS_PKGPROTECT: Field should be package protected</a>
+</h2>
+
+  <p> A mutable static field could be changed by malicious code or
+   by accident.
+   The field could be made package protected to avoid
+   this vulnerability.</p>
+
+    
+<h2>
+<a name="NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT">NP_EQUALS_SHOULD_HANDLE_NULL_ARGUMENT: equals() method does not check for null argument</a>
+</h2>
+      
+      <p>
+      This implementation of equals(Object) violates the contract defined
+      by java.lang.Object.equals() because it does not check for null
+      being passed as the argument.  All equals() methods should return
+      false if passed a null value.
+      </p>
+      
+   
+<h2>
+<a name="NP_NULL_PARAM_DEREF">NP_NULL_PARAM_DEREF: Method call passes null for nonnull parameter</a>
+</h2>
+      
+      <p>
+      This method call passes a null value for a nonnull method parameter.
+    Either the parameter is annotated as a parameter that should
+    always be nonnull, or analysis has shown that it will always be
+    dereferenced.
+      </p>
+      
+   
+<h2>
+<a name="NP_BOOLEAN_RETURN_NULL">NP_BOOLEAN_RETURN_NULL: Method with Boolean return type returns explicit null</a>
+</h2>
+       
+       <p>
+    A method that returns either Boolean.TRUE, Boolean.FALSE or null is an accident waiting to happen.
+    This method can be invoked as though it returned a value of type boolean, and
+    the compiler will insert automatic unboxing of the Boolean value. If a null value is returned,
+    this will result in a NullPointerException.
+       </p>
+       
+       
+<h2>
+<a name="NP_NULL_ON_SOME_PATH">NP_NULL_ON_SOME_PATH: Possible null pointer dereference</a>
+</h2>
+
+<p> There is a branch of statement that, <em>if executed,</em>  guarantees that
+a null value will be dereferenced, which
+would generate a <code>NullPointerException</code> when the code is executed.
+Of course, the problem might be that the branch or statement is infeasible and that
+the null pointer exception can't ever be executed; deciding that is beyond the ability of FindBugs.
+</p>
+
+    
+<h2>
+<a name="OS_OPEN_STREAM">OS_OPEN_STREAM: Method may fail to close stream</a>
+</h2>
+
+<p> The method creates an IO stream object, does not assign it to any
+fields, pass it to other methods that might close it,
+or return it, and does not appear to close
+the stream on all paths out of the method.&nbsp; This may result in
+a file descriptor leak.&nbsp; It is generally a good
+idea to use a <code>finally</code> block to ensure that streams are
+closed.</p>
+
+    
+<h2>
+<a name="RC_REF_COMPARISON_BAD_PRACTICE">RC_REF_COMPARISON_BAD_PRACTICE: Suspicious reference comparison to constant</a>
+</h2>
+
+<p> This method compares a reference value to a constant using the == or != operator,
+where the correct way to compare instances of this type is generally
+with the equals() method.
+It is possible to create distinct instances that are equal but do not compare as == since
+they are different objects.
+Examples of classes which should generally
+not be compared by reference are java.lang.Integer, java.lang.Float, etc.</p>
+
+    
+<h2>
+<a name="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE">RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE: Redundant nullcheck of value known to be non-null</a>
+</h2>
+
+<p> This method contains a redundant check of a known non-null value against
+the constant null.</p>
+
+    
+<h2>
+<a name="REC_CATCH_EXCEPTION">REC_CATCH_EXCEPTION: Exception is caught when Exception is not thrown</a>
+</h2>
+  
+  <p>
+  This method uses a try-catch block that catches Exception objects, but Exception is not
+  thrown within the try block, and RuntimeException is not explicitly caught.  It is a common bug pattern to
+  say try { ... } catch (Exception e) { something } as a shorthand for catching a number of types of exception
+  each of whose catch blocks is identical, but this construct also accidentally catches RuntimeException as well,
+  masking potential bugs.
+  </p>
+  <p>A better approach is to either explicitly catch the specific exceptions that are thrown,
+  or to explicitly catch RuntimeException exception, rethrow it, and then catch all non-Runtime Exceptions, as shown below:</p>
+  <pre>
+  try {
+    ...
+  } catch (RuntimeException e) {
+    throw e;
+  } catch (Exception e) {
+    ... deal with all non-runtime exceptions ...
+  }</pre>
+  
+     
+<h2>
+<a name="RpC_REPEATED_CONDITIONAL_TEST">RpC_REPEATED_CONDITIONAL_TEST: Repeated conditional tests</a>
+</h2>
+
+<p>The code contains a conditional test is performed twice, one right after the other
+(e.g., <code>x == 0 || x == 0</code>). Perhaps the second occurrence is intended to be something else
+(e.g., <code>x == 0 || y == 0</code>).
+</p>
+
+    
+<h2>
+<a name="RV_CHECK_COMPARETO_FOR_SPECIFIC_RETURN_VALUE">RV_CHECK_COMPARETO_FOR_SPECIFIC_RETURN_VALUE: Code checks for specific values returned by compareTo</a>
+</h2>
+
+   <p> This code invoked a compareTo or compare method, and checks to see if the return value is a specific value,
+such as 1 or -1. When invoking these methods, you should only check the sign of the result, not for any specific
+non-zero value. While many or most compareTo and compare methods only return -1, 0 or 1, some of them
+will return other values.
+
+    
+<h2>
+<a name="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE">RV_RETURN_VALUE_IGNORED_BAD_PRACTICE: Method ignores exceptional return value</a>
+</h2>
+
+   <p> This method returns a value that is not checked. The return value should be checked
+since it can indicate an unusual or unexpected function execution. For
+example, the <code>File.delete()</code> method returns false
+if the file could not be successfully deleted (rather than
+throwing an Exception).
+If you don't check the result, you won't notice if the method invocation
+signals unexpected behavior by returning an atypical return value.
+</p>
+
+    
+<h2>
+<a name="SE_COMPARATOR_SHOULD_BE_SERIALIZABLE">SE_COMPARATOR_SHOULD_BE_SERIALIZABLE: Comparator doesn't implement Serializable</a>
+</h2>
+
+  <p> This class implements the <code>Comparator</code> interface. You
+should consider whether or not it should also implement the <code>Serializable</code>
+interface. If a comparator is used to construct an ordered collection
+such as a <code>TreeMap</code>, then the <code>TreeMap</code>
+will be serializable only if the comparator is also serializable.
+As most comparators have little or no state, making them serializable
+is generally easy and good defensive programming.
+</p>
+
+    
+<h2>
+<a name="SE_BAD_FIELD">SE_BAD_FIELD: Non-transient non-serializable instance field in serializable class</a>
+</h2>
+
+<p> This Serializable class defines a non-primitive instance field which is neither transient,
+Serializable, or <code>java.lang.Object</code>, and does not appear to implement
+the <code>Externalizable</code> interface or the
+<code>readObject()</code> and <code>writeObject()</code> methods.&nbsp;
+Objects of this class will not be deserialized correctly if a non-Serializable
+object is stored in this field.</p>
+
+    
+<h2>
+<a name="SF_SWITCH_NO_DEFAULT">SF_SWITCH_NO_DEFAULT: Switch statement found where default case is missing</a>
+</h2>
+
+  <p> This method contains a switch statement where default case is missing.
+  Usually you need to provide a default case.</p>
+  <p>Because the analysis only looks at the generated bytecode, this warning can be incorrect triggered if
+the default case is at the end of the switch statement and doesn't end with a break statement.
+
+    
+<h2>
+<a name="SF_SWITCH_FALLTHROUGH">SF_SWITCH_FALLTHROUGH: Switch statement found where one case falls through to the next case</a>
+</h2>
+
+  <p> This method contains a switch statement where one case branch will fall through to the next case.
+  Usually you need to end this case with a break or return.</p>
+
+    
+<h2>
+<a name="SIC_INNER_SHOULD_BE_STATIC">SIC_INNER_SHOULD_BE_STATIC: Should be a static inner class</a>
+</h2>
+
+  <p> This class is an inner class, but does not use its embedded reference
+  to the object which created it.&nbsp; This reference makes the instances
+  of the class larger, and may keep the reference to the creator object
+  alive longer than necessary.&nbsp; If possible, the class should be
+   made static.
+</p>
+
+    
+<h2>
+<a name="SE_NO_SERIALVERSIONID">SE_NO_SERIALVERSIONID: Class is Serializable, but doesn't define serialVersionUID</a>
+</h2>
+
+  <p> This class implements the <code>Serializable</code> interface, but does
+  not define a <code>serialVersionUID</code> field.&nbsp;
+  A change as simple as adding a reference to a .class object
+    will add synthetic fields to the class,
+   which will unfortunately change the implicit
+   serialVersionUID (e.g., adding a reference to <code>String.class</code>
+   will generate a static field <code>class$java$lang$String</code>).
+   Also, different source code to bytecode compilers may use different
+   naming conventions for synthetic variables generated for
+   references to class objects or inner classes.
+   To ensure interoperability of Serializable across versions,
+   consider adding an explicit serialVersionUID.</p>
+
+    
+<h2>
+<a name="UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS">UMAC_UNCALLABLE_METHOD_OF_ANONYMOUS_CLASS: Uncallable method defined in anonymous class</a>
+</h2>
+
+<p> This anonymous class defined a method that is not directly invoked and does not override
+a method in a superclass. Since methods in other classes cannot directly invoke methods
+declared in an anonymous class, it seems that this method is uncallable. The method
+might simply be dead code, but it is also possible that the method is intended to
+override a method declared in a superclass, and due to an typo or other error the method does not,
+in fact, override the method it is intended to.
+</p>
+
+
+<h2>
+<a name="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD">URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD: Unread public/protected field</a>
+</h2>
+
+  <p> This field is never read.&nbsp;
+The field is public or protected, so perhaps
+    it is intended to be used with classes not seen as part of the analysis. If not,
+consider removing it from the class.</p>
+
+    
+<h2>
+<a name="UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD">UUF_UNUSED_PUBLIC_OR_PROTECTED_FIELD: Unused public or protected field</a>
+</h2>
+
+  <p> This field is never used.&nbsp;
+The field is public or protected, so perhaps
+    it is intended to be used with classes not seen as part of the analysis. If not,
+consider removing it from the class.</p>
+
+    
+<h2>
+<a name="UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD">UWF_UNWRITTEN_PUBLIC_OR_PROTECTED_FIELD: Unwritten public or protected field</a>
+</h2>
+
+  <p> No writes were seen to this public/protected field.&nbsp; All reads of it will return the default
+value. Check for errors (should it have been initialized?), or remove it if it is useless.</p>
+
+    
+<h2>
+<a name="WMI_WRONG_MAP_ITERATOR">WMI_WRONG_MAP_ITERATOR: Inefficient use of keySet iterator instead of entrySet iterator</a>
+</h2>
+
+<p> This method accesses the value of a Map entry, using a key that was retrieved from
+a keySet iterator. It is more efficient to use an iterator on the entrySet of the map, to avoid the
+Map.get(key) lookup.</p>
+
+        </body>
+</html>
