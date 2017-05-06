@@ -1,7 +1,7 @@
 SourceCodeAnalysisDatabase
 ==========================
 
-This project consists of analysis of open source code projects
+This project consists of analysis of open source code projects including lines of code, testability rating and performance ratings.
 
 ### Lines of source for top Java projects
 
